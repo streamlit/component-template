@@ -4,6 +4,35 @@ This repo contains templates and example code for creating [Streamlit](https://s
 
 For complete information, please see the [Streamlit Components documentation](https://www.notion.so/streamlit/Components-User-Docs-Public-4cabcc49623e4c8ab71db5a8eb782c3a)!
 
+## Overview
+
+A Streamlit Component is made out of a Python API and a frontend (built using any web tech you prefer). 
+
+A Component can be used in any Streamlit app, can pass data between Python and frontend code, and and can optionally be distributed on [PyPI](https://pypi.org/) for the rest of the world to use.
+
+* Create a component's API in a single line of Python:
+```python
+import streamlit.components.v1 as components
+
+# Declare the component:
+my_component = components.declare_component("my_component", path="frontend/build")
+
+# Use it:
+my_component(greeting="Hello", name="World")
+```
+
+* Build the component's frontend out of HTML and JavaScript (or TypeScript, or ClojureScript, or whatever you fancy). React is supported, but not required:
+```typescript
+class MyComponent extends StreamlitComponentBase {
+    public render(): ReactNode {
+        // Access arguments from Python via `this.props.args`:
+        const greeting = this.props.args["greeting"]
+        const name = this.props.args["name"]
+        return <div>{greeting}, {name}!</div>
+    }
+}
+```
+
 ## Quickstart
 
 * Ensure you have [Python 3.6+](https://www.python.org/downloads/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
