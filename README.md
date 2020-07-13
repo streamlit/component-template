@@ -70,5 +70,5 @@ See the `examples` directory for examples on working with pandas DataFrames, int
 ## More Information
 
 * [Streamlit Components documentation](https://www.notion.so/streamlit/Components-User-Docs-Public-4cabcc49623e4c8ab71db5a8eb782c3a)
-* [Streamlit Forums](https://discuss.streamlit.io/)
+* [Streamlit Forums](https://discuss.streamlit.io/tag/custom-components)
 * [Streamlit Components gallery](TODO)
