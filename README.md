@@ -2,7 +2,7 @@
 
 This repo contains templates and example code for creating [Streamlit](https://streamlit.io) Components.
 
-For complete information, please see the [Streamlit Components documentation](https://www.notion.so/streamlit/Components-User-Docs-Public-4cabcc49623e4c8ab71db5a8eb782c3a)!
+For complete information, please see the [Streamlit Components documentation](https://docs.streamlit.io/en/latest/streamlit_components.html)!
 
 ## Overview
 
