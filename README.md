@@ -69,6 +69,6 @@ See the `examples` directory for examples on working with pandas DataFrames, int
 
 ## More Information
 
-* [Streamlit Components documentation](https://docs.streamlit.io/en/latest/streamlit_components.html)
+* [Streamlit Components documentation](https://docs.streamlit.io/en/stable/streamlit_components.html)
 * [Streamlit Forums](https://discuss.streamlit.io/tag/custom-components)
 * [Streamlit Components gallery](https://www.streamlit.io/components)
