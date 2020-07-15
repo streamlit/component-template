@@ -2,8 +2,9 @@ import { Streamlit, RenderData } from "./streamlit"
 
 // Add text and a button to the DOM. (You could also add these directly
 // to index.html.)
-const textDiv = document.body.appendChild(document.createElement("div"))
-const button = document.body.appendChild(document.createElement("button"))
+const span = document.body.appendChild(document.createElement("span"))
+const textNode = span.appendChild(document.createTextNode(""))
+const button = span.appendChild(document.createElement("button"))
 button.textContent = "Click Me!"
 
 // Add a click handler to our button. It will send data back to Streamlit.
@@ -30,7 +31,9 @@ function onRender(event: Event): void {
   // RenderData.args is the JSON dictionary of arguments sent from the
   // Python script.
   let name = data.args["name"]
-  textDiv.textContent = `Hello, ${name}!`
+
+  // Show "Hello, name!" with a non-breaking space afterwards.
+  textNode.textContent = `Hello, ${name}! ` + String.fromCharCode(160)
 
   // We tell Streamlit to update our frameHeight after each render event, in
   // case it has changed. (This isn't strictly necessary for the example
@@ -46,6 +49,6 @@ Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 // first RENDER_EVENT until we call this function.
 Streamlit.setComponentReady()
 
-// Finally, tell Streamlit to update our intiial height. We omit the
+// Finally, tell Streamlit to update our initial height. We omit the
 // `height` parameter here to have it default to our scrollHeight.
 Streamlit.setFrameHeight()
