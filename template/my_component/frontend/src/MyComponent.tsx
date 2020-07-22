@@ -20,24 +20,29 @@ class MyComponent extends StreamlitComponentBase<State> {
   public render = (): ReactNode => {
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
-    const name = this.props.args["name"]
 
     // Show a button and some text.
     // When the button is clicked, we'll increment our "numClicks" state
     // variable, and send its new value back to Streamlit, where it'll
     // be available to the Python program.
     return (
-      <span>
-        Hello, {name}! &nbsp;
-        <button onClick={this.onClicked} disabled={this.props.disabled}>
-          Click Me!
-        </button>
+      <div style={{ border: "solid" }}>
         <canvas ref="canvas" width={500} height={500} />
-      </span>
+      </div>
     )
   }
 
+  public componentDidMount() {
+    console.log("Mounted: ", this.props.args)
+    const url = this.props.args.url
+    const prefix = this.props.args.cors_proxy
+      ? "https://cors-anywhere.herokuapp.com/"
+      : ""
+    this.renderPdf(`${prefix}${url}`)
+  }
+
   private async renderPdf(url: string) {
+    console.log("Rendering: ", url)
     const workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS.version}/pdf.worker.js`
     PDFJS.GlobalWorkerOptions.workerSrc = workerSrc
 
@@ -59,20 +64,6 @@ class MyComponent extends StreamlitComponentBase<State> {
       viewport: viewport,
     }
     page.render(renderContext)
-  }
-
-  /** Click handler for our "Click Me!" button. */
-  private onClicked = async () => {
-    // Increment state.numClicks, and pass the new value back to
-    // Streamlit via `Streamlit.setComponentValue`.
-    this.setState(
-      (prevState) => ({ numClicks: prevState.numClicks + 1 }),
-      () => Streamlit.setComponentValue(this.state.numClicks)
-    )
-    await this.renderPdf(
-      "https://cors-anywhere.herokuapp.com/" +
-        "http://puzzledpint.com/files/8315/3168/9544/05-science-v6.pdf"
-    )
   }
 }
 
