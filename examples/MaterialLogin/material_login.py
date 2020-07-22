@@ -15,8 +15,6 @@ PASSWORD = "test"
 
 logged_in_data = material_login("Insert your account")
 
-st.markdown("---")
-
 st.write(logged_in_data)
 
 if bool(logged_in_data) and logged_in_data['username'] == USERNAME and logged_in_data['password'] == PASSWORD:
