@@ -5,6 +5,8 @@ import {
   Streamlit,
 } from "./streamlit"
 import PDFJS from "pdfjs-dist"
+// @ts-ignore
+import LC from "literallycanvas"
 
 interface State {
   numClicks: number
@@ -25,9 +27,12 @@ class MyComponent extends StreamlitComponentBase<State> {
     // When the button is clicked, we'll increment our "numClicks" state
     // variable, and send its new value back to Streamlit, where it'll
     // be available to the Python program.
+    const imageURLPrefix = "../node_modules/literallycanvas/lib/img"
+
     return (
       <div style={{ border: "solid" }}>
         <canvas ref="canvas" width={500} height={500} />
+        {/* <LC.LiterallyCanvasReactComponent imageURLPrefix={imageURLPrefix} /> */}
       </div>
     )
   }
