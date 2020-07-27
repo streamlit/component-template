@@ -50,7 +50,7 @@ class MyComponent extends StreamlitComponentBase<State> {
     // Assumes each pdf is one page, for now
     const page = await pdf.getPage(1)
 
-    const scale = 1.3
+    const scale = 1.1
     const viewport = page.getViewport({ scale })
 
     const canvas = this.refs.canvas as HTMLCanvasElement

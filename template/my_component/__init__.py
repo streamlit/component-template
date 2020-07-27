@@ -64,13 +64,70 @@ def my_component(url, cors_proxy=False):
 if not _RELEASE:
     import streamlit as st
 
-    st.sidebar.markdown("# Hello there!")
+    st.sidebar.markdown("# Puzzle cheatsheet!")
     st.sidebar.image("https://i.imgur.com/59bBMJB.png")
 
-    st.subheader("Component with constant args")
+    "## Puzzled Pint, July 2018"
+    "http://puzzledpint.com/puzzles/july-2018"
+    # st.subheader("Component with constant args")
     # my_component("http://puzzledpint.com/files/8315/3168/9544/05-science-v6.pdf")
 
+    solutions = [
+        "SNAKE EYES",
+        "HORSE FEATHERS",
+        "WHEN PIGS FLY",
+        "MONKEY BUSINESS",
+        "POCKET",
+    ]
+    valid = [False] * 5
+
+    "# Puzzle 1"
+    my_component("http://puzzledpint.com/files/9815/3168/9527/01-maze-v6.pdf", True)
+    answer1 = st.text_input("Your answer:")
+    if answer1 == solutions[0]:
+        valid[0] = True
+        st.success("Correct!")
+
+    "# Puzzle 2"
+    my_component("http://puzzledpint.com/files/8015/3168/9529/02-surgical-v6.pdf", True)
+    answer2 = st.text_input("Puzzle 2")
+    if answer2 == solutions[1]:
+        valid[1] = True
+        st.success("Correct!")
+
+    "# Puzzle 3"
+    my_component(
+        "http://puzzledpint.com/files/8815/3168/9531/03-equipment-v6.pdf", True
+    )
+    answer3 = st.text_input("Puzzle 3")
+    if answer3 == solutions[2]:
+        valid[2] = True
+        st.success("Correct!")
+
+    "# Puzzle 4"
+    my_component("http://puzzledpint.com/files/7315/3168/9536/04-eye-v6.pdf", True)
+    answer4 = st.text_input("Puzzle 4")
+    if answer4 == solutions[3]:
+        valid[3] = True
+        st.success("Correct!")
+
+    "# Puzzle 5"
     my_component("http://puzzledpint.com/files/8315/3168/9544/05-science-v6.pdf", True)
+    answer5 = st.text_input("Puzzle 5")
+    if answer5 == solutions[4]:
+        valid[4] = True
+        st.success("Correct!")
+
+    # if answer1 and answer2 and answer3 and answer4 and answer5:
+    "# Metapuzzled"
+    # my_component(
+    #     "http://puzzledpint.com/files/5915/3168/9553/99-meta-SOLUTiON-v6.pdf", True,
+    # )
+    my_component("http://puzzledpint.com/files/6315/3168/9550/99-meta-v6.pdf", True)
+    answerMeta = st.text_input("Metapuzzle")
+    if answerMeta == "SKIN YOUR OWN SKUNK":
+        st.success("Congratulations, you're done!")
+        st.balloons()
 
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
