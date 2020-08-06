@@ -67,6 +67,13 @@ See the `template-reactless` directory for a template that does not use [React](
 
 See the `examples` directory for examples on working with pandas DataFrames, integrating with third-party libraries, and more.
 
+## Community-provided Templates
+
+These templates are provided by the community. If you run into any issues, please file your issues against their repositories.
+
+- [streamlit-component-svelte-template](https://github.com/93degree/streamlit-component-svelte-template) - [@93degree](https://github.com/93degree)
+
+
 ## More Information
 
 * [Streamlit Components documentation](https://docs.streamlit.io/en/stable/streamlit_components.html)
