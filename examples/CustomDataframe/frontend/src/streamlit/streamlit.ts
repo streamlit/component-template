@@ -115,10 +115,10 @@ export class Streamlit {
    * value = st.my_component(...)
    * st.write(value) # -> "ahoy!"
    *
-   * The value must be serializable into JSON.
+   * The value must be serializable into JSON or pandas.DataFrame.
    */
-  public static setComponentValue = (value: any): void => {
-    Streamlit.sendBackMsg(ComponentMessageType.SET_COMPONENT_VALUE, { value })
+  public static setComponentValue = (value: any, dataType = "json"): void => {
+    Streamlit.sendBackMsg(ComponentMessageType.SET_COMPONENT_VALUE, { value, dataType })
   }
 
   /** Receive a ForwardMsg from the Streamlit app */
@@ -175,8 +175,8 @@ export class Streamlit {
   }
 
   private static toArrowTable = (df: ArrowDataframeProto): ArrowTable => {
-    const { data, index, columns } = df.data
-    return new ArrowTable(data, index, columns)
+    const { data, index, columns, styler} = df.data
+    return new ArrowTable(data, index, columns, styler)
   }
 
   /** Post a message to the Streamlit app. */

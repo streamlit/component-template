@@ -1,9 +1,8 @@
 import { range } from "lodash"
 import React, {
   Fragment,
-  PureComponent,
+  
   ReactNode,
-  SFC,
   useEffect,
 } from "react"
 import { Table as UITable } from "reactstrap"
@@ -18,10 +17,15 @@ interface TableProps {
   element: ArrowTable
 }
 
-class Table extends PureComponent<TableProps> {
+class Table extends React.PureComponent<TableProps> {
+  public componentDidMount = (): void => {
+    // Send the dataframe back to Python.
+    // NOTE: Styler will not be sent back as it's impossible to serialize.
+    Streamlit.setComponentValue(this.props.element.serialize(), "dataframe")
+  }
+
   public render = (): ReactNode => {
     const table = this.props.element
-
     const hasHeader = table.headerRows > 0
     const hasData = table.dataRows > 0
     const id = table.uuid ? "T_" + table.uuid : undefined
@@ -65,13 +69,13 @@ interface TableRowsProps {
   table: ArrowTable
 }
 
-const TableRows: SFC<TableRowsProps> = props => {
+const TableRows: React.SFC<TableRowsProps> = (props) => {
   const { isHeader, table } = props
   const { headerRows, rows } = table
   const startRow = isHeader ? 0 : headerRows
   const endRow = isHeader ? headerRows : rows
 
-  const tableRows = range(startRow, endRow).map(rowIndex => (
+  const tableRows = range(startRow, endRow).map((rowIndex) => (
     <tr key={rowIndex}>
       <TableRow rowIndex={rowIndex} table={table} />
     </tr>
@@ -92,11 +96,11 @@ interface TableRowProps {
   table: ArrowTable
 }
 
-const TableRow: SFC<TableRowProps> = props => {
+const TableRow: React.SFC<TableRowProps> = (props) => {
   const { rowIndex, table } = props
   const { columns } = table
 
-  const cells = range(0, columns).map(columnIndex => {
+  const cells = range(0, columns).map((columnIndex) => {
     const { classNames, content, id, type } = table.getCell(
       rowIndex,
       columnIndex
@@ -142,7 +146,7 @@ const TableRow: SFC<TableRowProps> = props => {
 /**
  * Dataframe example using Apache Arrow.
  */
-const CustomDataframe = (props: ComponentProps) => {
+const CustomDataframe: React.FC<ComponentProps> = (props) => {
   useEffect(() => {
     Streamlit.setFrameHeight()
   })
