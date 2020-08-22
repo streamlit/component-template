@@ -9,7 +9,7 @@ _custom_dataframe = components.declare_component(
 
 
 def custom_dataframe(data, key=None):
-    return _custom_dataframe(data=data, key=key, default=[])
+    return _custom_dataframe(data=data, key=key, default=pd.DataFrame())
 
 
 raw_data = {
@@ -20,4 +20,6 @@ raw_data = {
 
 df = pd.DataFrame(raw_data, columns=["First Name", "Last Name", "Age"])
 returned_df = custom_dataframe(df)
-st.table(returned_df)
+
+if not returned_df.empty:
+    st.table(returned_df)

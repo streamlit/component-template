@@ -1,11 +1,6 @@
 import { range } from "lodash"
-import React, {
-  Fragment,
-  
-  ReactNode,
-  useEffect,
-} from "react"
-import { Table as UITable } from "reactstrap"
+import React, { Fragment, ReactNode, useEffect } from "react"
+import { Button, Table as UITable } from "reactstrap"
 import {
   ArrowTable,
   ComponentProps,
@@ -18,10 +13,9 @@ interface TableProps {
 }
 
 class Table extends React.PureComponent<TableProps> {
-  public componentDidMount = (): void => {
-    // Send the dataframe back to Python.
+  public returnDataframe = (): void => {
     // NOTE: Styler will not be sent back as it's impossible to serialize.
-    Streamlit.setComponentValue(this.props.element.serialize(), "dataframe")
+    Streamlit.setComponentValue(this.props.element)
   }
 
   public render = (): ReactNode => {
@@ -33,26 +27,31 @@ class Table extends React.PureComponent<TableProps> {
     const caption = table.caption ? <caption>{table.caption}</caption> : null
 
     return (
-      <div className="streamlit-table stTable">
-        <style>{table.styles}</style>
-        <UITable id={id} className={classNames} bordered>
-          {caption}
-          {hasHeader && (
-            <thead>
-              <TableRows isHeader={true} table={table} />
-            </thead>
-          )}
-          <tbody>
-            {hasData ? (
-              <TableRows isHeader={false} table={table} />
-            ) : (
-              <tr>
-                <td colSpan={table.columns || 1}>empty</td>
-              </tr>
+      <>
+        <div className="streamlit-table stTable">
+          <style>{table.styles}</style>
+          <UITable id={id} className={classNames} bordered>
+            {caption}
+            {hasHeader && (
+              <thead>
+                <TableRows isHeader={true} table={table} />
+              </thead>
             )}
-          </tbody>
-        </UITable>
-      </div>
+            <tbody>
+              {hasData ? (
+                <TableRows isHeader={false} table={table} />
+              ) : (
+                <tr>
+                  <td colSpan={table.columns || 1}>empty</td>
+                </tr>
+              )}
+            </tbody>
+          </UITable>
+        </div>
+        <Button color="primary" onClick={this.returnDataframe}>
+          Return dataframe
+        </Button>
+      </>
     )
   }
 }
