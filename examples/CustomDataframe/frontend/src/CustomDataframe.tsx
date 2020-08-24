@@ -14,7 +14,8 @@ interface TableProps {
 
 class Table extends React.PureComponent<TableProps> {
   public returnDataframe = (): void => {
-    // NOTE: Styler will not be sent back as it's impossible to serialize.
+    // NOTE: Returning Styler data is not supported, 
+    // so it won't be included in the returned dataframe.
     Streamlit.setComponentValue(this.props.element)
   }
 
