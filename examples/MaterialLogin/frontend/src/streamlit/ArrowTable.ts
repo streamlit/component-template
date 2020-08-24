@@ -29,7 +29,7 @@ export interface ArrowTableProto {
   data: Uint8Array
   index: Uint8Array
   columns: Uint8Array
-  styler: Styler
+  styler?: Styler
 }
 
 interface Cell {
@@ -63,10 +63,10 @@ export class ArrowTable {
     this.columnsTable = Table.from(columnsBuffer)
     this.styler = styler
       ? {
-          caption: styler.get("caption"),
-          displayValuesTable: Table.from(styler.get("displayValues")),
-          styles: styler.get("styles"),
-          uuid: styler.get("uuid"),
+          caption: styler.caption,
+          displayValuesTable: Table.from(styler.displayValues),
+          styles: styler.styles,
+          uuid: styler.uuid,
         }
       : undefined
   }
@@ -168,11 +168,7 @@ export class ArrowTable {
     } else {
       const dataRowIndex = rowIndex - this.headerRows
       const dataColumnIndex = columnIndex - this.headerColumns
-      const classNames = [
-        "data",
-        "row" + dataRowIndex,
-        "col" + dataColumnIndex,
-      ]
+      const classNames = ["data", "row" + dataRowIndex, "col" + dataColumnIndex]
       const content = this.styler
         ? this.getContent(
             this.styler.displayValuesTable,
@@ -208,6 +204,17 @@ export class ArrowTable {
       default: {
         return column.get(rowIndex)
       }
+    }
+  }
+
+  /**
+   * Serialize arrow table.
+   */
+  public serialize(): ArrowTableProto {
+    return {
+      data: this.dataTable.serialize(),
+      index: this.indexTable.serialize(),
+      columns: this.columnsTable.serialize(),
     }
   }
 

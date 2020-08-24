@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd
 
 import streamlit.components.v1 as components
@@ -8,7 +9,7 @@ _custom_dataframe = components.declare_component(
 
 
 def custom_dataframe(data, key=None):
-    return _custom_dataframe(data=data, key=key, default=[])
+    return _custom_dataframe(data=data, key=key, default=pd.DataFrame())
 
 
 raw_data = {
@@ -18,4 +19,7 @@ raw_data = {
 }
 
 df = pd.DataFrame(raw_data, columns=["First Name", "Last Name", "Age"])
-custom_dataframe(df)
+returned_df = custom_dataframe(df)
+
+if not returned_df.empty:
+    st.table(returned_df)
