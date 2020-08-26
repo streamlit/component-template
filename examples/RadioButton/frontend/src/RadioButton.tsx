@@ -9,7 +9,7 @@ import {
   withStreamlitConnection,
   StreamlitComponentBase,
   Streamlit,
-} from "./streamlit"
+} from "streamlit-component-support"
 
 // Initialize our Styletron engine
 const engine = new Styletron()

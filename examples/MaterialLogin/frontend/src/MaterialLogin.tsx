@@ -3,7 +3,7 @@ import {
   withStreamlitConnection,
   Streamlit,
   ComponentProps,
-} from "./streamlit"
+} from "streamlit-component-support"
 import * as Yup from 'yup'
 import {Formik, Form, Field} from 'formik'
 
