@@ -12,7 +12,7 @@ import {
   ComponentProps,
   Streamlit,
   withStreamlitConnection,
-} from "streamlit-component-support"
+} from "streamlit-component-lib"
 
 interface TableRowsProps {
   isHeader: boolean

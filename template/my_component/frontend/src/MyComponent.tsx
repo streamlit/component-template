@@ -2,7 +2,7 @@ import {
   Streamlit,
   StreamlitComponentBase,
   withStreamlitConnection
-} from "streamlit-component-support";
+} from "streamlit-component-lib";
 import React, { ReactNode } from "react"
 
 interface State {
