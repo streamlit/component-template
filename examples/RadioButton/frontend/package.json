@@ -3,16 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apache-arrow": "^0.17.0",
     "baseui": "^9.73.2",
     "bootstrap": "^4.4.1",
-    "event-target-shim": "^5.0.1",
-    "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1",
+    "streamlit-component-lib": "^1.0.0",
     "styletron-engine-atomic": "^1.4.6",
     "styletron-react": "^5.2.7"
   },
@@ -39,7 +37,6 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@types/hoist-non-react-statics": "^3.3.1",
     "@types/styletron-engine-atomic": "^1.1.0",
     "@types/styletron-react": "^5.0.2",
     "@types/styletron-standard": "^2.0.0",

@@ -6,7 +6,7 @@ import {
   ComponentProps,
   Streamlit,
   withStreamlitConnection,
-} from "./streamlit"
+} from "streamlit-component-lib"
 
 interface TableProps {
   element: ArrowTable
@@ -14,7 +14,7 @@ interface TableProps {
 
 class Table extends React.PureComponent<TableProps> {
   public returnDataframe = (): void => {
-    // NOTE: Returning Styler data is not supported, 
+    // NOTE: Returning Styler data is not supported,
     // so it won't be included in the returned dataframe.
     Streamlit.setComponentValue(this.props.element)
   }

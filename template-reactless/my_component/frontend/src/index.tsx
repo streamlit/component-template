@@ -1,4 +1,4 @@
-import { Streamlit, RenderData } from "./streamlit"
+import { Streamlit, RenderData } from "streamlit-component-lib"
 
 // Add text and a button to the DOM. (You could also add these directly
 // to index.html.)
