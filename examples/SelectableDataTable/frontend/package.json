@@ -21,7 +21,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.4.1",
-    "streamlit-component-lib": "^1.1.0",
+    "streamlit-component-lib": "^1.1.1",
     "styletron-engine-atomic": "^1.4.6",
     "styletron-react": "^5.2.7"
   },
