@@ -9,11 +9,20 @@ button.textContent = "Click Me!"
 
 // Add a click handler to our button. It will send data back to Streamlit.
 let numClicks = 0
+let isFocused = false
 button.onclick = function(): void {
   // Increment numClicks, and pass the new value back to
   // Streamlit via `Streamlit.setComponentValue`.
   numClicks += 1
   Streamlit.setComponentValue(numClicks)
+}
+
+button.onfocus = function(): void {
+  isFocused = true
+}
+
+button.onblur = function(): void {
+  isFocused = false
 }
 
 /**
@@ -24,6 +33,18 @@ button.onclick = function(): void {
 function onRender(event: Event): void {
   // Get the RenderData from the event
   const data = (event as CustomEvent<RenderData>).detail
+
+  // Maintain compatibility with older versions of Streamlit that don't send
+  // a theme object.
+  if (data.theme) {
+    // Use CSS vars to style our button border. Alternatively, the theme style
+    // is defined in the data.theme object.
+    const borderStyling = `1px solid var(${
+      isFocused ? "--primary-color" : "--secondary-color"
+    })`
+    button.style.border = borderStyling
+    button.style.outline = borderStyling
+  }
 
   // Disable our button if necessary.
   button.disabled = data.disabled
