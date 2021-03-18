@@ -40,7 +40,7 @@ function onRender(event: Event): void {
     // Use CSS vars to style our button border. Alternatively, the theme style
     // is defined in the data.theme object.
     const borderStyling = `1px solid var(${
-      isFocused ? "--primary-color" : "--secondary-color"
+      isFocused ? "--primary-color" : "gray"
     })`
     button.style.border = borderStyling
     button.style.outline = borderStyling

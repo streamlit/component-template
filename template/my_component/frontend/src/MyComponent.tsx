@@ -34,7 +34,7 @@ class MyComponent extends StreamlitComponentBase<State> {
       // Use the theme object to style our button border. Alternatively, the
       // theme style is defined in CSS vars.
       const borderStyling = `1px solid ${
-        this.state.isFocused ? theme.primaryColor : theme.secondaryColor
+        this.state.isFocused ? theme.primaryColor : "gray"
       }`
       style.border = borderStyling
       style.outline = borderStyling
