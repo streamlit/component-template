@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - "master"
+  pull_request:
+    branches: 
+      - "master"
+
+jobs:
+  build-examples:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: 
+          - 14.x
+          # As of 2023-05-08, newer versions of node are not supported due to a compatibility
+          #  issue with the transient dependency - node-sass.
+
+    name: Examples / node-version=${{ matrix.node-version }}
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+
+    - uses: actions/setup-python@v4
+      with:
+        # Python 2.7 is required to install node-gyp. It is required to install node-sass.
+        python-version: '2.7'
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install node dependencies
+      run: ./dev.py examples-npm-install
+
+    - name: Build frontend code
+      run: ./dev.py examples-npm-build
