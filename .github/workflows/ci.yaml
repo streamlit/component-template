@@ -9,7 +9,7 @@ on:
       - "master"
 
 jobs:
-  build:
+  build-templates:
     runs-on: ubuntu-latest
 
     strategy:
@@ -34,7 +34,7 @@ jobs:
           - ./template
           - ./template-reactless
 
-    name:  Build / node-version=${{ matrix.node-version }} / cwd=${{ matrix.cwd }}
+    name: Templates / node-version=${{ matrix.node-version }} / cwd=${{ matrix.cwd }}
 
     steps:
     - uses: actions/checkout@v3
@@ -53,3 +53,48 @@ jobs:
     - name: Build frontend code
       working-directory: ${{ matrix.cwd }}//my_component/frontend
       run: npm run build
+
+  build-examples:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: 
+          # For details, see: https://nodejs.dev/en/about/releases/
+          # Maintance LTS. End Of Life: 2023-04-30
+          - 14.x
+          # Maintance LTS. End Of Life: 2023-09-11
+          - 16.x
+          # The following versions are not supported as 
+          # they require react-script 5 which requires changes in 
+          # streamlit-component-lib package.
+          # For details, see: 
+          # https://github.com/streamlit/streamlit/pull/6584
+          # # Active LTS. End Of Life: 2025-04-30
+          # - 18.x
+          # # Current version
+          # - 19.x
+
+    name: Examples / node-version=${{ matrix.node-version }}
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+
+    - uses: actions/setup-python@v4
+      with:
+        # Python 2.7 is required to install node-gyp. It is required to install node-sass.
+        python-version: '2.7'
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install node dependencies
+      run: ./dev.py examples-npm-install
+
+    - name: Build frontend code
+      run: ./dev.py examples-npm-build
