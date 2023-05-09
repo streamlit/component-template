@@ -55,7 +55,7 @@ const tableRow = (props: TableRowProps): string[] => {
 
   const cells = range(0, columns).map(columnIndex => {
     const { content } = table.getCell(rowIndex, columnIndex)
-    return content.toString()
+    return (content || '').toString()
   })
 
   return cells
