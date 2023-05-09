@@ -54,8 +54,10 @@ node_modules/
 coverage/
 
 # Lockfiles
-yarn.lock
-package-lock.json
+template/**/yarn.lock
+template/**/package-lock.json
+template-reactless/**/yarn.lock
+template-reactless/**/package-lock.json
 
 ########################################################################
 # JetBrains

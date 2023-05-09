@@ -1,6 +1,5 @@
 import { range } from "lodash"
 import React, { Fragment, ReactNode, useEffect } from "react"
-import { Button, Table as UITable } from "reactstrap"
 import {
   ArrowTable,
   ComponentProps,
@@ -24,14 +23,14 @@ class Table extends React.PureComponent<TableProps> {
     const hasHeader = table.headerRows > 0
     const hasData = table.dataRows > 0
     const id = table.uuid ? "T_" + table.uuid : undefined
-    const classNames = hasData ? undefined : "empty-table"
+    const classNames = "table table-borderered" + (hasData ? undefined : "empty-table")
     const caption = table.caption ? <caption>{table.caption}</caption> : null
 
     return (
       <>
         <div className="streamlit-table stTable">
           <style>{table.styles}</style>
-          <UITable id={id} className={classNames} bordered>
+          <table id={id} className={classNames}>
             {caption}
             {hasHeader && (
               <thead>
@@ -47,11 +46,11 @@ class Table extends React.PureComponent<TableProps> {
                 </tr>
               )}
             </tbody>
-          </UITable>
+          </table>
         </div>
-        <Button color="primary" onClick={this.returnDataframe}>
+        <button className="btn btn-primary" onClick={this.returnDataframe}>
           Return dataframe
-        </Button>
+        </button>
       </>
     )
   }
@@ -107,7 +106,7 @@ const TableRow: React.SFC<TableRowProps> = (props) => {
     )
 
     // Format the content if needed
-    const formattedContent = content.toString()
+    const formattedContent = (content || '').toString()
 
     switch (type) {
       case "blank": {
