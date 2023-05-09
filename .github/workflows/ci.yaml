@@ -93,6 +93,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Check dependencies
+      run: ./dev.py examples-check-deps
+
     - name: Install node dependencies
       run: ./dev.py examples-npm-install
 
