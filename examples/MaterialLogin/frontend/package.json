@@ -3,17 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.10.2",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.12.3",
     "formik": "^2.1.5",
     "lodash": "^4.17.15",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "reactstrap": "^8.4.1",
-    "streamlit-component-lib": "^1.1.1",
-    "styletron-engine-atomic": "^1.4.6",
-    "styletron-react": "^5.2.7",
+    "sass": "^1.62.1",
+    "streamlit-component-lib": "^1.3.0",
     "yup": "^0.29.1"
   },
   "scripts": {
@@ -39,20 +37,12 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/react": "^10.0.4",
-    "@testing-library/user-event": "^10.1.0",
-    "@types/jest": "^25.2.1",
     "@types/lodash": "^4.14.150",
-    "@types/node": "^13.13.4",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
-    "@types/reactstrap": "^8.4.2",
-    "@types/styletron-engine-atomic": "^1.1.0",
-    "@types/styletron-react": "^5.0.2",
-    "@types/styletron-standard": "^2.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
     "@types/yup": "^0.29.3",
-    "prettier": "^2.0.5",
-    "typescript": "~3.8.3"
+    "react-scripts": "4.0.3",
+    "typescript": "^4.2.0"
   }
 }
