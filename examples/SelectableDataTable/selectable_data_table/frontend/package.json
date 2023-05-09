@@ -9,13 +9,13 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@devexpress/dx-react-core": "^4.0.3",
-    "@devexpress/dx-react-grid": "^4.0.3",
-    "@devexpress/dx-react-grid-material-ui": "^4.0.3",
+    "@devexpress/dx-react-core": "2.7.6",
+    "@devexpress/dx-react-grid": "2.7.6",
+    "@devexpress/dx-react-grid-material-ui": "2.7.6",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.3",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -26,7 +26,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "typescript": "^4.2.0"
   },
   "eslintConfig": {

@@ -17,21 +17,17 @@ jobs:
       matrix:
         node-version: 
           # For details, see: https://nodejs.dev/en/about/releases/
-          # Maintance LTS. End Of Life: 2023-04-30
-          - 14.x
-          # Maintance LTS. End Of Life: 2023-09-11
+          # Maintenance LTS. End Of Life: 2023-09-11
           - 16.x
-          # The following versions are not supported as 
-          # they require react-script 5 which requires changes in 
-          # streamlit-component-lib package.
-          # For details, see: 
-          # https://github.com/streamlit/streamlit/pull/6584
-          # # Active LTS. End Of Life: 2025-04-30
-          # - 18.x
-          # # Current version
-          # - 19.x
+          # Active LTS. End Of Life: 2025-04-30
+          - 18.x
+          # Current version
+          - 19.x
+        component_lib_version:
+          - current
+          - develop
 
-    name: Examples + Templates / node-version=${{ matrix.node-version }}
+    name: Examples + Templates / node-version=${{ matrix.node-version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -46,6 +42,58 @@ jobs:
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
 
+    - name: Checkout streamlit/streamlit
+      if: matrix.component_lib_version == 'develop'
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        repository: streamlit/streamlit
+        ref: develop
+        path: streamlit
+
+    - name: Install node dependencies for streamlit-component-lib
+      if: matrix.component_lib_version == 'develop'
+      working-directory: ./streamlit/component-lib/
+      run: |
+        npm install -g yarn
+        yarn install
+
+    - name: Build streamlit-component-lib package
+      if: matrix.component_lib_version == 'develop'
+      working-directory: ./streamlit/component-lib/
+      run: yarn run build && npm pack
+
+    - name: Link develop version of streamlit-component-lib
+      if: matrix.component_lib_version == 'develop'
+      working-directory: ${{ matrix.cwd }}/my_component/frontend
+      env:
+        COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
+      run: |
+        component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
+        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
+
+        npm install "${component_lib_tar_gz}"
+
+    - name: Build streamlit-component-lib package
+      if: matrix.component_lib_version == 'develop'
+      working-directory: ./streamlit/component-lib/
+      run: yarn run build && npm pack
+
+    - name: Link develop version of streamlit-component-lib
+      if: matrix.component_lib_version == 'develop'
+      env:
+        COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
+      run: |
+        component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
+        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
+
+        find examples template template-reactless -name frontend -maxdepth 3 | while IFS= read -r line; do
+          (
+            cd "${line}";
+            npm install "${component_lib_tar_gz}"
+          )
+        done
+
     - name: Install node dependencies
       run: ./dev.py all-npm-install
 
@@ -58,7 +106,7 @@ jobs:
         xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
 
         ./dev.py all-python-build-package
-    
+
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
       with:
