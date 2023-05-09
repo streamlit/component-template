@@ -23,7 +23,7 @@ class Table extends React.PureComponent<TableProps> {
     const hasHeader = table.headerRows > 0
     const hasData = table.dataRows > 0
     const id = table.uuid ? "T_" + table.uuid : undefined
-    const classNames = "table table-borderered" + (hasData ? undefined : "empty-table")
+    const classNames = "table table-bordered" + (hasData ? undefined : "empty-table")
     const caption = table.caption ? <caption>{table.caption}</caption> : null
 
     return (
