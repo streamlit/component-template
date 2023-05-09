@@ -83,11 +83,6 @@ jobs:
       with:
         persist-credentials: false
 
-    - uses: actions/setup-python@v4
-      with:
-        # Python 2.7 is required to install node-gyp. It is required to install node-sass.
-        python-version: '2.7'
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
