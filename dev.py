@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
+"""
+A tool to support the maintenance of templates and examples in this repository.
+Something like a Makefile but written in Python for easier maintenance.
 
+To list the available commands, run ./dev.py --help.
+"""
 import argparse
 from glob import glob
 import shlex
@@ -80,7 +85,7 @@ COMMMANDS = {
 
 # Parser    
 def get_parser():
-    parser = argparse.ArgumentParser(prog=__file__)
+    parser = argparse.ArgumentParser(prog=__file__, description=__doc__)
     subparsers = parser.add_subparsers(dest="subcommand", metavar="COMMAND")
     subparsers.required = True
     for commmand_name, command_fn in COMMMANDS.items():

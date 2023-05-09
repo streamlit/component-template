@@ -75,6 +75,10 @@ These templates are provided by the community. If you run into any issues, pleas
 - [streamlit-component-template-vue](https://github.com/andfanilo/streamlit-component-template-vue) - [@andfanilo](https://github.com/andfanilo)
 - [streamlit-component-template-react-hooks](https://github.com/whitphx/streamlit-component-template-react-hooks) - [@whitphx](https://github.com/whitphx)
 
+## Contributing
+
+If you want to contribute to this project, `./dev.py` script will be helpful for you. For details, run `./dev.py --help`.
+
 ## More Information
 
 * [Streamlit Components documentation](https://docs.streamlit.io/library/components)
