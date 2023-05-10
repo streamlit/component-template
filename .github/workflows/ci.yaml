@@ -96,3 +96,16 @@ jobs:
 
     - name: Build frontend code
       run: ./dev.py examples-npm-build
+
+    - name: Build wheel packages
+      run: |
+        find examples -maxdepth 3 -name '__init__.py' |\
+        xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
+        ./dev.py examples-python-build-package
+    
+    - name: Upload wheel packages with examples
+      uses: actions/upload-artifact@v3
+      with:
+        name: examples-wheel-examples
+        path: dist/*.whl
+        if-no-files-found: error
