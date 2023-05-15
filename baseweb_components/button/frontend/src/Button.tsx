@@ -3,45 +3,29 @@ import {
     StreamlitComponentBase,
     withStreamlitConnection,
 } from "streamlit-component-lib"
-import React, { ReactNode } from "react"
-import { Button, SIZE, SHAPE, KIND } from "baseui/button";
-
-interface State {
-    label: string,
-    size: string,
-    shape: string,
-    isLoading: boolean,
-    isSelected: boolean,
-    disabled: boolean,
-    kind: string
-}
+import React, { useEffect, ReactNode } from "react"
+import { Button } from "baseui/button";
 
 
-class BaseWebButton extends StreamlitComponentBase<State> {
-    public state = { label: 'Button', size: SIZE.default, shape: SHAPE.default, isLoading: false, isSelected: false, disabled: false, kind: KIND.primary }
-
-
+class BaseWebButton extends StreamlitComponentBase {
+    public componentDidMount() { Streamlit.setFrameHeight() }
     public render = (): ReactNode => {
-        const label = this.props.args["label"]
-        const disabled = this.state.disabled
-        const { theme } = this.props
-
         return (
             <Button
-                disabled
+                disabled={this.props.args["disabled"]}
+                size={this.props.args["size"]}
+                shape={this.props.args["shape"]}
+                kind={this.props.args["kind"]}
                 onClick={this.onClicked}>
-                {label}
+                {this.props.args["label"]}
             </Button>
         );
     }
 
-    private onClicked = (): void => {
-        Streamlit.events.dispatchEvent();
-        console.log('you clicked')
+    private onClicked = () => {
+        Streamlit.setComponentValue(null)
     }
 
 }
-
-
 
 export default withStreamlitConnection(BaseWebButton)
