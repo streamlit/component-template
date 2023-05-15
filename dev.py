@@ -12,6 +12,7 @@ import subprocess
 from pathlib import Path
 import json
 import sys
+import shutil
 
 THIS_DIRECTORY = Path(__file__).parent.absolute()
 EXAMPLE_DIRECTORIES = (d for d in (THIS_DIRECTORY / 'examples').iterdir() if d.is_dir())
@@ -30,13 +31,15 @@ def run_verbose(cmd_args, *args, **kwargs):
 def cmd_example_npm_install(args):
     """"Install all node dependencies for all examples"""
     for example_dir in EXAMPLE_DIRECTORIES:
-        run_verbose(["npm", "install"], cwd=str(example_dir / "frontend"))
+        frontend_dir = next(example_dir.glob("*/frontend/"))
+        run_verbose(["npm", "install"], cwd=str(frontend_dir))
 
 
 def cmd_example_npm_build(args):
     """"Build javascript code for all examples"""
     for example_dir in EXAMPLE_DIRECTORIES:
-        run_verbose(["npm", "run", "build"], cwd=str(example_dir / "frontend"))
+        frontend_dir = next(example_dir.glob("*/frontend/"))
+        run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
 
 def check_deps(template_package_json, current_package_json):
     return (
@@ -62,7 +65,7 @@ def check_deps_section(template_package_json, current_package_json, section_name
 def cmd_example_check_deps(args):
     """Checks that dependencies of examples match the template"""
     tempalte_deps = json.loads((THIS_DIRECTORY / "template" / "my_component" / "frontend" / "package.json").read_text())
-    examples_package_jsons = sorted(d / "frontend"/ "package.json" for d in EXAMPLE_DIRECTORIES)
+    examples_package_jsons = sorted(next(d.glob("*/frontend/package.json")) for d in EXAMPLE_DIRECTORIES)
     exit_code = 0
     for examples_package_json in examples_package_jsons:
         example_deps = json.loads(examples_package_json.read_text())
@@ -77,10 +80,23 @@ def cmd_example_check_deps(args):
             
     sys.exit(exit_code)
 
+
+def cmd_example_python_build_package(args):
+    """Build wheeel packages for all examples"""
+    final_dist_directory = (THIS_DIRECTORY / "dist")
+    final_dist_directory.mkdir(exist_ok=True)
+    for example_dir in EXAMPLE_DIRECTORIES:
+        run_verbose([sys.executable, "setup.py", "bdist_wheel", "--universal", "sdist"], cwd=str(example_dir))
+
+        wheel_file = next(example_dir.glob("dist/*.whl"))
+        shutil.copy(wheel_file, final_dist_directory)
+
+
 COMMMANDS = {
     "examples-npm-install": cmd_example_npm_install,
     "examples-npm-build": cmd_example_npm_build,
     "examples-check-deps": cmd_example_check_deps,
+    "examples-python-build-package": cmd_example_python_build_package
 }
 
 # Parser    
