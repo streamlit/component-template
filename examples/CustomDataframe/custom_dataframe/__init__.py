@@ -26,7 +26,7 @@ def custom_dataframe(data, key=None):
 
 # Test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run my_component/__init__.py`
+# app: `$ streamlit run custom_dataframe/__init__.py`
 if not _RELEASE:
     raw_data = {
         "First Name": ["Jason", "Molly", "Tina", "Jake", "Amy"],

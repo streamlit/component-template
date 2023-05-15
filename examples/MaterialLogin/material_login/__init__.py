@@ -23,7 +23,7 @@ def material_login(title, key=None):
 
 # Test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run my_component/__init__.py`
+# app: `$ streamlit run material_login/__init__.py`
 if not _RELEASE:
     USERNAME = "a@a.com"
     PASSWORD = "test"

@@ -24,7 +24,7 @@ def custom_radio_button(label, options, default, key=None):
 
 # Test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run my_component/__init__.py`
+# app: `$ streamlit run radio_button/__init__.py`
 if not _RELEASE:
     result = custom_radio_button(
         "How many bats?",
