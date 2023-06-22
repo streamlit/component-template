@@ -15,7 +15,7 @@ import shutil
 
 THIS_DIRECTORY = Path(__file__).parent.absolute()
 EXAMPLE_DIRECTORIES = [d for d in (THIS_DIRECTORY / 'examples').iterdir() if d.is_dir()]
-TEMPLATES_DIRECTORIES = [
+TEMPLATE_DIRECTORIES = [
     THIS_DIRECTORY / "template",
     THIS_DIRECTORY / "template-reactless",
 ]
@@ -33,14 +33,14 @@ def run_verbose(cmd_args, *args, **kwargs):
 # Commands
 def cmd_all_npm_install(args):
     """"Install all node dependencies for all examples"""
-    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         frontend_dir = next(example_dir.glob("*/frontend/"))
         run_verbose(["npm", "install"], cwd=str(frontend_dir))
 
 
 def cmd_all_npm_build(args):
     """"Build javascript code for all examples and templates"""
-    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         frontend_dir = next(example_dir.glob("*/frontend/"))
         run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
 
@@ -48,7 +48,7 @@ def cmd_all_python_build_package(args):
     """Build wheeel packages for all examples and templates"""
     final_dist_directory = (THIS_DIRECTORY / "dist")
     final_dist_directory.mkdir(exist_ok=True)
-    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         run_verbose([sys.executable, "setup.py", "bdist_wheel", "--universal", "sdist"], cwd=str(example_dir))
 
         wheel_file = next(example_dir.glob("dist/*.whl"))
