@@ -6,7 +6,6 @@ Something like a Makefile but written in Python for easier maintenance.
 To list the available commands, run ./dev.py --help.
 """
 import argparse
-from glob import glob
 import shlex
 import subprocess
 from pathlib import Path
@@ -15,7 +14,11 @@ import sys
 import shutil
 
 THIS_DIRECTORY = Path(__file__).parent.absolute()
-EXAMPLE_DIRECTORIES = (d for d in (THIS_DIRECTORY / 'examples').iterdir() if d.is_dir())
+EXAMPLE_DIRECTORIES = [d for d in (THIS_DIRECTORY / 'examples').iterdir() if d.is_dir()]
+TEMPLATES_DIRECTORIES = [
+    THIS_DIRECTORY / "template",
+    THIS_DIRECTORY / "template-reactless",
+]
 
 # Utilities function
 def run_verbose(cmd_args, *args, **kwargs):
@@ -28,18 +31,29 @@ def run_verbose(cmd_args, *args, **kwargs):
 
 
 # Commands
-def cmd_example_npm_install(args):
+def cmd_all_npm_install(args):
     """"Install all node dependencies for all examples"""
-    for example_dir in EXAMPLE_DIRECTORIES:
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
         frontend_dir = next(example_dir.glob("*/frontend/"))
         run_verbose(["npm", "install"], cwd=str(frontend_dir))
 
 
-def cmd_example_npm_build(args):
-    """"Build javascript code for all examples"""
-    for example_dir in EXAMPLE_DIRECTORIES:
+def cmd_all_npm_build(args):
+    """"Build javascript code for all examples and templates"""
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
         frontend_dir = next(example_dir.glob("*/frontend/"))
         run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
+
+def cmd_all_python_build_package(args):
+    """Build wheeel packages for all examples and templates"""
+    final_dist_directory = (THIS_DIRECTORY / "dist")
+    final_dist_directory.mkdir(exist_ok=True)
+    for example_dir in EXAMPLE_DIRECTORIES + TEMPLATES_DIRECTORIES:
+        run_verbose([sys.executable, "setup.py", "bdist_wheel", "--universal", "sdist"], cwd=str(example_dir))
+
+        wheel_file = next(example_dir.glob("dist/*.whl"))
+        shutil.copy(wheel_file, final_dist_directory)
+
 
 def check_deps(template_package_json, current_package_json):
     return (
@@ -71,7 +85,7 @@ def cmd_example_check_deps(args):
         example_deps = json.loads(examples_package_json.read_text())
         errors = check_deps(tempalte_deps, example_deps)
         if errors:
-            print(f"Found erorr in {examples_package_json.relative_to(THIS_DIRECTORY)!s}")
+            print(f"Found error in {examples_package_json.relative_to(THIS_DIRECTORY)!s}")
             print("\n".join(errors))
             print()
             exit_code = 1
@@ -81,22 +95,11 @@ def cmd_example_check_deps(args):
     sys.exit(exit_code)
 
 
-def cmd_example_python_build_package(args):
-    """Build wheeel packages for all examples"""
-    final_dist_directory = (THIS_DIRECTORY / "dist")
-    final_dist_directory.mkdir(exist_ok=True)
-    for example_dir in EXAMPLE_DIRECTORIES:
-        run_verbose([sys.executable, "setup.py", "bdist_wheel", "--universal", "sdist"], cwd=str(example_dir))
-
-        wheel_file = next(example_dir.glob("dist/*.whl"))
-        shutil.copy(wheel_file, final_dist_directory)
-
-
-COMMMANDS = {
-    "examples-npm-install": cmd_example_npm_install,
-    "examples-npm-build": cmd_example_npm_build,
+COMMANDS = {
+    "all-npm-install": cmd_all_npm_install,
+    "all-npm-build": cmd_all_npm_build,
+    "all-python-build-package": cmd_all_python_build_package,
     "examples-check-deps": cmd_example_check_deps,
-    "examples-python-build-package": cmd_example_python_build_package
 }
 
 # Parser    
@@ -104,8 +107,8 @@ def get_parser():
     parser = argparse.ArgumentParser(prog=__file__, description=__doc__)
     subparsers = parser.add_subparsers(dest="subcommand", metavar="COMMAND")
     subparsers.required = True
-    for commmand_name, command_fn in COMMMANDS.items():
-        subparsers.add_parser(commmand_name, help=command_fn.__doc__).set_defaults(func=command_fn)
+    for command_name, command_fn in COMMANDS.items():
+        subparsers.add_parser(command_name, help=command_fn.__doc__).set_defaults(func=command_fn)
     return parser
 
 
