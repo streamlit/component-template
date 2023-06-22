@@ -54,9 +54,10 @@ jobs:
 
     - name: Build wheel packages
       run: |
-        find examples -maxdepth 3 -name '__init__.py' |\
+        find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
         xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
-        ./dev.py examples-python-build-package
+
+        ./dev.py all-python-build-package
     
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
