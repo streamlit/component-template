@@ -65,22 +65,6 @@ jobs:
 
     - name: Link develop version of streamlit-component-lib
       if: matrix.component_lib_version == 'develop'
-      working-directory: ${{ matrix.cwd }}/my_component/frontend
-      env:
-        COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
-      run: |
-        component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
-        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
-
-        npm install "${component_lib_tar_gz}"
-
-    - name: Build streamlit-component-lib package
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./streamlit/component-lib/
-      run: yarn run build && npm pack
-
-    - name: Link develop version of streamlit-component-lib
-      if: matrix.component_lib_version == 'develop'
       env:
         COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
       run: |
