@@ -15,7 +15,7 @@ if not _RELEASE:
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    modal_dir = os.path.join(parent_dir, "baseweb_components/modal/frontend/build")
+    modal_dir = os.path.join(parent_dir, "modal/build")
     _base_web_modal = components.declare_component("base_web_modal", path=modal_dir)
 
 
