@@ -1,4 +1,5 @@
 import os
+from typing import Literal
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -22,8 +23,8 @@ def base_web_modal(
     title: str,
     body: str,
     is_open: bool = True,
-    role: str = "dialog",
-    size: str = "default",
+    role: Literal["dialog", "alertdialog"] = "dialog",
+    size: Literal["full", "default", "auto"] = "full",
     validation_button_label: str = "Okay",
     key=None,
 ):
@@ -58,14 +59,17 @@ def base_web_modal(
         transform: translate(-50%, -50%);
         z-index: 9999;
     }
-
+    [data-testid="stSidebar"] {
+        display: none
+    }
     .stApp {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(63, 63, 63, 1);
+        background-color: rgba(63, 63, 63, 1);
         z-index: 9998;
     }    
         """
