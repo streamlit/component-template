@@ -4,7 +4,7 @@ from typing import Literal
 import streamlit as st
 import streamlit.components.v1 as components
 
-_RELEASE = False
+_RELEASE = True
 
 __title__ = "Baseweb UI"
 __author__ = "Thomas Bouamoud"

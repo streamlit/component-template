@@ -20,7 +20,7 @@ from streamlit_baseweb import base_web_modal
 
 st.title("Testing Streamlit Baseweb")
 if st.button(label="open modal"):
-    base_web_modal(title="modal", body="testing modal", is_open=True, key="base_web_modal")
+    base_web_modal(title="modal", body="testing modal", key="base_web_modal")
 
 ```
 
