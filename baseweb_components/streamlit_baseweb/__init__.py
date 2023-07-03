@@ -10,52 +10,22 @@ __title__ = "Baseweb UI"
 __author__ = "Thomas Bouamoud"
 
 if not _RELEASE:
-    _base_web_button = components.declare_component(
-        "base_web_button", url="http://localhost:3001",
-    )
     _base_web_modal = components.declare_component(
         "base_web_modal", url="http://localhost:3001",
     )
-    _base_web_navigation_bar = components.declare_component(
-        "base_web_navigation_bar", url="http://localhost:3001",
-    )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    button_dir = os.path.join(parent_dir, "baseweb_components/button/frontend/build")
-    _base_web_button = components.declare_component("base_web_button", path=button_dir)
     modal_dir = os.path.join(parent_dir, "baseweb_components/modal/frontend/build")
     _base_web_modal = components.declare_component("base_web_modal", path=modal_dir)
-    modal_dir = os.path.join(parent_dir, "baseweb_components/navigation_bar/frontend/build")
-    _base_web_navigation_bar = components.declare_component("base_web_navbar", path=modal_dir)
-
-
-def base_web_button(
-        label: str = "you forgot to add a label to your button",
-        disabled: bool = False,
-        size: str = "default",
-        shape: str = "default",
-        kind: str = "primary",
-        key=None,
-) -> None:
-    """"""
-    _base_web_button(
-        label=label,
-        disabled=disabled,
-        size=size,
-        shape=shape,
-        kind=kind,
-        key=key,
-        default=0,
-    )
 
 
 def base_web_modal(
-        title: str,
-        body: str,
-        is_open: bool = False,
-        role: str = "dialog",
-        size: str = "default",
-        key=None,
+    title: str,
+    body: str,
+    is_open: bool = False,
+    role: str = "dialog",
+    size: str = "default",
+    key=None,
 ):
     """
 
@@ -78,39 +48,25 @@ def base_web_modal(
         key=key,
         default=0,
     )
+    modal_css = """
+    div[data-stale="false"]>iframe[title="streamlit_baseweb.base_web_modal"] {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+
+    .stApp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }    
+        """
+    st.markdown(f"<style>{modal_css}</style>", unsafe_allow_html=True)
 
 
-def base_web_navigation_bar(
-        title: str,
-        main_items: List[Dict],
-        user_items: List[Dict],
-        user_name: Optional[str] = None,
-        user_name_subtitle: Optional[str] = None,
-        user_image_url: Optional[str] = None,
-        key=None
-):
-    """
-
-    Parameters
-    ----------
-    title
-    main_items
-    user_items
-    username
-    username_subtitle
-    user_image_url
-
-    Returns
-    -------
-
-    """
-    _base_web_navigation_bar(
-        title=title,
-        main_items=main_items,
-        user_items=user_items,
-        user_name=user_name,
-        user_name_subtitle=user_name_subtitle,
-        user_image_url=user_image_url,
-        key=key,
-        default=0
-    )
