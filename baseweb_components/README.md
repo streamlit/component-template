@@ -27,12 +27,12 @@ if st.button(label="open modal"):
 For more details on available components and their usage, refer to the package documentation.
 
 ## Contributing
-Contributions to Streamlit Baseweb are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.
+Contributions to Streamlit Baseweb are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions/tree/master/baseweb_components). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.
 
-Before contributing, please review the [Contributing Guidelines](https://github.com/thomasbs17/streamlit-contributions/blob/master/README.md) for more information.
+Before contributing, please review the [Contributing Guidelines](https://github.com/thomasbs17/streamlit-contributions/blob/master/baseweb_components/README.md) for more information.
 
 ## License
-This package is licensed under the Apache License. See the [LICENSE file](https://github.com/thomasbs17/streamlit-contributions/blob/master/LICENSE) for more information.
+This package is licensed under the MIT License. See the [LICENSE file](https://github.com/thomasbs17/streamlit-contributions/blob/master/baseweb_components/LICENSE) for more information.
 
 ## Credits
 Streamlit Baseweb is created and maintained by Thomas Bouamoud. 
