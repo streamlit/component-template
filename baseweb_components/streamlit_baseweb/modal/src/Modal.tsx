@@ -19,7 +19,8 @@ interface Props {
     body: string,
     isOpen: boolean,
     role: string,
-    size: string
+    size: string,
+    validationButtonLabel: string
 }
 
 
@@ -31,7 +32,8 @@ class BaseWebModal extends StreamlitComponentBase<Props> {
             body: this.props.args["body"],
             isOpen: this.props.args["is_open"],
             role: this.props.args["role"],
-            size: this.props.args["size"]
+            size: this.props.args["size"],
+            validationButtonLabel: this.props.args["validation_button_label"]
         }
     };
     public componentDidMount() { Streamlit.setFrameHeight(250) }
@@ -54,11 +56,16 @@ class BaseWebModal extends StreamlitComponentBase<Props> {
                         kind={ButtonKind.tertiary}>
                         Cancel
                     </ModalButton>
-                    <ModalButton onClick={this.onClose}>Okay</ModalButton>
+                    <ModalButton onClick={this.onConfirm}>{this.state.validationButtonLabel}</ModalButton>
                 </ModalFooter>
             </Modal>
         )
     };
+
+    private onConfirm = () => {
+        this.setState({ isOpen: false });
+        Streamlit.setComponentValue(true)
+    }
 
     private onClose = () => {
         this.setState({ isOpen: false });

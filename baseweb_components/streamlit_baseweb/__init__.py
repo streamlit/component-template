@@ -21,9 +21,10 @@ else:
 def base_web_modal(
     title: str,
     body: str,
-    is_open: bool = False,
+    is_open: bool = True,
     role: str = "dialog",
     size: str = "default",
+    validation_button_label: str = "Okay",
     key=None,
 ):
     """
@@ -35,6 +36,7 @@ def base_web_modal(
     is_open: modal's initial state
     role: options are 'dialog' or 'alertdialog'
     size: options are 'default', 'full', 'auto'
+    validation_button_label: label to display for validation button
     -------
 
     """
@@ -44,6 +46,7 @@ def base_web_modal(
         is_open=is_open,
         role=role,
         size=size,
+        validation_button_label=validation_button_label,
         key=key,
         default=0,
     )
@@ -66,4 +69,4 @@ def base_web_modal(
         z-index: 9998;
     }    
         """
-    st.markdown(f"<style>{modal_css}</style>", unsafe_allow_html=True)
+    st.sidebar.markdown(f"<style>{modal_css}</style>", unsafe_allow_html=True)
