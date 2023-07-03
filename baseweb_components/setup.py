@@ -13,5 +13,6 @@ setuptools.setup(
     include_package_data=True,
     classifiers=[],
     python_requires=">=3.6",
-    install_requires=["streamlit >= 0.63",],
+    keywords=["python", "streamlit", "base web", "base-web", "base_web", "front end"],
+    install_requires=["streamlit >= 0.63"],
 )
