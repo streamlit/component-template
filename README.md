@@ -1,82 +1,44 @@
-# Streamlit Component Templates
+# Streamlit Baseweb
 
-This repo contains templates and example code for creating [Streamlit](https://streamlit.io) Components.
+Streamlit Baseweb is a Python package that provides custom components from the Baseweb framework, allowing you to enhance your Streamlit applications with beautiful and interactive UI elements.
 
-For complete information, please see the [Streamlit Components documentation](https://docs.streamlit.io/en/latest/streamlit_components.html)!
+## Installation
 
-## Overview
+You can install Streamlit Baseweb using pip:
 
-A Streamlit Component is made out of a Python API and a frontend (built using any web tech you prefer). 
+```shell
+pip install streamlit-baseweb
+```
 
-A Component can be used in any Streamlit app, can pass data between Python and frontend code, and and can optionally be distributed on [PyPI](https://pypi.org/) for the rest of the world to use.
+## Usage
 
-* Create a component's API in a single line of Python:
+To use the Baseweb components in your Streamlit application, you need to import the necessary components from the '**streamlit_baseweb**' module and utilize them in your code. Here's an example:
+
 ```python
-import streamlit.components.v1 as components
+import streamlit as st
+from streamlit_baseweb import base_web_modal
 
-# Declare the component:
-my_component = components.declare_component("my_component", path="frontend/build")
+st.title("Testing Streamlit Baseweb")
+if st.button(label="open modal"):
+    base_web_modal(title="modal", body="testing modal", is_open=True, key="base_web_modal")
 
-# Use it:
-my_component(greeting="Hello", name="World")
 ```
 
-* Build the component's frontend out of HTML and JavaScript (or TypeScript, or ClojureScript, or whatever you fancy). React is supported, but not required:
-```typescript
-class MyComponent extends StreamlitComponentBase {
-    public render(): ReactNode {
-        // Access arguments from Python via `this.props.args`:
-        const greeting = this.props.args["greeting"]
-        const name = this.props.args["name"]
-        return <div>{greeting}, {name}!</div>
-    }
-}
-```
+For more details on available components and their usage, refer to the package documentation.
 
-## Quickstart
+## Contributing
+Contributions to Streamlit Baseweb are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.
 
-* Ensure you have [Python 3.6+](https://www.python.org/downloads/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
-* Clone this repo.
-* Create a new Python virtual environment for the template:
-```
-$ cd template
-$ python3 -m venv venv  # create venv
-$ . venv/bin/activate   # activate venv
-$ pip install streamlit # install streamlit
-```
-* Initialize and run the component template frontend:
-```
-$ cd template/my_component/frontend
-$ npm install    # Install npm dependencies
-$ npm run start  # Start the Webpack dev server
-```
-* From a separate terminal, run the template's Streamlit app:
-```
-$ cd template
-$ . venv/bin/activate  # activate the venv you created earlier
-$ streamlit run my_component/__init__.py  # run the example
-```
-* If all goes well, you should see something like this:
-![Quickstart Success](quickstart.png)
-* Modify the frontend code at `my_component/frontend/src/MyComponent.tsx`.
-* Modify the Python code at `my_component/__init__.py`.
+Before contributing, please review the [Contributing Guidelines](https://github.com/thomasbs17/streamlit-contributions/blob/master/README.md) for more information.
 
-## Examples
+## License
+This package is licensed under the Apache License. See the [LICENSE file](https://github.com/thomasbs17/streamlit-contributions/blob/master/LICENSE) for more information.
 
-See the `template-reactless` directory for a template that does not use [React](https://reactjs.org/).
+## Credits
+Streamlit Baseweb is created and maintained by Thomas Bouamoud. 
+It utilizes the Baseweb framework by [Uber](https://baseweb.design/).
 
-See the `examples` directory for examples on working with pandas DataFrames, integrating with third-party libraries, and more.
+## Contact
+If you have any questions or inquiries, feel free to reach out to thomas.bouamoud@gmail.com.
 
-## Community-provided Templates
-
-These templates are provided by the community. If you run into any issues, please file your issues against their repositories.
-
-- [streamlit-component-svelte-template](https://github.com/93degree/streamlit-component-svelte-template) - [@93degree](https://github.com/93degree)
-- [streamlit-component-template-vue](https://github.com/andfanilo/streamlit-component-template-vue) - [@andfanilo](https://github.com/andfanilo)
-- [streamlit-component-template-react-hooks](https://github.com/whitphx/streamlit-component-template-react-hooks) - [@whitphx](https://github.com/whitphx)
-
-## More Information
-
-* [Streamlit Components documentation](https://docs.streamlit.io/library/components)
-* [Streamlit Forums](https://discuss.streamlit.io/tag/custom-components)
-* [Streamlit Components gallery](https://www.streamlit.io/components)
+## 👩‍💻 Happy Streamlit Baseweb coding! 👨‍💻
