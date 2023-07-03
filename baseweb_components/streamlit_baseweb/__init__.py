@@ -1,5 +1,4 @@
 import os
-from typing import List, Dict, Optional
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -11,7 +10,7 @@ __author__ = "Thomas Bouamoud"
 
 if not _RELEASE:
     _base_web_modal = components.declare_component(
-        "base_web_modal", url="http://localhost:3001",
+        "base_web_modal", url="http://localhost:3000",
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
@@ -68,5 +67,3 @@ def base_web_modal(
     }    
         """
     st.markdown(f"<style>{modal_css}</style>", unsafe_allow_html=True)
-
-
