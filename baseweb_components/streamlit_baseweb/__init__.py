@@ -13,10 +13,15 @@ if not _RELEASE:
     _base_web_modal = components.declare_component(
         "base_web_modal", url="http://localhost:3000",
     )
+    _base_web_button = components.declare_component(
+        "base_web_button", url="http://localhost:3001",
+    )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     modal_dir = os.path.join(parent_dir, "modal/build")
     _base_web_modal = components.declare_component("base_web_modal", path=modal_dir)
+    button_dir = os.path.join(parent_dir, "button/build")
+    _base_web_button = components.declare_component("base_web_button", path=button_dir)
 
 
 def base_web_modal(
@@ -81,3 +86,47 @@ def base_web_modal(
     }    
         """
     st.sidebar.markdown(f"<style>{modal_css}</style>", unsafe_allow_html=True)
+
+
+def base_web_button(
+    label: str = "Submit",
+    disabled: bool = False,
+    size: str = "default",
+    shape: str = "default",
+    kind: str = "primary",
+    key=None,
+) -> bool:
+    """
+
+    Parameters
+    ----------
+    label : str, optional
+        The label or text to display on the button. Default is "Submit".
+    disabled : bool, optional
+        Whether the button should be disabled or not. Default is False.
+    size : str, optional
+        The size of the button. Available options are "default", "compact", and "large".
+        Default is "default".
+    shape : str, optional
+        The shape of the button. Available options are "default", "pill", "round", and "square".
+        Default is "default".
+    kind : str, optional
+        The kind or style of the button. Available options are "primary", "secondary", "tertiary",
+        "minimal", and "outline". Default is "primary".
+    key : Any, optional
+        A unique identifier for the button. Default is None.
+
+    Returns
+    -------
+
+    """
+    if _base_web_button(
+        label=label,
+        disabled=disabled,
+        size=size,
+        shape=shape,
+        kind=kind,
+        key=key,
+        default=0,
+    ):
+        return True
