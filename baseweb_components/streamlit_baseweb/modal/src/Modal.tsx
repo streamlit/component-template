@@ -45,7 +45,6 @@ class BaseWebModal extends StreamlitComponentBase<Props> {
                 role={this.state.role}
                 onClose={this.onClose}
             >
-                {console.log(this.state)}
                 <ModalHeader>{this.state.title}</ModalHeader>
                 <ModalBody>
                     {this.state.body}
