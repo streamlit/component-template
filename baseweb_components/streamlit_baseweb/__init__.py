@@ -91,9 +91,9 @@ def base_web_modal(
 def base_web_button(
     label: str = "Submit",
     disabled: bool = False,
-    size: str = "default",
-    shape: str = "default",
-    kind: str = "primary",
+    size: Literal["default", "compact", "large"] = "default",
+    shape: Literal["default", "pill", "round", "square"] = "default",
+    kind: Literal["primary", "secondary", "tertiary"] = "primary",
     key=None,
 ) -> bool:
     """
