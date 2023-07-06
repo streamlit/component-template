@@ -16,15 +16,38 @@ To use the Baseweb components in your Streamlit application, you need to import 
 
 ```python
 import streamlit as st
-from streamlit_baseweb import base_web_modal
+from streamlit_baseweb import base_web_modal, base_web_button
 
 st.title("Testing Streamlit Baseweb")
-if st.button(label="open modal"):
-    base_web_modal(title="modal", body="testing modal", key="base_web_modal")
+if base_web_button(size="large", shape="pill", kind="secondary"):
+    base_web_modal(
+        title="This is a test modal",
+        body="""
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
+                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae 
+                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
+                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+    """,
+        key="modal",
+    )
+if st.session_state.get("modal"):
+    st.success("Confirmation received from modal")
 
 ```
 
 For more details on available components and their usage, refer to the package documentation.
+
+## Roadmap
+Elements will be integrated as per the below priority ranking:
+1. modal
+2. buttons
+3. button groups
+4. navbar
+5. tooltip
+6. alerts
+7. pop-over cards
+
+Additional elements have not yet been prioritized 
 
 ## Contributing
 Contributions to Streamlit Baseweb are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions/tree/master/baseweb_components). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.

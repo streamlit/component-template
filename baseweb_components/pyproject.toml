@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "streamlit_baseweb"
-version = "0.0.4"
+version = "0.1.1"
 description = "A Streamlit implementation of the Base Web library."
 readme = "README.md"
 authors = [{ name = "Thomas Bouamoud", email = "thomas.bouamoud@gmail.com" }]
@@ -13,7 +13,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
-keywords = ["python", "streamlit", "base web", "base-web", "base_web", "front end"]
+keywords = ["python","streamlit baseweb", "streamlit", "baseweb", "base-web", "base_web", "front end"]
 dependencies = [
     "streamlit >= 0.63"
 ]

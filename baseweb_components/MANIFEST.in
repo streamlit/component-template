@@ -1,1 +1,2 @@
 recursive-include streamlit_baseweb/modal/build *
+recursive-include streamlit_baseweb/button/build *

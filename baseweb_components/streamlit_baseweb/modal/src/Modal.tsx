@@ -33,10 +33,15 @@ class BaseWebModal extends StreamlitComponentBase<Props> {
             isOpen: this.props.args["is_open"],
             role: this.props.args["role"],
             size: this.props.args["size"],
-            validationButtonLabel: this.props.args["validation_button_label"]
-        }
+            validationButtonLabel: this.props.args["validation_button_label"],
+        };
     };
-    public componentDidMount() { Streamlit.setFrameHeight(250) }
+    componentHeight = Math.min(
+        Math.max(
+            250,
+            this.props.args["body"].length / 3),
+        500);
+    public componentDidMount() { Streamlit.setFrameHeight(this.componentHeight) };
     public render = (): ReactNode => {
         return (
             <Modal
@@ -45,7 +50,6 @@ class BaseWebModal extends StreamlitComponentBase<Props> {
                 role={this.state.role}
                 onClose={this.onClose}
             >
-                {console.log(this.state)}
                 <ModalHeader>{this.state.title}</ModalHeader>
                 <ModalBody>
                     {this.state.body}

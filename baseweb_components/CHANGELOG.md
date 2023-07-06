@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.0] - 2023-07-06
+### Features
+- Included Button component
+- improved Modal documentation
+- removed dead css in index.html of Modal
+- dynamically set Modal's height
+- added roadmap to README.md
+
 ## [0.0.4] - 2023-07-03
 ### Bug Fix
 - fixed frontend dir
