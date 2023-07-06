@@ -32,19 +32,23 @@ def base_web_modal(
     size: Literal["full", "default", "auto"] = "full",
     validation_button_label: str = "Okay",
     key=None,
-):
+) -> None:
     """
+    Defines a modal component in the Base Web framework.
 
-    Parameters
-    ----------
-    title: modal's title
-    body: modal's body
-    is_open: modal's initial state
-    role: options are 'dialog' or 'alertdialog'
-    size: options are 'default', 'full', 'auto'
-    validation_button_label: label to display for validation button
+    Parameters:
     -------
+    - title (str): The title of the modal.
+    - body (str): The body content of the modal.
+    - is_open (bool, optional): Whether the modal is open or not. Default is True.
+    - role (Literal["dialog", "alertdialog"], optional): The ARIA role of the modal. Default is "dialog".
+    - size (Literal["full", "default", "auto"], optional): The size of the modal. Default is "full".
+    - validation_button_label (str, optional): The label of the validation button. Default is "Okay".
+    - key (any, optional): A key to identify the modal. Default is None.
 
+    Returns:
+    -------
+    None
     """
     _base_web_modal(
         title=title,
@@ -97,29 +101,35 @@ def base_web_button(
     key=None,
 ) -> bool:
     """
+    Defines a button component in the Base Web framework.
 
-    Parameters
-    ----------
-    label : str, optional
+    Parameters:
+    -------
+    - label : str, optional
         The label or text to display on the button. Default is "Submit".
-    disabled : bool, optional
+    - disabled : bool, optional
         Whether the button should be disabled or not. Default is False.
-    size : str, optional
+    - size : str, optional
         The size of the button. Available options are "default", "compact", and "large".
         Default is "default".
-    shape : str, optional
+    - shape : str, optional
         The shape of the button. Available options are "default", "pill", "round", and "square".
         Default is "default".
-    kind : str, optional
+    - kind : str, optional
         The kind or style of the button. Available options are "primary", "secondary", "tertiary",
         "minimal", and "outline". Default is "primary".
-    key : Any, optional
+    - key : Any, optional
         A unique identifier for the button. Default is None.
 
-    Returns
-    -------
+    Returns:
+    ----------
+    True or False
 
     """
+    # TODO: to be integrated in React:
+    #  - colors overrides in React
+    #  - startEnhancer
+    #  - endEnhancer
     if _base_web_button(
         label=label,
         disabled=disabled,

@@ -26,6 +26,18 @@ if st.button(label="open modal"):
 
 For more details on available components and their usage, refer to the package documentation.
 
+## Roadmap
+Elements will be integrated as per the below priority ranking:
+1. modal
+2. buttons
+3. button groups
+4. navbar
+5. tooltip
+6. alerts
+7. pop-over cards
+
+Additional elements have not yet been prioritized 
+
 ## Contributing
 Contributions to Streamlit Baseweb are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions/tree/master/baseweb_components). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.
 
