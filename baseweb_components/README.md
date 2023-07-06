@@ -16,11 +16,22 @@ To use the Baseweb components in your Streamlit application, you need to import 
 
 ```python
 import streamlit as st
-from streamlit_baseweb import base_web_modal
+from streamlit_baseweb import base_web_modal, base_web_button
 
 st.title("Testing Streamlit Baseweb")
-if st.button(label="open modal"):
-    base_web_modal(title="modal", body="testing modal", key="base_web_modal")
+if base_web_button(size="large", shape="pill", kind="secondary"):
+    base_web_modal(
+        title="This is a test modal",
+        body="""
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
+                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae 
+                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
+                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+    """,
+        key="modal",
+    )
+if st.session_state.get("modal"):
+    st.success("Confirmation received from modal")
 
 ```
 
