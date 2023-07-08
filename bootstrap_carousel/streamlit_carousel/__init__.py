@@ -19,7 +19,7 @@ if not _RELEASE:
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    modal_dir = os.path.join(parent_dir, "modal/build")
+    modal_dir = os.path.join(parent_dir, "carousel/build")
     _bootstrap_carousel = components.declare_component(
         "streamlit_carousel", path=modal_dir
     )
