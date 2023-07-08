@@ -50,10 +50,10 @@ Please note that the images provided should be the path or URL to the image file
 ## Contributing
 Contributions to Streamlit Carousel are welcome! If you find any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/thomasbs17/streamlit-contributions/tree/master/bootstrap_carousel). If you'd like to contribute code, you can fork the repository, make your changes, and submit a pull request.
 
-Before contributing, please review the [Contributing Guidelines](https://github.com/thomasbs17/streamlit-contributions/blob/master/bootstrap_carousel/README.md) for more information.
+Before contributing, please review the [Contributing Guidelines](https://github.com/thomasbs17/streamlit-contributions/tree/master/bootstrap_carousel/README.md) for more information.
 
 ## License
-This package is licensed under the MIT License. See the [LICENSE file](https://github.com/thomasbs17/streamlit-contributions/blob/master/bootstrap_carousel/LICENSE) for more information.
+This package is licensed under the MIT License. See the [LICENSE file](https://github.com/thomasbs17/streamlit-contributions/tree/master/bootstrap_carousel/LICENSE) for more information.
 
 ## Credits
 Streamlit Carousel is created and maintained by Thomas Bouamoud. 
