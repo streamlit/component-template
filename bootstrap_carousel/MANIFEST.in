@@ -1,1 +1,1 @@
-recursive-include bootstrap_carousel/bootstrap_carousel/build *
+recursive-include streamlit_carousel/carousel/build *
