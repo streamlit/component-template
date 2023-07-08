@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit_carousel",
-    version="0.0.2",
+    version="0.0.3",
     author="Thomas Bouamoud",
     author_email="thomas.bouamoud@gmail.com",
     description="A Streamlit implementation of the React Bootstrap Carousel component.",
