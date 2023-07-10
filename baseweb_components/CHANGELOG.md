@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2023-07-10
+### Bug fix
+- Dark background behind modal does not cover community components properly. It has been removed and will be re-introduced in a better and optional way in a subsequent version.
+
+## [0.1.1] - 2023-07-06
+### Bug fix
+- Bumped version to reflect updated README.md on Pypi
+
 ## [0.1.0] - 2023-07-06
 ### Features
 - Included Button component
