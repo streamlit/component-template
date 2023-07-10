@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit_baseweb",
-    version="0.1.1",
+    version="0.1.2",
     author="Thomas Bouamoud",
     author_email="thomas.bouamoud@gmail.com",
     description="A Streamlit implementation of the Base Web library.",
