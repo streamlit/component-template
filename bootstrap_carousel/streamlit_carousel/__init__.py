@@ -29,7 +29,6 @@ class Item(TypedDict):
     title: str
     text: str
     img: str
-    interval: int | None
 
 
 def validate_items(items: List[Item]) -> List[Item]:
@@ -47,7 +46,7 @@ def validate_items(items: List[Item]) -> List[Item]:
                 "Each item should include a 'text' key referring to a string variable"
             )
         if "interval" not in item:
-            item["interval"] = False
+            item["interval"] = None
     return items
 
 
@@ -59,7 +58,7 @@ def carousel(
     indicators: bool = True,
     interval: int = 1000,
     pause: str = None,
-    wrap: bool = False,
+    wrap: bool = True,
     height: int = 400,
     width: float = 1,
     key=None,
