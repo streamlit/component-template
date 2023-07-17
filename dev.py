@@ -174,13 +174,14 @@ def cmd_update_templates(args):
                     output_dir / replay_file_content["cookiecutter"]["package_name"]
             )
             print(f"Generating template with replay file: {cookiecutter_variant.replay_file.relative_to(THIS_DIRECTORY)}")
+
             run_verbose(
                 [
                     "cookiecutter",
                     "--replay-file",
                     str(cookiecutter_variant.replay_file),
                     "--output-dir",
-                    str(output_dir),
+                    str(Path(output_dir) / "output"),
                     str(THIS_DIRECTORY / "cookiecutter"),
                 ]
             )

@@ -10,9 +10,8 @@ pipx install cookiecutter
 ```
 
 Then run
-// TODO: Remove --checkout cookieuctter before merge
 ```
-cookiecutter https://github.com/streamlit/component-template.git --directory=cookiecutter --checkout cookieuctter
+cookiecutter https://github.com/streamlit/component-template.git --directory=cookiecutter
 ```
 
 And follow the instructions
