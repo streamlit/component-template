@@ -1,5 +1,5 @@
 {
-  "name": "my_component",
+  "name": "{{ cookiecutter.import_name }}",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,1 +1,1 @@
-recursive-include package/frontend/build *
+recursive-include my_component/frontend/build *

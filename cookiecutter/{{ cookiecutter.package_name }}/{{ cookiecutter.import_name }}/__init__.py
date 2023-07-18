@@ -20,10 +20,10 @@ _RELEASE = False
 
 if not _RELEASE:
     _component_func = components.declare_component(
-        # We give the component a simple, descriptive name ("my_component"
+        # We give the component a simple, descriptive name ("{{ cookiecutter.import_name }}"
         # does not fit this bill, so please choose something better for your
         # own component :)
-        "my_component",
+        "{{ cookiecutter.import_name }}",
         # Pass `url` here to tell Streamlit that the component will be served
         # by the local dev server that you run via `npm run start`.
         # (This is useful while your component is in development.)
@@ -35,7 +35,7 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend-react/build")
-    _component_func = components.declare_component("my_component", path=build_dir)
+    _component_func = components.declare_component("{{ cookiecutter.import_name }}", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional
@@ -43,8 +43,8 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def my_component(name, key=None):
-    """Create a new instance of "my_component".
+def {{ cookiecutter.import_name }}(name, key=None):
+    """Create a new instance of "{{ cookiecutter.import_name }}".
 
     Parameters
     ----------
@@ -79,7 +79,7 @@ def my_component(name, key=None):
 
 # Add some test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run my_component/__init__.py`
+# app: `$ streamlit run {{ cookiecutter.import_name }}/__init__.py`
 if not _RELEASE:
     import streamlit as st
 
@@ -87,7 +87,7 @@ if not _RELEASE:
 
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
-    num_clicks = my_component("World")
+    num_clicks = {{ cookiecutter.import_name }}("World")
     st.markdown("You've clicked %s times!" % int(num_clicks))
 
     st.markdown("---")
@@ -102,5 +102,5 @@ if not _RELEASE:
     # and lose its current state. In this case, we want to vary the component's
     # "name" argument without having it get recreated.
     name_input = st.text_input("Enter a name", value="Streamlit")
-    num_clicks = my_component(name_input, key="foo")
+    num_clicks = {{ cookiecutter.import_name }}(name_input, key="foo")
     st.markdown("You've clicked %s times!" % int(num_clicks))
