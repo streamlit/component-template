@@ -141,12 +141,12 @@ def cmd_check_templates_using_cookiecutter(args):
                 )
                 run_verbose(
                     [
-                        "git",
-                        "--no-pager",
                         "diff",
-                        "--no-index",
+                        "-qr",
                         str(output_template),
                         str(cookiecutter_variant.repo_directory),
+                        '--exclude=node_modules',
+                        '--exclude=package-lock.json'
                     ]
                 )
             except subprocess.CalledProcessError:
