@@ -9,7 +9,7 @@ on:
       - "master"
 
 env:
-  FORCE_COLOR: "1"
+  FORCE_COLOR: "true"
 
 jobs:
   build-examples-templates:
