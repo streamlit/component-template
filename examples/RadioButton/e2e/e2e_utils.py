@@ -11,8 +11,7 @@ from contextlib import closing
 from tempfile import TemporaryFile
 
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3 import Retry
+
 
 LOGGER = logging.getLogger(__file__)
 
@@ -22,15 +21,6 @@ def _find_free_port():
         s.bind(("", 0))  # 0 means that the OS chooses a random port
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         return int(s.getsockname()[1])  # [1] contains the randomly selected port number
-
-
-def _create_http_session():
-    s = requests.Session()
-
-    retries = Retry(total=5, backoff_factor=0.1)
-    s.mount("http://", HTTPAdapter(max_retries=retries))
-
-    return s
 
 
 class AsyncSubprocess:
@@ -137,14 +127,10 @@ class StreamlitRunner:
             while True:
                 with contextlib.suppress(requests.RequestException):
                     response = http_session.get(self.server_url + "/_stcore/health")
-                    print("response=", response)
                     if response.text == "ok":
-                        print("Return True")
                         return True
-                print("Waiting 3s")
                 time.sleep(3)
                 if time.time() - start_time > 60 * timeout:
-                    print("Return false")
                     return False
 
     @property
