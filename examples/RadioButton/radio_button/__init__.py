@@ -1,6 +1,5 @@
 import os
 
-import streamlit as st
 import streamlit.components.v1 as components
 
 
@@ -21,14 +20,3 @@ else:
 
 def custom_radio_button(label, options, default, key=None):
     return _radio_button(label=label, options=options, default=default, key=key)
-
-# Test code to play with the component while it's in development.
-# During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run radio_button/__init__.py`
-if not _RELEASE:
-    result = custom_radio_button(
-        "How many bats?",
-        options=["one bat", "TWO bats", "THREE bats", "FOUR BATS! ah ah ah!"],
-        default="one bat",
-    )
-    st.write("This many: %s" % result)

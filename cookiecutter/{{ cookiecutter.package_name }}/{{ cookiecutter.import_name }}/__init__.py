@@ -31,7 +31,7 @@ if not _RELEASE:
     )
 else:
     # When we're distributing a production version of the component, we'll
-    # replace the `url` param with `path`, and point it to to the component's
+    # replace the `url` param with `path`, and point it to the component's
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend-react/build")
