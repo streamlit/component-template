@@ -55,10 +55,7 @@ def cmd_all_install_python_deps(args):
 
 def cmd_all_install_browsers(args):
     """"Install multiple browsers to run e2e for all examples and templates"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir:
-            run_verbose(["playwright", "install", "webkit", "chromium", "firefox", "--with-deps"], cwd=str(project_dir))
+    run_verbose(["playwright", "install", "webkit", "chromium", "firefox", "--with-deps"])
 
 
 def cmd_all_run_e2e(args):
