@@ -23,7 +23,6 @@ def go_to_app(page: Page, streamlit_app: StreamlitRunner):
 
 
 def test_should_render_user_input(page: Page):
-    page.pause()
     frame_0 = page.frame_locator(
         'iframe[title="my_component\\.my_component"]'
     )
