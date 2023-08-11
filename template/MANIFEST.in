@@ -1,1 +1,1 @@
-recursive-include my_component/frontend/build *
+recursive-include select_explain/frontend/build *

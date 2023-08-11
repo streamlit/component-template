@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MyComponent from "./MyComponent"
+import SelectExplain from "./SelectExplain"
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyComponent />
+    <SelectExplain />
   </React.StrictMode>,
   document.getElementById("root")
 )

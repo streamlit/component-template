@@ -1,11 +1,11 @@
-# streamlit-custom-component
+# Select/Explain
 
-Streamlit component that allows you to do X
+Streamlit component that allows you to do explain selected text
 
 ## Installation instructions
 
 ```sh
-pip install streamlit-custom-component
+pip install streamlit-select-explain
 ```
 
 ## Usage instructions
@@ -13,9 +13,9 @@ pip install streamlit-custom-component
 ```python
 import streamlit as st
 
-from my_component import my_component
+from select_explain import select_explain
 
-value = my_component()
+value = select_explain()
 
 st.write(value)
 ```
