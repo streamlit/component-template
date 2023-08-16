@@ -101,6 +101,9 @@ jobs:
     - name: Install python dependencies
       run: ./dev.py install-python-deps
 
+    - name: Install wheel packages
+      run: ./dev.py install-wheel-packages
+
     - name: Install browsers
       run: ./dev.py install-browsers
 

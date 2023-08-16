@@ -22,6 +22,7 @@ TEMPLATE_DIRECTORIES = [
     THIS_DIRECTORY / "template-reactless",
 ]
 
+
 # Utilities function
 def run_verbose(cmd_args, *args, **kwargs):
     kwargs.setdefault("check", True)
@@ -53,7 +54,18 @@ def cmd_all_install_python_deps(args):
         run_verbose(["pip", "install", "-e", ".[devel]"], cwd=str(project_dir))
 
 
-def cmd_all_install_browsers(args):
+def cmd_all_install_wheel_packages(args):
+    """"Install wheel packages of all examples and templates for e2e tests"""
+    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+        wheel_files = list(project_dir.glob("dist/*.whl"))
+        if wheel_files:
+            wheel_file = wheel_files[0]
+            run_verbose(["pip", "install", str(wheel_file), "--force-reinstall"], cwd=str(project_dir))
+        else:
+            print(f"No wheel files found in {project_dir}")
+
+
+def cmd_install_browsers(args):
     """"Install multiple browsers to run e2e for all examples and templates"""
     run_verbose(["playwright", "install", "webkit", "chromium", "firefox", "--with-deps"])
 
@@ -63,11 +75,11 @@ def cmd_all_run_e2e(args):
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir:
-            run_verbose(["pytest", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5"], cwd=str(project_dir))
+            run_verbose(["pytest", "-s", "--headed", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
 def cmd_all_python_build_package(args):
-    """Build wheeel packages for all examples and templates"""
+    """Build wheel packages for all examples and templates"""
     final_dist_directory = (THIS_DIRECTORY / "dist")
     final_dist_directory.mkdir(exist_ok=True)
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
@@ -219,7 +231,8 @@ COMMANDS = {
     "templates-check-not-modified": cmd_check_templates_using_cookiecutter,
     "templates-update": cmd_update_templates,
     "install-python-deps": cmd_all_install_python_deps,
-    "install-browsers": cmd_all_install_browsers,
+    "install-wheel-packages": cmd_all_install_wheel_packages,
+    "install-browsers": cmd_install_browsers,
     "run-e2e": cmd_all_run_e2e,
 }
 
