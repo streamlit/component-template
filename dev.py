@@ -60,7 +60,7 @@ def cmd_all_install_wheel_packages(args):
         wheel_files = list(project_dir.glob("dist/*.whl"))
         if wheel_files:
             wheel_file = wheel_files[0]
-            run_verbose(["pip", "install", str(wheel_file), "--force-reinstall"], cwd=str(project_dir))
+            run_verbose(["pip", "install", str(wheel_file)], cwd=str(project_dir))
         else:
             print(f"No wheel files found in {project_dir}")
 
@@ -75,7 +75,7 @@ def cmd_all_run_e2e(args):
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir:
-            run_verbose(["pytest", "-s", "--headed", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+            run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
 def cmd_all_python_build_package(args):
