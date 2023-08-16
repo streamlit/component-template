@@ -75,8 +75,8 @@ def cmd_all_run_e2e(args):
     for project_dir in TEMPLATE_DIRECTORIES:
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir:
-            run_verbose(['pip', 'uninstall', 'streamlit_custom_component'])
-            run_verbose(['pip', 'install', '-e', project_dir.parts[1]], '--yes')
+            run_verbose(['pip', 'uninstall', 'streamlit_custom_component', '--yes'])
+            run_verbose(['pip', 'install', '-e', project_dir.parts[1]])
             run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
