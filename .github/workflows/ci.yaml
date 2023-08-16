@@ -9,7 +9,7 @@ on:
       - "master"
 
 jobs:
-  build-examples-templates:
+  build-examples-templates-and-run-dockerized-e2e-tests:
     runs-on: ubuntu-latest
 
     strategy:
@@ -98,17 +98,14 @@ jobs:
         path: dist/*.whl
         if-no-files-found: error
 
-    - name: Install python dependencies
-      run: ./dev.py install-python-deps
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9
 
-    - name: Install wheel packages
-      run: ./dev.py install-wheel-packages
-
-    - name: Install browsers
-      run: ./dev.py install-browsers
+    - name: Build docker images
+      run: ./dev.py e2e-build-images
 
     - name: Run e2e tests
-      run: ./dev.py run-e2e
+      run: ./dev.py e2e-run-tests
 
   build-cookiecutter:
     runs-on: ubuntu-latest

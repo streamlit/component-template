@@ -14,6 +14,7 @@ from pathlib import Path
 import json
 import sys
 import shutil
+import os
 
 THIS_DIRECTORY = Path(__file__).parent.absolute()
 EXAMPLE_DIRECTORIES = [d for d in (THIS_DIRECTORY / 'examples').iterdir() if d.is_dir()]
@@ -35,60 +36,87 @@ def run_verbose(cmd_args, *args, **kwargs):
 
 # Commands
 def cmd_all_npm_install(args):
-    """"Install all node dependencies for all examples"""
+    """Install all node dependencies for all examples"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         frontend_dir = next(project_dir.glob("*/frontend/"))
         run_verbose(["npm", "install"], cwd=str(frontend_dir))
 
 
 def cmd_all_npm_build(args):
-    """"Build javascript code for all examples and templates"""
+    """Build javascript code for all examples and templates"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         frontend_dir = next(project_dir.glob("*/frontend/"))
         run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
 
 
-def cmd_all_install_python_deps(args):
-    """"Install all dependencies needed to run e2e tests for all examples and templates"""
+def cmd_e2e_build_images(args):
+    """Build docker images for each component e2e tests"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        run_verbose(["pip", "install", "-e", ".[devel]"], cwd=str(project_dir))
+        e2e_dir = next(project_dir.glob("**/e2e/"), None)
+        if e2e_dir and os.listdir(e2e_dir):
+            # Define the image tag for the docker image
+            image_tag = (
+                f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{project_dir.parts[-1]}"
+            )
+            # Build the docker image with specified build arguments
+            run_verbose(
+                [
+                    "docker",
+                    "build",
+                    ".",
+                    f"--build-arg=STREAMLIT_VERSION={args.streamlit_version}",
+                    f"--build-arg=PYTHON_VERSION={args.python_version}",
+                    f"--tag={image_tag}",
+                    "--progress=plain",
+                ],
+                env={**os.environ, "DOCKER_BUILDKIT": "1"},
+            )
 
 
-def cmd_all_install_wheel_packages(args):
-    """"Install wheel packages of all examples and templates for e2e tests"""
+def cmd_e2e_run(args):
+    """Run e2e tests for all examples and templates in separate docker images"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        wheel_files = list(project_dir.glob("dist/*.whl"))
-        if wheel_files:
-            wheel_file = wheel_files[0]
-            run_verbose(["pip", "install", str(wheel_file)], cwd=str(project_dir))
-        else:
-            print(f"No wheel files found in {project_dir}")
-
-
-def cmd_install_browsers(args):
-    """"Install multiple browsers to run e2e for all examples and templates"""
-    run_verbose(["playwright", "install", "webkit", "chromium", "firefox", "--with-deps"])
-
-
-def cmd_all_run_e2e(args):
-    """"Run e2e tests for all examples and templates"""
-    for project_dir in TEMPLATE_DIRECTORIES:
+        container_name = project_dir.parts[-1]
+        image_tag = (
+            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
+        )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir:
-            with tempfile.TemporaryDirectory() as tmp_dir:
-                run_verbose(['python', '-m', 'venv', f"{tmp_dir}/venv"])
-                wheel_files = list(project_dir.glob("dist/*.whl"))
-                if wheel_files:
-                    wheel_file = wheel_files[0]
-                    run_verbose([f"{tmp_dir}/venv/bin/pip", "install", f"{str(wheel_file)}[devel]"], cwd=str(project_dir))
-                else:
-                    print(f"No wheel files found in {project_dir}")
-                run_verbose([f"{tmp_dir}/venv/bin/pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+        if e2e_dir and os.listdir(e2e_dir):
+            run_verbose([
+                "docker",
+                "run",
+                "--tty",
+                "--rm",
+                "--name", container_name,
+                "--volume", f"{e2e_dir.parent}/:/component/",
+                image_tag,
+                "/bin/sh", "-c",  # Run a shell command inside the container
+                f"cd /component/ && "
+                f"pip install /component/dist/*.whl && "  # Install whl package
+                f"pip install /component/[devel] && "  # Install dev dependencies
+                f"playwright install webkit chromium firefox --with-deps && "  # Install browsers
+                f"pytest",  # Run pytest
+                "-s",
+                "--browser", "webkit",
+                "--browser", "chromium",
+                "--browser", "firefox",
+                "--reruns", "5",
+                "--capture=no",
+                "--setup-show"
+            ])
 
-    for project_dir in EXAMPLE_DIRECTORIES:
+
+def cmd_docker_images_cleanup(args):
+    """Cleanup docker images and containers"""
+    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+        container_name = project_dir.parts[-1]
+        image_name = (
+            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
+        )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir:
-            run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+        if e2e_dir and os.listdir(e2e_dir):
+            # Remove the associated Docker image
+            run_verbose(["docker", "rmi", image_name])
 
 
 def cmd_all_python_build_package(args):
@@ -104,8 +132,8 @@ def cmd_all_python_build_package(args):
 
 def check_deps(template_package_json, current_package_json):
     return (
-        check_deps_section(template_package_json, current_package_json, 'dependencies') +
-        check_deps_section(template_package_json, current_package_json, 'devDependencies')
+            check_deps_section(template_package_json, current_package_json, 'dependencies') +
+            check_deps_section(template_package_json, current_package_json, 'devDependencies')
     )
 
 
@@ -169,7 +197,8 @@ def cmd_check_templates_using_cookiecutter(args):
         replay_file_content = json.loads(cookiecutter_variant.replay_file.read_text())
 
         with tempfile.TemporaryDirectory() as output_dir:
-            print(f"Generating template with replay file: {cookiecutter_variant.replay_file.relative_to(THIS_DIRECTORY)}")
+            print(
+                f"Generating template with replay file: {cookiecutter_variant.replay_file.relative_to(THIS_DIRECTORY)}")
             run_verbose(
                 [
                     "cookiecutter",
@@ -243,10 +272,27 @@ COMMANDS = {
     "examples-check-deps": cmd_example_check_deps,
     "templates-check-not-modified": cmd_check_templates_using_cookiecutter,
     "templates-update": cmd_update_templates,
-    "install-python-deps": cmd_all_install_python_deps,
-    "install-wheel-packages": cmd_all_install_wheel_packages,
-    "install-browsers": cmd_install_browsers,
-    "run-e2e": cmd_all_run_e2e,
+    "e2e-build-images": cmd_e2e_build_images,
+    "e2e-run-tests": cmd_e2e_run,
+    "docker-images-cleanup": cmd_docker_images_cleanup
+}
+
+ARG_STREAMLIT_VERSION = ("--streamlit-version", "latest", "Streamlit version for which tests will be run.")
+ARG_PYTHON_VERSION = ("--python-version", os.environ.get("PYTHON_VERSION", "3.11.4"), "Python version for which tests will be run.")
+
+ARGUMENTS = {
+    "e2e-build-images": [
+        ARG_STREAMLIT_VERSION,
+        ARG_PYTHON_VERSION
+    ],
+    "e2e-run-tests": [
+        ARG_STREAMLIT_VERSION,
+        ARG_PYTHON_VERSION
+    ],
+    "docker-images-cleanup": [
+        (*ARG_STREAMLIT_VERSION[:2], f"Streamlit version used to create the Docker resources"),
+        (*ARG_PYTHON_VERSION[:2], f"Python version used to create the Docker resources")
+    ]
 }
 
 
@@ -256,7 +302,14 @@ def get_parser():
     subparsers = parser.add_subparsers(dest="subcommand", metavar="COMMAND")
     subparsers.required = True
     for command_name, command_fn in COMMANDS.items():
-        subparsers.add_parser(command_name, help=command_fn.__doc__).set_defaults(func=command_fn)
+        subparser = subparsers.add_parser(command_name, help=command_fn.__doc__)
+
+        if command_name in ARGUMENTS:
+            for arg_name, arg_default, arg_help in ARGUMENTS[command_name]:
+                subparser.add_argument(arg_name, default=arg_default, help=arg_help)
+
+        subparser.set_defaults(func=command_fn)
+
     return parser
 
 
