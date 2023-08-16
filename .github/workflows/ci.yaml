@@ -98,6 +98,18 @@ jobs:
         path: dist/*.whl
         if-no-files-found: error
 
+    - name: Install python dependencies
+      run: ./dev.py install-python-deps
+
+    - name: Install wheel packages
+      run: ./dev.py install-wheel-packages
+
+    - name: Install browsers
+      run: ./dev.py install-browsers
+
+    - name: Run e2e tests
+      run: ./dev.py run-e2e
+
   build-cookiecutter:
     runs-on: ubuntu-latest
 

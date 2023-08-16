@@ -22,6 +22,7 @@ TEMPLATE_DIRECTORIES = [
     THIS_DIRECTORY / "template-reactless",
 ]
 
+
 # Utilities function
 def run_verbose(cmd_args, *args, **kwargs):
     kwargs.setdefault("check", True)
@@ -46,8 +47,39 @@ def cmd_all_npm_build(args):
         frontend_dir = next(project_dir.glob("*/frontend/"))
         run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
 
+
+def cmd_all_install_python_deps(args):
+    """"Install all dependencies needed to run e2e tests for all examples and templates"""
+    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+        run_verbose(["pip", "install", "-e", ".[devel]"], cwd=str(project_dir))
+
+
+def cmd_all_install_wheel_packages(args):
+    """"Install wheel packages of all examples and templates for e2e tests"""
+    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+        wheel_files = list(project_dir.glob("dist/*.whl"))
+        if wheel_files:
+            wheel_file = wheel_files[0]
+            run_verbose(["pip", "install", str(wheel_file)], cwd=str(project_dir))
+        else:
+            print(f"No wheel files found in {project_dir}")
+
+
+def cmd_install_browsers(args):
+    """"Install multiple browsers to run e2e for all examples and templates"""
+    run_verbose(["playwright", "install", "webkit", "chromium", "firefox", "--with-deps"])
+
+
+def cmd_all_run_e2e(args):
+    """"Run e2e tests for all examples and templates"""
+    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+        e2e_dir = next(project_dir.glob("**/e2e/"), None)
+        if e2e_dir:
+            run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+
+
 def cmd_all_python_build_package(args):
-    """Build wheeel packages for all examples and templates"""
+    """Build wheel packages for all examples and templates"""
     final_dist_directory = (THIS_DIRECTORY / "dist")
     final_dist_directory.mkdir(exist_ok=True)
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
@@ -59,15 +91,16 @@ def cmd_all_python_build_package(args):
 
 def check_deps(template_package_json, current_package_json):
     return (
-        check_deps_section(template_package_json, current_package_json, 'dependencies') + 
+        check_deps_section(template_package_json, current_package_json, 'dependencies') +
         check_deps_section(template_package_json, current_package_json, 'devDependencies')
     )
+
 
 def check_deps_section(template_package_json, current_package_json, section_name):
     current_package_deps = current_package_json.get(section_name, dict())
     template_package_deps = template_package_json.get(section_name, dict())
     errors = []
-    
+
     for k, v in template_package_deps.items():
         if k not in current_package_deps:
             errors.append(f'Missing [{k}:{v}] in {section_name!r} section')
@@ -80,12 +113,12 @@ def check_deps_section(template_package_json, current_package_json, section_name
 
 def cmd_example_check_deps(args):
     """Checks that dependencies of examples match the template"""
-    tempalte_deps = json.loads((THIS_DIRECTORY / "template" / "my_component" / "frontend" / "package.json").read_text())
+    template_deps = json.loads((THIS_DIRECTORY / "template" / "my_component" / "frontend" / "package.json").read_text())
     examples_package_jsons = sorted(next(d.glob("*/frontend/package.json")) for d in EXAMPLE_DIRECTORIES)
     exit_code = 0
     for examples_package_json in examples_package_jsons:
         example_deps = json.loads(examples_package_json.read_text())
-        errors = check_deps(tempalte_deps, example_deps)
+        errors = check_deps(template_deps, example_deps)
         if errors:
             print(f"Found error in {examples_package_json.relative_to(THIS_DIRECTORY)!s}")
             print("\n".join(errors))
@@ -93,7 +126,7 @@ def cmd_example_check_deps(args):
             exit_code = 1
     if exit_code == 0:
         print("No errors")
-            
+
     sys.exit(exit_code)
 
 
@@ -190,17 +223,21 @@ def cmd_update_templates(args):
             print()
 
 
-
 COMMANDS = {
     "all-npm-install": cmd_all_npm_install,
     "all-npm-build": cmd_all_npm_build,
     "all-python-build-package": cmd_all_python_build_package,
     "examples-check-deps": cmd_example_check_deps,
     "templates-check-not-modified": cmd_check_templates_using_cookiecutter,
-    "templates-update": cmd_update_templates
+    "templates-update": cmd_update_templates,
+    "install-python-deps": cmd_all_install_python_deps,
+    "install-wheel-packages": cmd_all_install_wheel_packages,
+    "install-browsers": cmd_install_browsers,
+    "run-e2e": cmd_all_run_e2e,
 }
 
-# Parser    
+
+# Parser
 def get_parser():
     parser = argparse.ArgumentParser(prog=__file__, description=__doc__)
     subparsers = parser.add_subparsers(dest="subcommand", metavar="COMMAND")
@@ -215,6 +252,7 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
     args.func(args)
+
 
 if __name__ == "__main__":
     main()
