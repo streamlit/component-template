@@ -75,6 +75,3 @@ def my_component(name, key=None):
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
     return component_value
-
-
-

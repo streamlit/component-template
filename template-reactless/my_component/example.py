@@ -1,9 +1,9 @@
+import streamlit as st
+from my_component import my_component
+
 # Add some test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
 # app: `$ streamlit run my_component/example.py`
-
-import streamlit as st
-from my_component import my_component
 
 st.subheader("Component with constant args")
 

@@ -22,7 +22,7 @@ def go_to_app(page: Page, streamlit_app: StreamlitRunner):
     page.get_by_role("img", name="Running...").is_hidden()
 
 
-def test_should_render_user_input(page: Page):
+def test_should_render_template(page: Page):
     frame = page.frame_locator(
         'iframe[title="my_component\\.my_component"] >> nth=0'
     )
