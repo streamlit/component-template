@@ -1,9 +1,9 @@
+import streamlit as st
+from {{ cookiecutter.import_name }} import {{ cookiecutter.import_name }}
+
 # Add some test code to play with the component while it's in development.
 # During development, we can run this just as we would any other Streamlit
 # app: `$ streamlit run {{ cookiecutter.import_name }}/example.py`
-
-import streamlit as st
-from {{ cookiecutter.import_name }} import {{ cookiecutter.import_name }}
 
 st.subheader("Component with constant args")
 
