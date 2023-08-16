@@ -77,6 +77,11 @@ def cmd_all_run_e2e(args):
         if e2e_dir:
             run_verbose(['pip', 'uninstall', 'streamlit_custom_component', '--yes'])
             run_verbose(['pip', 'install', '-e', project_dir.parts[-1]])
+            try:
+                import my_component
+                print(my_component.__file__)
+            except:
+                print('Error importing my_component')
             run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
