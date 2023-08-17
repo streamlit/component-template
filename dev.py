@@ -73,16 +73,28 @@ def cmd_install_browsers(args):
 def cmd_all_run_e2e(args):
     """"Run e2e tests for all examples and templates"""
     for project_dir in TEMPLATE_DIRECTORIES:
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir:
-            run_verbose(['pip', 'uninstall', 'streamlit_custom_component', '--yes'])
-            run_verbose(['pip', 'install', '-e', project_dir.parts[-1]])
-            try:
-                import my_component
-                print(my_component.__file__)
-            except:
-                print('Error importing my_component')
-            run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            e2e_dir = next(project_dir.glob("**/e2e/"), None)
+            if e2e_dir:
+                run_verbose(['python', '-m', 'venv', f"{tmp_dir}/venv"])
+                run_verbose([f"{tmp_dir}/venv/bin/pip", 'install', '-e', project_dir.parts[-1]])
+                run_verbose([f"{tmp_dir}/venv/bin/pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+                try:
+                    import my_component
+                    print(my_component.__file__)
+                except:
+                    print('Error importing my_component')
+
+        # e2e_dir = next(project_dir.glob("**/e2e/"), None)
+        # if e2e_dir:
+            # run_verbose(['pip', 'uninstall', 'streamlit_custom_component', '--yes'])
+            # run_verbose(['pip', 'install', '-e', project_dir.parts[-1]])
+            # try:
+            #     import my_component
+            #     print(my_component.__file__)
+            # except:
+            #     print('Error importing my_component')
+            # run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
     for project_dir in EXAMPLE_DIRECTORIES:
