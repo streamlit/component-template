@@ -27,8 +27,8 @@ def test_should_render_template(page: Page):
         'iframe[title="my_component\\.my_component"] >> nth=0'
     )
 
-    page.get_by_text("You've clicked 0 times!")
+    expect(page.get_by_text("You've clicked 0 times!").first).to_be_visible()
 
     frame.get_by_role("button", name="Click me!").click()
 
-    page.get_by_text("You've clicked 1 times!")
+    expect(page.get_by_text("You've clicked 1 times!").first).to_be_visible()
