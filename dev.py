@@ -77,41 +77,18 @@ def cmd_all_run_e2e(args):
         if e2e_dir:
             with tempfile.TemporaryDirectory() as tmp_dir:
                 run_verbose(['python', '-m', 'venv', f"{tmp_dir}/venv"])
-                # run_verbose(['source', f"{tmp_dir}/venv/bin/activate"])
                 wheel_files = list(project_dir.glob("dist/*.whl"))
                 if wheel_files:
                     wheel_file = wheel_files[0]
-                    print('wheel file: ', str(wheel_file))
                     run_verbose([f"{tmp_dir}/venv/bin/pip", "install", f"{str(wheel_file)}[devel]"], cwd=str(project_dir))
                 else:
                     print(f"No wheel files found in {project_dir}")
-                # run_verbose([f"{tmp_dir}/venv/bin/pip", "install", "-e", f"{project_dir.parts[-1]}[devel]"])
-                run_verbose([f"{tmp_dir}/venv/bin/pip", 'freeze'])
-                run_verbose([f"{tmp_dir}/venv/bin/python", "-c", "import my_component; print(my_component.__file__)"])
+                run_verbose([f"{tmp_dir}/venv/bin/pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
-                # try:
-                #     import my_component
-                #     print(my_component.__file__)
-                # except:
-                #     print('Error importing my_component')
-                run_verbose([f"{tmp_dir}/venv/bin/pytest", "-s", "--browser", "chromium", str(e2e_dir)])
-
-        # e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        # if e2e_dir:
-            # run_verbose(['pip', 'uninstall', 'streamlit_custom_component', '--yes'])
-            # run_verbose(['pip', 'install', '-e', project_dir.parts[-1]])
-            # try:
-            #     import my_component
-            #     print(my_component.__file__)
-            # except:
-            #     print('Error importing my_component')
-            # run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
-
-
-    # for project_dir in EXAMPLE_DIRECTORIES:
-    #     e2e_dir = next(project_dir.glob("**/e2e/"), None)
-    #     if e2e_dir:
-    #         run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+    for project_dir in EXAMPLE_DIRECTORIES:
+        e2e_dir = next(project_dir.glob("**/e2e/"), None)
+        if e2e_dir:
+            run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
 
 
 def cmd_all_python_build_package(args):
