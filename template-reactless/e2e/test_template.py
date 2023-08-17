@@ -29,6 +29,6 @@ def test_should_render_template(page: Page):
 
     page.get_by_text("You've clicked 0 times!")
 
-    frame.get_by_role("button", name="Dont Click me!").click()
+    frame.get_by_role("button", name="Click me!").click()
 
     page.get_by_text("You've clicked 1 times!")
