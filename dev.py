@@ -78,14 +78,14 @@ def cmd_all_run_e2e(args):
             with tempfile.TemporaryDirectory() as tmp_dir:
                 run_verbose(['python', '-m', 'venv', f"{tmp_dir}/venv"])
                 # run_verbose(['source', f"{tmp_dir}/venv/bin/activate"])
-                # wheel_files = list(project_dir.glob("dist/*.whl"))
-                # if wheel_files:
-                #     wheel_file = wheel_files[0]
-                #     print('wheel file: ', str(wheel_file))
-                #     run_verbose([f"{tmp_dir}/venv/bin/pip", "install", f"{str(wheel_file)}[devel]"], cwd=str(project_dir))
-                # else:
-                #     print(f"No wheel files found in {project_dir}")
-                run_verbose([f"{tmp_dir}/venv/bin/pip", "install", "-e", f"{project_dir.parts[-1]}[devel]"])
+                wheel_files = list(project_dir.glob("dist/*.whl"))
+                if wheel_files:
+                    wheel_file = wheel_files[0]
+                    print('wheel file: ', str(wheel_file))
+                    run_verbose([f"{tmp_dir}/venv/bin/pip", "install", f"{str(wheel_file)}[devel]"], cwd=str(project_dir))
+                else:
+                    print(f"No wheel files found in {project_dir}")
+                # run_verbose([f"{tmp_dir}/venv/bin/pip", "install", "-e", f"{project_dir.parts[-1]}[devel]"])
                 run_verbose([f"{tmp_dir}/venv/bin/pip", 'freeze'])
                 run_verbose([f"{tmp_dir}/venv/bin/python", "-c", "import my_component; print(my_component.__file__)"])
 
