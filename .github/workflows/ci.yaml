@@ -51,6 +51,9 @@ jobs:
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
 
+    - name: Check e2e utils files
+      run: ./dev.py e2e-utils-check
+
     - name: Checkout streamlit/streamlit
       if: matrix.component_lib_version == 'develop'
       uses: actions/checkout@v3

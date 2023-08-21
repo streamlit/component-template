@@ -123,7 +123,6 @@ class StreamlitRunner:
     def is_server_running(self, timeout: int = 30):
         with requests.Session() as http_session:
             start_time = time.time()
-            print("Start loop: ", start_time)
             while True:
                 with contextlib.suppress(requests.RequestException):
                     response = http_session.get(self.server_url + "/_stcore/health")
