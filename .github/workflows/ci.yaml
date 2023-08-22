@@ -15,6 +15,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        node-version:
+          # For details, see: https://nodejs.dev/en/about/releases/
+          # Maintenance LTS. End Of Life: 2023-09-11
+          - 16.x
+          # Active LTS. End Of Life: 2025-04-30
+          - 18.x
+          # Current version
+          - 19.x
         component_lib_version:
           - current
           - develop
@@ -23,20 +31,22 @@ jobs:
           - nightly
 
     env:
-      NODE_VERSION: 18.x
-      PYTHON_VERSION: 3.6
+      NODE_VERSION: ${{ matrix.node-version }}
+      PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
+      STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
+      COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
-    name: Examples + Templates / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
+    name: Examples + Templates / node-version=${NODE_VERSION} / streamlit_version=${STREAMLIT_VERSION}  / component_lib_version=${COMPONENT_LIB_VERSION}
 
     steps:
     - uses: actions/checkout@v3
       with:
         persist-credentials: false
 
-    - name: Use Node.js ${{ env.NODE_VERSION }}
+    - name: Use Node.js ${NODE_VERSION}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: ${NODE_VERSION}
 
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
@@ -98,13 +108,16 @@ jobs:
         if-no-files-found: error
 
     - name: Set up Docker Buildx
+      if: matrix.node_version == '19.x'
       uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9
 
     - name: Build docker images
-      run: ./dev.py e2e-build-images --streamlit-version=${{ matrix.streamlit_version }} --python-version=${{ env.PYTHON_VERSION }}
+      if: matrix.node_version == '19.x'
+      run: ./dev.py e2e-build-images "--streamlit-version=${STREAMLIT_VERSION}" "--python-version=${PYTHON_VERSION}"
 
     - name: Run e2e tests
-      run: ./dev.py e2e-run-tests --streamlit-version=${{ matrix.streamlit_version }} --python-version=${{ env.PYTHON_VERSION }}
+      if: matrix.node_version == '19.x'
+      run: ./dev.py e2e-run-tests "--streamlit-version=${STREAMLIT_VERSION}" "--python-version=${PYTHON_VERSION}"
 
   build-cookiecutter:
     runs-on: ubuntu-latest
