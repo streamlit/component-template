@@ -72,7 +72,20 @@ def cmd_install_browsers(args):
 
 def cmd_all_run_e2e(args):
     """"Run e2e tests for all examples and templates"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+    for project_dir in TEMPLATE_DIRECTORIES:
+        e2e_dir = next(project_dir.glob("**/e2e/"), None)
+        if e2e_dir:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                run_verbose(['python', '-m', 'venv', f"{tmp_dir}/venv"])
+                wheel_files = list(project_dir.glob("dist/*.whl"))
+                if wheel_files:
+                    wheel_file = wheel_files[0]
+                    run_verbose([f"{tmp_dir}/venv/bin/pip", "install", f"{str(wheel_file)}[devel]"], cwd=str(project_dir))
+                else:
+                    print(f"No wheel files found in {project_dir}")
+                run_verbose([f"{tmp_dir}/venv/bin/pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
+
+    for project_dir in EXAMPLE_DIRECTORIES:
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir:
             run_verbose(["pytest", "-s", "--browser", "webkit", "--browser", "chromium", "--browser", "firefox", "--reruns", "5", str(e2e_dir)])
