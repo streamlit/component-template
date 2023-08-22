@@ -36,17 +36,17 @@ jobs:
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
-    name: Examples + Templates / node-version=${NODE_VERSION} / streamlit_version=${STREAMLIT_VERSION}  / component_lib_version=${COMPONENT_LIB_VERSION}
+    name: Examples + Templates / node-version=${{ env.NODE_VERSION }} / streamlit_version=${{ env.STREAMLIT_VERSION }}  / component_lib_version=${{ env.COMPONENT_LIB_VERSION }}
 
     steps:
     - uses: actions/checkout@v3
       with:
         persist-credentials: false
 
-    - name: Use Node.js ${NODE_VERSION}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${NODE_VERSION}
+        node-version: ${{ env.NODE_VERSION }}
 
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
@@ -113,11 +113,11 @@ jobs:
 
     - name: Build docker images
       if: matrix.node_version == '19.x'
-      run: ./dev.py e2e-build-images "--streamlit-version=${STREAMLIT_VERSION}" "--python-version=${PYTHON_VERSION}"
+      run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
 
     - name: Run e2e tests
       if: matrix.node_version == '19.x'
-      run: ./dev.py e2e-run-tests "--streamlit-version=${STREAMLIT_VERSION}" "--python-version=${PYTHON_VERSION}"
+      run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
 
   build-cookiecutter:
     runs-on: ubuntu-latest
