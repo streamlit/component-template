@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version:
+        node_version:
           # For details, see: https://nodejs.dev/en/about/releases/
           # Maintenance LTS. End Of Life: 2023-09-11
           - 16.x
@@ -36,7 +36,7 @@ jobs:
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
-    name: Examples + Templates / node-version=${{ matrix.node-version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
+    name: Examples + Templates / node-version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
     - uses: actions/checkout@v3
