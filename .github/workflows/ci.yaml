@@ -36,7 +36,7 @@ jobs:
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
-    name: Examples + Templates / node-version=${{ env.NODE_VERSION }} / streamlit_version=${{ env.STREAMLIT_VERSION }}  / component_lib_version=${{ env.COMPONENT_LIB_VERSION }}
+    name: Examples + Templates / node-version=${{ matrix.node-version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
     - uses: actions/checkout@v3
