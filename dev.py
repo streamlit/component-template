@@ -91,9 +91,7 @@ def cmd_e2e_run(args):
                 "--volume", f"{e2e_dir.parent}/:/component/",
                 image_tag,
                 "/bin/sh", "-c",  # Run a shell command inside the container
-                f"cd /component/ && "
-                f"pip install /component/dist/*.whl && "  # Install whl package
-                f"pip install /component/[devel] && "  # Install dev dependencies
+                "find /component/dist/ -name '*.whl' | xargs -I {} echo '{}[devel]' | xargs pip install && " # Install whl package and dev dependencies
                 f"playwright install webkit chromium firefox --with-deps && "  # Install browsers
                 f"pytest",  # Run pytest
                 "-s",
