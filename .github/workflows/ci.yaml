@@ -9,13 +9,13 @@ on:
       - "master"
 
 jobs:
-  build-examples-templates:
+  build-examples-templates-and-run-dockerized-e2e-tests:
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        node-version: 
+        node_version:
           # For details, see: https://nodejs.dev/en/about/releases/
           # Maintenance LTS. End Of Life: 2023-09-11
           - 16.x
@@ -26,18 +26,27 @@ jobs:
         component_lib_version:
           - current
           - develop
+        streamlit_version:
+          - latest
+          - nightly
 
-    name: Examples + Templates / node-version=${{ matrix.node-version }}  / component_lib_version=${{ matrix.component_lib_version }}
+    env:
+      NODE_VERSION: ${{ matrix.node_version }}
+      PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
+      STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
+      COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
+
+    name: Examples + Templates / node_version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
     - uses: actions/checkout@v3
       with:
         persist-credentials: false
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.NODE_VERSION }}
 
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
@@ -98,17 +107,17 @@ jobs:
         path: dist/*.whl
         if-no-files-found: error
 
-    - name: Install python dependencies
-      run: ./dev.py install-python-deps
+    - name: Set up Docker Buildx
+      if: matrix.node_version == '19.x'
+      uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9 # v2.9.1
 
-    - name: Install wheel packages
-      run: ./dev.py install-wheel-packages
-
-    - name: Install browsers
-      run: ./dev.py install-browsers
+    - name: Build docker images
+      if: matrix.node_version == '19.x'
+      run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
 
     - name: Run e2e tests
-      run: ./dev.py run-e2e
+      if: matrix.node_version == '19.x'
+      run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
 
   build-cookiecutter:
     runs-on: ubuntu-latest

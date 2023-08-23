@@ -9,6 +9,7 @@ from e2e_utils import StreamlitRunner
 ROOT_DIRECTORY = Path(__file__).parent.parent.absolute()
 BASIC_EXAMPLE_FILE = ROOT_DIRECTORY / "radio_button" / "example.py"
 
+
 @pytest.fixture(autouse=True, scope="module")
 def streamlit_app():
     with StreamlitRunner(BASIC_EXAMPLE_FILE) as runner:
