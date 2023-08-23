@@ -10,6 +10,7 @@ on:
 
 jobs:
   run-dockerized-e2e-tests:
+    if: startsWith(${{ env.NODE_VERSION }}, '19.x')
     runs-on: ubuntu-latest
 
     steps:
