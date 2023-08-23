@@ -9,7 +9,7 @@ on:
       - "master"
 
 jobs:
-  build-examples-templates-and-run-dockerized-e2e-tests:
+  build-examples-templates:
     runs-on: ubuntu-latest
 
     strategy:
@@ -109,10 +109,6 @@ jobs:
         name: all-wheel
         path: dist/*.whl
         if-no-files-found: error
-
-    - name: Run e2e tests
-      if: matrix.node_version == '19.x'
-      uses: ./.github/workflows/e2e-tests.yaml
 
   build-cookiecutter:
     runs-on: ubuntu-latest

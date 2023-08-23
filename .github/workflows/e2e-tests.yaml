@@ -1,13 +1,20 @@
 # .github/workflows/e2e-tests.yaml
 
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+    status:
+      - success
+
 jobs:
-  e2e-tests:
+  run-dockerized-e2e-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9 # v2.9.1
