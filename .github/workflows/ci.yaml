@@ -110,6 +110,10 @@ jobs:
         path: dist/*.whl
         if-no-files-found: error
 
+    - name: Run e2e tests
+      if: matrix.node_version == '19.x'
+      uses: ./.github/workflows/e2e-tests.yml
+
   build-cookiecutter:
     runs-on: ubuntu-latest
 
