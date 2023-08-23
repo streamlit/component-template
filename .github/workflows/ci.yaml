@@ -113,6 +113,9 @@ jobs:
     - name: Run e2e tests
       if: matrix.node_version == '19.x'
       uses: ./.github/workflows/e2e-tests.yml
+      with:
+        streamlit_version: ${{ env.STREAMLIT_VERSION }}
+        python_version: ${{ env.PYTHON_VERSION }}
 
   build-cookiecutter:
     runs-on: ubuntu-latest
