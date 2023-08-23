@@ -31,12 +31,12 @@ jobs:
           - nightly
 
     env:
-      NODE_VERSION: ${{ matrix.node-version }}
+      NODE_VERSION: ${{ matrix.node_version }}
       PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
-    name: Examples + Templates / node-version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
+    name: Examples + Templates / node_version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -109,7 +109,7 @@ jobs:
 
     - name: Set up Docker Buildx
       if: matrix.node_version == '19.x'
-      uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9
+      uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9 # v2.9.1
 
     - name: Build docker images
       if: matrix.node_version == '19.x'
