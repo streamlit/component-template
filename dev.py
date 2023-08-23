@@ -6,6 +6,7 @@ Something like a Makefile but written in Python for easier maintenance.
 To list the available commands, run ./dev.py --help.
 """
 import argparse
+import glob
 import tempfile
 import typing
 import shlex
@@ -169,6 +170,26 @@ def cmd_example_check_deps(args):
     sys.exit(exit_code)
 
 
+def cmd_check_test_utils(args):
+    """Check that e2e utils files are identical"""
+    file_list = glob.glob('**/e2e_utils.py', recursive=True)
+    if file_list:
+        reference_file = file_list[0]
+    else:
+        print("Cannot find e2e_utils.py files")
+        sys.exit(1)
+
+    for file_path in file_list:
+        run_verbose([
+            "git",
+            "--no-pager",
+            "diff",
+            "--no-index",
+            str(reference_file),
+            str(file_path),
+        ])
+
+
 class CookiecutterVariant(typing.NamedTuple):
     replay_file: Path
     repo_directory: Path
@@ -270,6 +291,7 @@ COMMANDS = {
     "examples-check-deps": cmd_example_check_deps,
     "templates-check-not-modified": cmd_check_templates_using_cookiecutter,
     "templates-update": cmd_update_templates,
+    "e2e-utils-check": cmd_check_test_utils,
     "e2e-build-images": cmd_e2e_build_images,
     "e2e-run-tests": cmd_e2e_run,
     "docker-images-cleanup": cmd_docker_images_cleanup

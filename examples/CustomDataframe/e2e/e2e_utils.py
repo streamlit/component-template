@@ -17,6 +17,7 @@ LOGGER = logging.getLogger(__file__)
 
 
 def _find_free_port():
+    """Find and return a free port on the local machine."""
     with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as s:
         s.bind(("", 0))  # 0 means that the OS chooses a random port
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -26,14 +27,22 @@ def _find_free_port():
 class AsyncSubprocess:
     """A context manager. Wraps subprocess. Popen to capture output safely."""
 
-    def __init__(self, args, cwd=None, env=None):
+    def __init__(self, args: typing.List[str], cwd: typing.Optional[str] = None,
+                 env: typing.Optional[typing.Dict[str, str]] = None):
+        """Initialize an AsyncSubprocess instance.
+
+        Args:
+            args (List[str]): List of command-line arguments.
+            cwd (str, optional): Current working directory. Defaults to None.
+            env (dict, optional): Environment variables. Defaults to None.
+        """
         self.args = args
         self.cwd = cwd
         self.env = env
         self._proc = None
         self._stdout_file = None
 
-    def terminate(self):
+    def terminate(self) -> typing.Optional[str]:
         """Terminate the process and return its stdout/stderr in a string."""
         if self._proc is not None:
             self._proc.terminate()
@@ -50,11 +59,13 @@ class AsyncSubprocess:
 
         return stdout
 
-    def __enter__(self):
+    def __enter__(self) -> "AsyncSubprocess":
+        """Start the subprocess when entering the context."""
         self.start()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """Stop the subprocess and close resources when exiting the context."""
         self.stop()
 
     def start(self):
@@ -74,6 +85,7 @@ class AsyncSubprocess:
         )
 
     def stop(self):
+        """Terminate the subprocess and close resources."""
         if self._proc is not None:
             self._proc.terminate()
             self._proc = None
@@ -83,21 +95,32 @@ class AsyncSubprocess:
 
 
 class StreamlitRunner:
+    """A context manager for running Streamlit scripts."""
+
     def __init__(
             self, script_path: os.PathLike, server_port: typing.Optional[int] = None
     ):
+        """Initialize a StreamlitRunner instance.
+
+        Args:
+            script_path (os.PathLike): Path to the Streamlit script to run.
+            server_port (int, optional): Port for the Streamlit server. Defaults to None.
+        """
         self._process = None
         self.server_port = server_port
         self.script_path = script_path
 
-    def __enter__(self):
+    def __enter__(self) -> "StreamlitRunner":
+        """Start the Streamlit server when entering the context."""
         self.start()
         return self
 
     def __exit__(self, type, value, traceback):
+        """Stop the Streamlit server and close resources when exiting the context."""
         self.stop()
 
     def start(self):
+        """Start the Streamlit server using the specified script and options."""
         self.server_port = self.server_port or _find_free_port()
         self._process = AsyncSubprocess(
             [
@@ -118,12 +141,20 @@ class StreamlitRunner:
             raise RuntimeError("Application failed to start")
 
     def stop(self):
+        """Stop the Streamlit server and close resources."""
         self._process.stop()
 
-    def is_server_running(self, timeout: int = 30):
+    def is_server_running(self, timeout: int = 30) -> bool:
+        """Check if the Streamlit server is running.
+
+        Args:
+            timeout (int, optional): Maximum time to wait for the server to start. Defaults to 30.
+
+        Returns:
+            bool: True if the server is running, False otherwise.
+        """
         with requests.Session() as http_session:
             start_time = time.time()
-            print("Start loop: ", start_time)
             while True:
                 with contextlib.suppress(requests.RequestException):
                     response = http_session.get(self.server_url + "/_stcore/health")
@@ -134,7 +165,8 @@ class StreamlitRunner:
                     return False
 
     @property
-    def server_url(self):
+    def server_url(self) -> str:
+        """Get the URL of the Streamlit server."""
         if not self.server_port:
             raise RuntimeError("Unknown server port")
         return f"http://localhost:{self.server_port}"
