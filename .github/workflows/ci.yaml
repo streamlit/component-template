@@ -41,7 +41,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        persist-credentials: true
+        persist-credentials: false
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
@@ -112,7 +112,7 @@ jobs:
 
     - name: Run e2e tests
       if: matrix.node_version == '19.x'
-      uses: ./.github/workflows/e2e-tests.yml
+      uses: ./.github/actions/e2e-tests
       with:
         streamlit_version: ${{ env.STREAMLIT_VERSION }}
         python_version: ${{ env.PYTHON_VERSION }}
