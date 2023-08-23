@@ -1,4 +1,4 @@
-# .github/workflows/e2e-tests.yaml
+name: E2E tests
 
 on:
   workflow_run:
@@ -12,6 +12,9 @@ jobs:
   run-dockerized-e2e-tests:
     if: startsWith(${{ env.NODE_VERSION }}, '19.x')
     runs-on: ubuntu-latest
+
+    name: E2E tests / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
+
 
     steps:
       - name: Checkout code
