@@ -10,11 +10,10 @@ on:
 
 jobs:
   run-dockerized-e2e-tests:
-    if: startsWith(${{ env.NODE_VERSION }}, '19.x')
+    if: startsWith(env.NODE_VERSION, '19.x')
     runs-on: ubuntu-latest
 
     name: E2E tests / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
-
 
     steps:
       - name: Checkout code
