@@ -1,0 +1,107 @@
+name: E2E tests on call
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'Node.js version'
+        required: true
+        type: string
+      component_lib_version:
+        description: 'Component lib version'
+        required: true
+        type: string
+      streamlit_version:
+        description: 'Streamlit version'
+        required: true
+        type: string
+      python_version:
+        description: 'Python version'
+        required: true
+        type: string
+
+jobs:
+  run-e2e-tests-on-templates-and-examples:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_VERSION: ${{ inputs.node_version }}
+      PYTHON_VERSION: ${{ python_version }}
+      STREAMLIT_VERSION: ${{ streamlit_version }}
+      COMPONENT_LIB_VERSION: ${{ component_lib_version }}
+
+    name: E2E tests for examples and templates / python_version=${{ python_version }} / node_version=${{ inputs.node_version }} / streamlit_version=${{ streamlit_version }}  / component_lib_version=${{ component_lib_version }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check dependencies for examples
+        run: ./dev.py examples-check-deps
+
+      - name: Checkout streamlit/streamlit
+        if: matrix.component_lib_version == 'develop'
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          repository: streamlit/streamlit
+          ref: develop
+          path: streamlit
+
+      - name: Install node dependencies for streamlit-component-lib
+        if: matrix.component_lib_version == 'develop'
+        working-directory: ./streamlit/component-lib/
+        run: |
+          npm install -g yarn
+          yarn install
+
+      - name: Build streamlit-component-lib package
+        if: matrix.component_lib_version == 'develop'
+        working-directory: ./streamlit/component-lib/
+        run: yarn run build && npm pack
+
+      - name: Link develop version of streamlit-component-lib
+        if: matrix.component_lib_version == 'develop'
+        env:
+          COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
+        run: |
+          component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
+          component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
+          
+          find examples template template-reactless -name frontend -maxdepth 3 | while IFS= read -r line; do
+            (
+              cd "${line}";
+              npm install "${component_lib_tar_gz}"
+            )
+          done
+
+      - name: Install node dependencies
+        run: ./dev.py all-npm-install
+
+      - name: Build frontend code
+        run: ./dev.py all-npm-build
+
+      - name: Build wheel packages
+        run: |
+          find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
+          xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
+          
+          ./dev.py all-python-build-package
+
+      - name: Set up Docker Buildx
+        if: matrix.node_version == '19.x'
+        uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9 # v2.9.1
+
+      - name: Build docker images
+        if: matrix.node_version == '19.x'
+        run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+
+      - name: Run e2e tests
+        if: matrix.node_version == '19.x'
+        run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
