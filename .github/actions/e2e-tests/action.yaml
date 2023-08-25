@@ -32,11 +32,17 @@ runs:
     - name: Build docker images
       shell: bash
       run: |
-        build_target=""
+        build_target=()
         if [[ "${{ inputs.internal }}" == "false" ]]; then
-          build_target="--build-target=e2e_whl"
+          build_target=("--build-target=e2e_whl")
         fi
-        ./dev.py e2e-build-images "--streamlit-version=${{ inputs.streamlit_version }}" "--python-version=${{ inputs.python_version }}" "${build_target}"
+        cmd=(
+          "./dev.py e2e-build-images"
+          "--streamlit-version=${{ inputs.streamlit_version }}"
+          "--python-version=${{ inputs.python_version }}"
+          "${build_target[@]}"
+        )
+        ${cmd[*]}
 
     - name: Run e2e tests
       shell: bash
