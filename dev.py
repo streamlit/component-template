@@ -100,7 +100,7 @@ def cmd_e2e_run(args):
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
             # Search for 'all-wheel' directory within dist dir
-            all_wheel_dir = find_all_wheel_dir(project_dir / "dist")
+            all_wheel_dir = find_all_wheel_dir(project_dir)
             volume_option = []
 
             if all_wheel_dir:
