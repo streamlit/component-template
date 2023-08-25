@@ -5,20 +5,38 @@ inputs:
     required: true
     default: '3.8'
   streamlit_version:
-    required: true
-    default: '1.25.0'
-  streamlit_path:
+    required: false
+    default: ''
+  streamlit_wheel_file:
+    required: false
     default: ''
 
 runs:
   using: "composite"
   steps:
+    - name: Check prerequisite
+      run: |
+        One and exactly one input is required: streamlit_version, streamlit_wheel_file
+        exit 1
+      if: inputs.streamlit_version == '' && inputs.streamlit_wheel_file == ''
+      shell: bash
+
     - name: Build docker images
       run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
       working-directory: ${{ github.action_path }}/../../../
+      if: inputs.streamlit_version != ''
       shell: bash
       env:
         STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        PYTHON_VERSION: ${{ inputs.python_version }}
+
+    - name: Build docker images
+      run: ./dev.py e2e-build-images "--streamlit-wheel_file=${{ env.STREAMLIT_WHEEL_FILE }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      working-directory: ${{ github.action_path }}/../../../
+      if: inputs.streamlit_wheel_file != ''
+      shell: bash
+      env:
+        STREAMLIT_WHEEL_FILE: ${{ inputs.streamlit_wheel_file }}
         PYTHON_VERSION: ${{ inputs.python_version }}
 
     - name: Run e2e tests
@@ -26,5 +44,5 @@ runs:
       shell: bash
       working-directory: ${{ github.action_path }}/../../../
       env:
-        STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        STREAMLIT_VERSION: ${{ inputs.streamlit_wheel_file == '' &&  inputs.streamlit_version || 'custom' }}
         PYTHON_VERSION: ${{ inputs.python_version }}

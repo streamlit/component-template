@@ -67,7 +67,7 @@ jobs:
       id: component_wheels
       with:
         custom_streamlit_component_lib_file: >-
-          ${{ matrix.component_lib_version && steps.streamlit_component_library.outputs.output_file || '' }}
+          ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
 
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
@@ -82,6 +82,85 @@ jobs:
       with:
         python_version: ${{ env.PYTHON_VERSION }}
         streamlit_version: ${{ env.STREAMLIT_VERSION }}
+
+  test-custom-streamlit-wheel:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version:
+          #          # For details, see: https://nodejs.dev/en/about/releases/
+          #          # Maintenance LTS. End Of Life: 2023-09-11
+          #          - 16.x
+          #          # Active LTS. End Of Life: 2025-04-30
+          #          - 18.x
+          # Current version
+          - 19.x
+        component_lib_version:
+          - current
+#          - develop
+
+    env:
+      NODE_VERSION: ${{ matrix.node_version }}
+      PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
+      COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
+
+    name: Examples + Templates / node_version=${{ matrix.node_version }} / component_lib_version=${{ matrix.component_lib_version }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          path: component-template
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check dependencies for examples
+        run: ./dev.py examples-check-deps
+        working-directory: ./component-template/
+
+      - name: Check e2e utils files
+        run: ./dev.py e2e-utils-check
+        working-directory: ./component-template/
+
+      - name: Build Streamlit Component Library
+        uses: ./component-template/.github/actions/build_streamlit_component_library
+        if: matrix.component_lib_version == 'develop'
+        id: streamlit_component_library
+
+      - name: Build components wheels
+        uses: ./component-template/.github/actions/build_component_wheels
+        id: component_wheels
+        with:
+          custom_streamlit_component_lib_file: >-
+            ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
+
+      - name: Upload wheel packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: all-wheel
+          path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
+          if-no-files-found: error
+
+      - name: Download specific streamlit version
+        id: download_streamlit
+        run: |
+          cd $(mktemp -d)
+          pip install --no-deps "streamlit==1.23.0"
+          whl_file=$(find . -type f)
+          whl_file="$(readlink -e "${whl_file}")"
+          echo "whl_file=${whl_file}" >> $GITHUB_OUTPUT
+
+      - name: Run E2E tests
+        if: matrix.node_version == '19.x'
+        uses: ./component-template/.github/actions/run_e2e
+        with:
+          python_version: ${{ env.PYTHON_VERSION }}
+          streamlit_wheel_file: ${{ steps.download_streamlit.outputs.whl_file }}
 
   build-cookiecutter:
     runs-on: ubuntu-latest
