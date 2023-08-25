@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir --upgrade "pip==${PIP_VERSION}" && pip --version
 ARG PLAYWRIGHT_VERSION="1.36.0"
 ENV PLAYWRIGHT_VERSION=${PLAYWRIGHT_VERSION}
 
-# RUN pip install --no-cache-dir playwright=="${PLAYWRIGHT_VERSION}" && playwright install webkit chromium firefox --with-deps
+RUN pip install --no-cache-dir playwright=="${PLAYWRIGHT_VERSION}" && playwright install webkit chromium firefox --with-deps
 
 ENV PYTHONUNBUFFERED=1
 ENV PIP_ROOT_USER_ACTION=ignore
