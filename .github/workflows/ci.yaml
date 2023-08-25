@@ -57,69 +57,31 @@ jobs:
       run: ./dev.py e2e-utils-check
       working-directory: ./component-template/
 
-    - name: Checkout streamlit/streamlit
+    - name: Build Streamlit Component Library
+      uses: ./component-template/.github/actions/build_streamlit_component_library
       if: matrix.component_lib_version == 'develop'
-      uses: actions/checkout@v3
+      id: streamlit_component_library
+
+    - name: Build components wheels
+      uses: ./component-template/.github/actions/build_component_wheels
+      id: component_wheels
       with:
-        persist-credentials: false
-        repository: streamlit/streamlit
-        ref: develop
-        path: streamlit
-
-    - name: Install node dependencies for streamlit-component-lib
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./streamlit/component-lib/
-      run: |
-        npm install -g yarn
-        yarn install
-
-    - name: Build streamlit-component-lib package
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./streamlit/component-lib/
-      run: yarn run build && npm pack
-
-    - name: Link develop version of streamlit-component-lib
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./component-template/
-      env:
-        COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
-      run: |
-        component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
-        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
-
-        find examples template template-reactless -name frontend -maxdepth 3 | while IFS= read -r line; do
-          (
-            cd "${line}";
-            npm install "${component_lib_tar_gz}"
-          )
-        done
-
-    - name: Install node dependencies
-      working-directory: ./component-template/
-      run: ./dev.py all-npm-install
-
-    - name: Build frontend code
-      working-directory: ./component-template/
-      run: ./dev.py all-npm-build
-
-    - name: Build wheel packages
-      working-directory: ./component-template/
-      run: |
-        find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
-        xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
-
-        ./dev.py all-python-build-package
+        custom_streamlit_component_lib_file: >-
+          ${{ matrix.component_lib_version && steps.streamlit_component_library.outputs.output_file || '' }}
 
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
       with:
         name: all-wheel
-        path: ./component-template/dist/*.whl
+        path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
         if-no-files-found: error
 
     - name: Run E2E tests
       if: matrix.node_version == '19.x'
       uses: ./component-template/.github/actions/run_e2e
+      with:
+        python_version: ${{ env.PYTHON_VERSION }}
+        streamlit_version: ${{ env.STREAMLIT_VERSION }}
 
   build-cookiecutter:
     runs-on: ubuntu-latest
