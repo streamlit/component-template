@@ -3,7 +3,7 @@
     "author_name": "John Smith",
     "author_email": "john@example.com",
     "project_name": "Streamlit Component X",
-    "package_name": "streamlit-custom-component",
+    "package_name": "streamlit-template-reactless",
     "import_name": "my_component",
     "description": "Streamlit component that allows you to do X",
     "open_source_license": "MIT license",

@@ -1,11 +1,11 @@
-# streamlit-custom-component
+# streamlit-template-reactless
 
 Streamlit component that allows you to do X
 
 ## Installation instructions
 
 ```sh
-pip install streamlit-custom-component
+pip install streamlit-template-reactless
 ```
 
 ## Usage instructions

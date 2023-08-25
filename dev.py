@@ -64,6 +64,7 @@ def cmd_e2e_build_images(args):
                 [
                     "docker",
                     "build",
+                    "--target", args.build_target,
                     ".",
                     f"--build-arg=STREAMLIT_VERSION={args.streamlit_version}",
                     f"--build-arg=PYTHON_VERSION={args.python_version}",
@@ -77,24 +78,33 @@ def cmd_e2e_build_images(args):
 def cmd_e2e_run(args):
     """Run e2e tests for all examples and templates in separate docker images"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        container_name = project_dir.parts[-1]
+        component_name = project_dir.parts[-1]
         image_tag = (
-            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
+            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{component_name}"
         )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
+            all_wheel_dir = Path(__file__).parent / "all-wheel"
+            print(f"ALL_WHEEL_DIR: {all_wheel_dir}")
+            volume_option = []
+
+            if all_wheel_dir.exists():
+                print("ALL WHEEL exists")
+                volume_option = ["--volume", f"{all_wheel_dir}:/component/dist"]
+
             run_verbose([
                 "docker",
                 "run",
                 "--tty",
                 "--rm",
-                "--name", container_name,
+                "--name", component_name,
                 "--volume", f"{e2e_dir.parent}/:/component/",
+                *volume_option,  # Add the volume option if it exists
                 image_tag,
                 "/bin/sh", "-c",  # Run a shell command inside the container
-                "find /component/dist/ -name '*.whl' | xargs -I {} echo '{}[devel]' | xargs pip install && " # Install whl package and dev dependencies
-                f"playwright install webkit chromium firefox --with-deps && "  # Install browsers
-                f"pytest",  # Run pytest
+                f"find /component/dist/ -name 'streamlit_{component_name}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && " # Install whl package and dev dependencies
+                "playwright install webkit chromium firefox --with-deps && "  # Install browsers
+                "pytest",  # Run pytest
                 "-s",
                 "--browser", "webkit",
                 "--browser", "chromium",
@@ -303,7 +313,8 @@ ARG_PYTHON_VERSION = ("--python-version", os.environ.get("PYTHON_VERSION", "3.11
 ARGUMENTS = {
     "e2e-build-images": [
         ARG_STREAMLIT_VERSION,
-        ARG_PYTHON_VERSION
+        ARG_PYTHON_VERSION,
+        ("--build-target", "e2e_pip", "Docker image build target")
     ],
     "e2e-run-tests": [
         ARG_STREAMLIT_VERSION,

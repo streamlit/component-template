@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
 
 ARG PYTHON_VERSION="3.11.4"
-FROM python:${PYTHON_VERSION}-slim-bullseye
+FROM python:${PYTHON_VERSION}-slim-bullseye as e2e_base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
@@ -19,6 +19,8 @@ WORKDIR /component
 # Install streamlit and components
 ARG STREAMLIT_VERSION="latest"
 ENV E2E_STREAMLIT_VERSION=${STREAMLIT_VERSION}
+
+FROM e2e_base as e2e_pip
 
 RUN <<"EOF"
 if [[ "${E2E_STREAMLIT_VERSION}" == "latest" ]]; then
@@ -38,4 +40,23 @@ if [[ "${E2E_STREAMLIT_VERSION}" == "nightly" ]]; then
 else
   echo "${installed_streamlit_version}" | grep -v 'dev'
 fi
+EOF
+
+FROM e2e_base as e2e_whl
+
+COPY lib/dist/ /streamlit-dist/
+
+RUN <<"EOF"
+if [[ "${E2E_STREAMLIT_VERSION}" == "development" ]]; then
+  pip uninstall --yes streamlit
+  pip install --no-cache-dir "streamlit-dist/*.whl"
+else
+  echo "Unsupported Streamlit version: ${E2E_STREAMLIT_VERSION}"
+  exit 1
+fi
+
+# Coherence check
+installed_streamlit_version=$(python -c "import streamlit; print(streamlit.__version__)")
+echo "Installed Streamlit version: ${installed_streamlit_version}"
+echo "${installed_streamlit_version}" | grep -v 'dev'
 EOF

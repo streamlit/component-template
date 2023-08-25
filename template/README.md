@@ -1,11 +1,11 @@
-# streamlit-custom-component
+# streamlit-template
 
 Streamlit component that allows you to do X
 
 ## Installation instructions
 
 ```sh
-pip install streamlit-custom-component
+pip install streamlit-template
 ```
 
 ## Usage instructions

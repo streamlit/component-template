@@ -1,0 +1,90 @@
+name: E2E tests
+
+description: Run e2e tests for templates and examples in separate docker images
+
+inputs:
+  node_version:
+    description: 'Node js version'
+    required: true
+  streamlit_version:
+    description: 'Streamlit version'
+    required: true
+  python_version:
+    description: 'Python version'
+    required: true
+  component_lib_directory:
+    description: 'Working directory of component-lib'
+    required: true
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download wheel packages
+      uses: actions/download-artifact@v3
+      with:
+        name: all-wheel
+
+    - name: Use Node.js ${{ inputs.node_version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node_version }}
+
+    - name: Check dependencies for examples
+      shell: bash
+      run: |
+        ./dev.py examples-check-deps
+
+    - name: Install node dependencies for streamlit-component-lib
+      working-directory: ".${{ inputs.component_lib_directory }}"
+      shell: bash
+      run: |
+        npm install -g yarn
+        yarn install
+
+    - name: Build streamlit-component-lib package
+      working-directory: ".${{ inputs.component_lib_directory }}"
+      shell: bash
+      run: |
+        yarn run build && npm pack
+
+    - name: Link streamlit-component-lib
+      shell: bash
+      run: |
+        component_lib_tar_gz=$(find ".${{ inputs.component_lib_directory }}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
+        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
+
+        find examples template template-reactless -name frontend -maxdepth 3 | while IFS= read -r line; do
+          (
+            cd "${line}";
+            npm install "${component_lib_tar_gz}"
+          )
+        done
+
+    - name: Install node dependencies
+      shell: bash
+      run: |
+        ./dev.py all-npm-install
+
+    - name: Build frontend code
+      shell: bash
+      run: |
+        ./dev.py all-npm-build
+
+    - name: Build wheel packages
+      shell: bash
+      run: |
+        find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
+        xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
+        
+        ./dev.py all-python-build-package
+
+    - name: Run e2e tests
+      if: matrix.node_version == '19.x'
+      uses: ./.github/actions/e2e-tests
+      with:
+        streamlit_version: ${{ env.STREAMLIT_VERSION }}
+        python_version: ${{ env.PYTHON_VERSION }}

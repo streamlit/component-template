@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit-material-login",
+    name="streamlit-MaterialLogin",
     version="0.0.1",
     author="",
     author_email="",
