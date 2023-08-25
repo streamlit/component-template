@@ -17,7 +17,7 @@ runs:
     - name: Check prerequisite
       shell: bash
       run: |
-        if command -v node > /dev/null
+        if ! command -v node > /dev/null
         then
           echo "Node is required to use this action"
           exit 1
