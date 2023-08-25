@@ -75,18 +75,18 @@ def cmd_e2e_build_images(args):
             )
 
 
-def find_all_wheel_dir(start_path):
-    all_wheel_dir = None
+def find_downloaded_artifacts_dir(start_path):
+    downloaded_artifacts_dir = None
     dist_dir = start_path
-    for dir_path in dist_dir.rglob("all-wheel"):
+    for dir_path in dist_dir.rglob("downloaded-artifacts"):
         if dir_path.is_dir():
-            all_wheel_dir = dir_path
+            downloaded_artifacts_dir = dir_path
             break
-    if all_wheel_dir:
-        print(f"Found 'all-wheel' directory: {all_wheel_dir}")
-        return all_wheel_dir
+    if downloaded_artifacts_dir:
+        print(f"Found 'downloaded-artifacts' directory: {downloaded_artifacts_dir}")
+        return downloaded_artifacts_dir
     else:
-        print("'all-wheel' directory not found")
+        print("'downloaded-artifacts' directory not found")
         return None
 
 
@@ -99,13 +99,13 @@ def cmd_e2e_run(args):
         )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
-            # Search for 'all-wheel' directory within dist dir
-            all_wheel_dir = find_all_wheel_dir(project_dir)
+            # Search for 'downloaded-artifacts' directory
+            downloaded_artifacts_dir = find_downloaded_artifacts_dir(Path(__file__).parent)
             volume_option = []
 
-            if all_wheel_dir:
+            if downloaded_artifacts_dir:
                 print("Found 'all-wheel' directory")
-                volume_option = ["--volume", f"{all_wheel_dir}:/component/dist"]
+                volume_option = ["--volume", f"{downloaded_artifacts_dir}:/component/dist"]
 
             run_verbose([
                 "docker",
