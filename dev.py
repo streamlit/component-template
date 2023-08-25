@@ -58,7 +58,7 @@ def cmd_e2e_build_images(args):
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
             # Define the image tag for the docker image
-            streamlit_version = args.streamlit_version if args.streamlit_wheel_file else 'custom'
+            streamlit_version = args.streamlit_version if not args.streamlit_wheel_file else 'custom'
             image_tag = (
                 f"component-template:py-{args.python_version}-st-{streamlit_version}-component-{project_dir.parts[-1]}"
             )
