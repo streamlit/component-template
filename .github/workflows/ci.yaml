@@ -152,8 +152,7 @@ jobs:
           set -x
           cd "$(mktemp -d)"
           pip install --no-deps "streamlit==1.23.0"
-          whl_file="$(find . -type f)"
-          whl_file="$(readlink -e "${whl_file}")"
+          whl_file="$(readlink -e "$(find . -type f)")"
           echo "whl_file=${whl_file}" >> $GITHUB_OUTPUT
 
       - name: Run E2E tests
