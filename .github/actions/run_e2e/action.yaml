@@ -1,0 +1,36 @@
+name: 'Hello World'
+description: 'Greet someone'
+inputs:
+  python_version:
+    required: true
+    default: '3.8'
+  streamlit_version:
+    required: true
+    default: '1.25.0'
+  streamlit_path:
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - run: export
+      shell: bash
+
+    - run: echo "${GH_JSON}"
+      shell: bash
+      env:
+        GH_JSON: ${{ toJson(github) }}
+
+    - name: Build docker images
+      run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      shell: bash
+      env:
+        STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        PYTHON_VERSION: ${{ inputs.python_version }}
+
+    - name: Run e2e tests
+      run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      shell: bash
+      env:
+        STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        PYTHON_VERSION: ${{ inputs.python_version }}

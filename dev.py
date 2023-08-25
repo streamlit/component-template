@@ -23,6 +23,8 @@ TEMPLATE_DIRECTORIES = [
     THIS_DIRECTORY / "template",
     THIS_DIRECTORY / "template-reactless",
 ]
+# TODO(kbregula): Enable tests for examples
+EXAMPLE_DIRECTORIES = []
 
 
 # Utilities function
