@@ -28,6 +28,7 @@ runs:
         path: downloaded-artifacts
 
     - name: Move downloaded artifacts
+      shell: bash
       run: |
         mkdir -p ${{ github.workspace }}/component-template/downloaded-artifacts
         mv ${{ github.workspace }}/component-template/*.whl ${{ github.workspace }}/component-template/downloaded-artifacts
