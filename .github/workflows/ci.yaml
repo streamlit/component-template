@@ -42,6 +42,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         persist-credentials: false
+        path: component-template
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
@@ -50,9 +51,11 @@ jobs:
 
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
+      working-directory: ./component-template/
 
     - name: Check e2e utils files
       run: ./dev.py e2e-utils-check
+      working-directory: ./component-template/
 
     - name: Checkout streamlit/streamlit
       if: matrix.component_lib_version == 'develop'
@@ -77,6 +80,7 @@ jobs:
 
     - name: Link develop version of streamlit-component-lib
       if: matrix.component_lib_version == 'develop'
+      working-directory: ./component-template/
       env:
         COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
       run: |
@@ -91,12 +95,15 @@ jobs:
         done
 
     - name: Install node dependencies
+      working-directory: ./component-template/
       run: ./dev.py all-npm-install
 
     - name: Build frontend code
+      working-directory: ./component-template/
       run: ./dev.py all-npm-build
 
     - name: Build wheel packages
+      working-directory: ./component-template/
       run: |
         find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
         xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
@@ -107,13 +114,12 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: all-wheel
-        path: dist/*.whl
+        path: ./component-template/dist/*.whl
         if-no-files-found: error
 
     - name: Run E2E tests
       if: matrix.node_version == '19.x'
-      uses:
-        ./.github/actions/run_e2e
+      uses: ./component-template/.github/actions/run_e2e
 
   build-cookiecutter:
     runs-on: ubuntu-latest
