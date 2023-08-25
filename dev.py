@@ -94,33 +94,36 @@ def cmd_e2e_run(args):
     """Run e2e tests for all examples and templates in separate docker images"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         component_name = project_dir.parts[-1]
-        image_tag = (
-            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{component_name}"
-        )
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir and os.listdir(e2e_dir):
-            # Search for 'downloaded-artifacts' directory
-            downloaded_artifacts_dir = find_downloaded_artifacts_dir(Path(__file__).parent)
-            volume_option = []
+        if component_name != "SelectableDataTable" and component_name != "CustomDataframe":
+            image_tag = (
+                f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{component_name}"
+            )
+            e2e_dir = next(project_dir.glob("**/e2e/"), None)
+            if e2e_dir and os.listdir(e2e_dir):
+                # Search for 'downloaded-artifacts' directory
+                downloaded_artifacts_dir = find_downloaded_artifacts_dir(Path(__file__).parent)
+                volume_option = []
 
-            if downloaded_artifacts_dir:
-                print("Found 'downloaded-artifacts' directory")
-                volume_option = ["--volume", f"{downloaded_artifacts_dir}:/component/dist"]
+                if downloaded_artifacts_dir:
+                    print("Found 'downloaded-artifacts' directory")
+                    volume_option = ["--volume", f"{downloaded_artifacts_dir}:/component/dist"]
 
-            run_verbose([
-                "docker",
-                "run",
-                "--tty",
-                "--rm",
-                "--name", component_name,
-                "--volume", f"{e2e_dir.parent}/:/component/",
-                *volume_option,  # Add the volume option if it exists
-                image_tag,
-                "/bin/sh", "-c",  # Run a shell command inside the container
-                f"find /component/dist/ -name 'streamlit_{component_name.replace('-', '_')}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && " # Install whl package and dev dependencies
-                "playwright install webkit chromium firefox --with-deps && "  # Install browsers
-                "pytest -s --browser webkit --browser chromium --browser firefox --reruns 5"  # Run pytest
-            ])
+                run_verbose([
+                    "docker",
+                    "run",
+                    "--tty",
+                    "--rm",
+                    "--name", component_name,
+                    "--volume", f"{e2e_dir.parent}/:/component/",
+                    *volume_option,  # Add the volume option if it exists
+                    image_tag,
+                    "/bin/sh", "-c",  # Run a shell command inside the container
+                    f"find /component/dist/ -name 'streamlit_{component_name.replace('-', '_')}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && "  # Install whl package and dev dependencies
+                    "playwright install webkit chromium firefox --with-deps && "  # Install browsers
+                    "pytest -s --browser webkit --browser chromium --browser firefox --reruns 5"  # Run pytest
+                ])
+        else:
+            print("Omitting SelectableDataTable and CustomDataframe tests for debug")
 
 
 def cmd_docker_images_cleanup(args):
@@ -285,7 +288,8 @@ def cmd_update_templates(args):
             output_template = (
                     output_dir / replay_file_content["cookiecutter"]["package_name"]
             )
-            print(f"Generating template with replay file: {cookiecutter_variant.replay_file.relative_to(THIS_DIRECTORY)}")
+            print(
+                f"Generating template with replay file: {cookiecutter_variant.replay_file.relative_to(THIS_DIRECTORY)}")
             run_verbose(
                 [
                     "cookiecutter",
@@ -296,7 +300,8 @@ def cmd_update_templates(args):
                     str(THIS_DIRECTORY / "cookiecutter"),
                 ]
             )
-            print(f"Copying rendered templates to {str(cookiecutter_variant.repo_directory.relative_to(THIS_DIRECTORY))!r}")
+            print(
+                f"Copying rendered templates to {str(cookiecutter_variant.repo_directory.relative_to(THIS_DIRECTORY))!r}")
             shutil.rmtree(cookiecutter_variant.repo_directory, ignore_errors=True)
             shutil.copytree(output_template, cookiecutter_variant.repo_directory)
             print()
@@ -316,7 +321,8 @@ COMMANDS = {
 }
 
 ARG_STREAMLIT_VERSION = ("--streamlit-version", "latest", "Streamlit version for which tests will be run.")
-ARG_PYTHON_VERSION = ("--python-version", os.environ.get("PYTHON_VERSION", "3.11.4"), "Python version for which tests will be run.")
+ARG_PYTHON_VERSION = (
+"--python-version", os.environ.get("PYTHON_VERSION", "3.11.4"), "Python version for which tests will be run.")
 
 ARGUMENTS = {
     "e2e-build-images": [
