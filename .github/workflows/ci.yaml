@@ -16,11 +16,11 @@ jobs:
       fail-fast: false
       matrix:
         node_version:
-          # For details, see: https://nodejs.dev/en/about/releases/
-          # Maintenance LTS. End Of Life: 2023-09-11
-          - 16.x
-          # Active LTS. End Of Life: 2025-04-30
-          - 18.x
+#          # For details, see: https://nodejs.dev/en/about/releases/
+#          # Maintenance LTS. End Of Life: 2023-09-11
+#          - 16.x
+#          # Active LTS. End Of Life: 2025-04-30
+#          - 18.x
           # Current version
           - 19.x
         component_lib_version:
