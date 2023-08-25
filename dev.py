@@ -75,6 +75,21 @@ def cmd_e2e_build_images(args):
             )
 
 
+def find_all_wheel_dir(start_path):
+    all_wheel_dir = None
+    dist_dir = start_path
+    for dir_path in dist_dir.rglob("all-wheel"):
+        if dir_path.is_dir():
+            all_wheel_dir = dir_path
+            break
+    if all_wheel_dir:
+        print(f"Found 'all-wheel' directory: {all_wheel_dir}")
+        return all_wheel_dir
+    else:
+        print("'all-wheel' directory not found")
+        return None
+
+
 def cmd_e2e_run(args):
     """Run e2e tests for all examples and templates in separate docker images"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
@@ -84,12 +99,12 @@ def cmd_e2e_run(args):
         )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
-            all_wheel_dir = Path(__file__).parent / "all-wheel"
-            print(f"ALL_WHEEL_DIR: {all_wheel_dir}")
+            # Search for 'all-wheel' directory within dist dir
+            all_wheel_dir = find_all_wheel_dir(project_dir / "dist")
             volume_option = []
 
-            if all_wheel_dir.exists():
-                print("ALL WHEEL exists")
+            if all_wheel_dir:
+                print("Found 'all-wheel' directory")
                 volume_option = ["--volume", f"{all_wheel_dir}:/component/dist"]
 
             run_verbose([
