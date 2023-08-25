@@ -13,16 +13,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: export
-      shell: bash
-
-    - run: echo "${GH_JSON}"
-      shell: bash
-      env:
-        GH_JSON: ${{ toJson(github) }}
-
     - name: Build docker images
       run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      working-directory: ${{ github.action_path }}/../../../
       shell: bash
       env:
         STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
@@ -31,6 +24,7 @@ runs:
     - name: Run e2e tests
       run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
       shell: bash
+      working-directory: ${{ github.action_path }}/../../../
       env:
         STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
         PYTHON_VERSION: ${{ inputs.python_version }}
