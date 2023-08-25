@@ -152,6 +152,7 @@ jobs:
           set -x
           cd "$(mktemp -d)"
           pip install --no-deps "streamlit==1.23.0"
+          ls *.whl
           whl_file="$(readlink -e "$(find . -type f)")"
           echo "whl_file=${whl_file}" >> $GITHUB_OUTPUT
 
