@@ -149,7 +149,7 @@ jobs:
       - name: Download specific streamlit version
         id: download_streamlit
         run: |
-          set +x
+          set -x
           cd "$(mktemp -d)"
           pip install --no-deps "streamlit==1.23.0"
           whl_file="$(find . -type f)"
