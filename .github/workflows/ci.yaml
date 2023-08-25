@@ -149,9 +149,9 @@ jobs:
       - name: Download specific streamlit version
         id: download_streamlit
         run: |
-          cd $(mktemp -d)
+          set +x
+          cd "$(mktemp -d)"
           pip install --no-deps "streamlit==1.23.0"
-          set -x
           whl_file="$(find . -type f)"
           whl_file="$(readlink -e "${whl_file}")"
           echo "whl_file=${whl_file}" >> $GITHUB_OUTPUT
