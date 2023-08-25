@@ -76,9 +76,9 @@ def cmd_e2e_build_images(args):
 
 
 def find_downloaded_artifacts_dir(start_path):
+    print(f"Looking for artifacts in: {start_path} / downloaded-artifacts")
     downloaded_artifacts_dir = None
-    dist_dir = start_path
-    for dir_path in dist_dir.rglob("downloaded-artifacts"):
+    for dir_path in start_path.rglob("downloaded-artifacts"):
         if dir_path.is_dir():
             downloaded_artifacts_dir = dir_path
             break
@@ -104,7 +104,7 @@ def cmd_e2e_run(args):
             volume_option = []
 
             if downloaded_artifacts_dir:
-                print("Found 'all-wheel' directory")
+                print("Found 'downloaded-artifacts' directory")
                 volume_option = ["--volume", f"{downloaded_artifacts_dir}:/component/dist"]
 
             run_verbose([
