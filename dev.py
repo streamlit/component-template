@@ -117,16 +117,9 @@ def cmd_e2e_run(args):
                 *volume_option,  # Add the volume option if it exists
                 image_tag,
                 "/bin/sh", "-c",  # Run a shell command inside the container
-                f"find /component/dist/ -name 'streamlit_{component_name}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && " # Install whl package and dev dependencies
+                f"find /component/dist/ -name 'streamlit_{component_name.replace('-', '_')}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && " # Install whl package and dev dependencies
                 "playwright install webkit chromium firefox --with-deps && "  # Install browsers
-                "pytest",  # Run pytest
-                "-s",
-                "--browser", "webkit",
-                "--browser", "chromium",
-                "--browser", "firefox",
-                "--reruns", "5",
-                "--capture=no",
-                "--setup-show"
+                "pytest -s --browser webkit --browser chromium --browser firefox --reruns 5"  # Run pytest
             ])
 
 
