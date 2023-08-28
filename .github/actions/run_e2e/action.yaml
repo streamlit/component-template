@@ -19,30 +19,25 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Build docker images
+      shell: bash
+      run: |
+        if [ -n "${{ inputs.streamlit_version }}" ]; then
+          ./dev.py e2e-build-images "--streamlit-version=${{ inputs.streamlit_version }}" "--python-version=${{ inputs.python_version }}"
+        elif [ -n "${{ inputs.streamlit_wheel_file }}" ]; then
+          ./dev.py e2e-build-images "--streamlit-wheel-file=${{ inputs.streamlit_wheel_file }}" "--python-version=${{ inputs.python_version }}"
+        else
+          echo "One and exactly one input is required: streamlit_version, streamlit_wheel_file"
+          exit 1
+        fi
+      working-directory: ${{ github.action_path }}/../../../
+
     - name: Check prerequisite
       run: |
         One and exactly one input is required: streamlit_version, streamlit_wheel_file
         exit 1
       if: inputs.streamlit_version == '' && inputs.streamlit_wheel_file == ''
       shell: bash
-
-    - name: Build docker images
-      run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
-      working-directory: ${{ github.action_path }}/../../../
-      if: inputs.streamlit_version != ''
-      shell: bash
-      env:
-        STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
-        PYTHON_VERSION: ${{ inputs.python_version }}
-
-    - name: Build docker images
-      run: ./dev.py e2e-build-images "--streamlit-wheel-file=${{ env.STREAMLIT_WHEEL_FILE }}" "--python-version=${{ env.PYTHON_VERSION }}"
-      working-directory: ${{ github.action_path }}/../../../
-      if: inputs.streamlit_wheel_file != ''
-      shell: bash
-      env:
-        STREAMLIT_WHEEL_FILE: ${{ inputs.streamlit_wheel_file }}
-        PYTHON_VERSION: ${{ inputs.python_version }}
 
     - name: Run e2e tests
       run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
