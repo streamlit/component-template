@@ -61,12 +61,13 @@ jobs:
       uses: ./component-template/.github/actions/build_streamlit_component_library
       if: matrix.component_lib_version == 'develop'
       id: streamlit_component_library
-        - name: Build components wheels
-          uses: ./component-template/.github/actions/build_component_wheels
-          id: component_wheels
-          with:
-            custom_streamlit_component_lib_file: >-
-              ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
+
+    - name: Build components wheels
+      uses: ./component-template/.github/actions/build_component_wheels
+      id: component_wheels
+      with:
+        custom_streamlit_component_lib_file: >-
+          ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
 
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
@@ -130,6 +131,7 @@ jobs:
         with:
           custom_streamlit_component_lib_file: >-
             ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
+
       - name: Upload wheel packages
         uses: actions/upload-artifact@v3
         with:
@@ -145,6 +147,7 @@ jobs:
           pip download --no-deps "streamlit==1.23.0"
           whl_file="$(readlink -e "$(find . -type f)")"
           echo "whl_file=${whl_file}" >> $GITHUB_OUTPUT
+
       - name: Run E2E tests
         if: matrix.node_version == '19.x'
         uses: ./component-template/.github/actions/run_e2e
