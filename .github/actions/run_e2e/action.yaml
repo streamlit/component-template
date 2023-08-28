@@ -2,13 +2,14 @@ name: E2E tests
 description: Run e2e tests for templates and examples in separate docker images
 
 inputs:
+  python_version:
+    description: 'Python version'
+    required: true
+    default: '3.8'
   streamlit_version:
     description: 'Streamlit version'
     required: false
     default: ''
-  python_version:
-    description: 'Python version'
-    required: true
   streamlit_wheel_file:
     description: 'Streamlit wheel file'
     required: false
@@ -32,6 +33,15 @@ runs:
       shell: bash
       env:
         STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        PYTHON_VERSION: ${{ inputs.python_version }}
+
+    - name: Build docker images
+      run: ./dev.py e2e-build-images "--streamlit-wheel-file=${{ env.STREAMLIT_WHEEL_FILE }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      working-directory: ${{ github.action_path }}/../../../
+      if: inputs.streamlit_wheel_file != ''
+      shell: bash
+      env:
+        STREAMLIT_WHEEL_FILE: ${{ inputs.streamlit_wheel_file }}
         PYTHON_VERSION: ${{ inputs.python_version }}
 
     - name: Run e2e tests
