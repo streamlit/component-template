@@ -56,70 +56,58 @@ def cmd_e2e_build_images(args):
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
             # Define the image tag for the docker image
+            streamlit_version = args.streamlit_version if not args.streamlit_wheel_file else 'custom'
             image_tag = (
-                f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{project_dir.parts[-1]}"
+                f"component-template:py-{args.python_version}-st-{streamlit_version}-component-{project_dir.parts[-1]}"
             )
             # Build the docker image with specified build arguments
-            run_verbose(
-                [
-                    "docker",
-                    "build",
-                    "--target", args.build_target,
-                    ".",
+            docker_args = [
+                "docker",
+                "build",
+                ".",
+                f"--build-arg=PYTHON_VERSION={args.python_version}",
+                f"--tag={image_tag}",
+                "--progress=plain",
+            ]
+            if args.streamlit_wheel_file:
+                buildcontext_path = THIS_DIRECTORY / "buildcontext"
+                shutil.rmtree(buildcontext_path, ignore_errors=True)
+                buildcontext_path.mkdir()
+                shutil.copy(args.streamlit_wheel_file, buildcontext_path)
+                docker_args.extend([
+                    f"--target=e2e_whl",
+                ])
+            else:
+                docker_args.extend([
                     f"--build-arg=STREAMLIT_VERSION={args.streamlit_version}",
-                    f"--build-arg=PYTHON_VERSION={args.python_version}",
-                    f"--tag={image_tag}",
-                    "--progress=plain",
-                ],
+                    f"--target=e2e_pip",
+                ])
+            run_verbose(
+                docker_args,
                 env={**os.environ, "DOCKER_BUILDKIT": "1"},
             )
-
-
-def find_downloaded_artifacts_dir(start_path):
-    print(f"Looking for artifacts in: {start_path} / downloaded-artifacts")
-    downloaded_artifacts_dir = None
-    for dir_path in start_path.rglob("downloaded-artifacts"):
-        if dir_path.is_dir():
-            downloaded_artifacts_dir = dir_path
-            break
-    if downloaded_artifacts_dir:
-        print(f"Found 'downloaded-artifacts' directory: {downloaded_artifacts_dir}")
-        return downloaded_artifacts_dir
-    else:
-        print("'downloaded-artifacts' directory not found")
-        return None
 
 
 def cmd_e2e_run(args):
     """Run e2e tests for all examples and templates in separate docker images"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        component_name = project_dir.parts[-1]
+        container_name = project_dir.parts[-1]
         image_tag = (
-            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{component_name}"
+            f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
         )
         e2e_dir = next(project_dir.glob("**/e2e/"), None)
         if e2e_dir and os.listdir(e2e_dir):
-            # Search for 'downloaded-artifacts' directory
-            downloaded_artifacts_dir = find_downloaded_artifacts_dir(Path(__file__).parent)
-            volume_option = []
-
-            if downloaded_artifacts_dir:
-                print("Found 'downloaded-artifacts' directory")
-                volume_option = ["--volume", f"{downloaded_artifacts_dir}:/component/dist"]
-
             run_verbose([
                 "docker",
                 "run",
                 "--tty",
                 "--rm",
-                "--name", component_name,
+                "--name", container_name,
                 "--volume", f"{e2e_dir.parent}/:/component/",
-                *volume_option,  # Add the volume option if it exists
                 image_tag,
                 "/bin/sh", "-c",  # Run a shell command inside the container
-                f"find /component/dist/ -name 'streamlit_{component_name.replace('-', '_')}-*.whl' | xargs -I {{}} echo '{{}}[devel]' | xargs pip install && " # Install whl package and dev dependencies
-                "playwright install webkit chromium firefox --with-deps && "  # Install browsers
-                "pytest -s --browser webkit --browser chromium --browser firefox --reruns 5"  # Run pytest
+                "find /component/dist/ -name '*.whl' | xargs -I {} echo '{}[devel]' | xargs pip install && " # Install whl package and dev dependencies
+                f"pytest -s --browser webkit --browser chromium --browser firefox --reruns 5 --capture=no"  # Run pytest
             ])
 
 
@@ -302,36 +290,55 @@ def cmd_update_templates(args):
             print()
 
 
-COMMANDS = {
-    "all-npm-install": cmd_all_npm_install,
-    "all-npm-build": cmd_all_npm_build,
-    "all-python-build-package": cmd_all_python_build_package,
-    "examples-check-deps": cmd_example_check_deps,
-    "templates-check-not-modified": cmd_check_templates_using_cookiecutter,
-    "templates-update": cmd_update_templates,
-    "e2e-utils-check": cmd_check_test_utils,
-    "e2e-build-images": cmd_e2e_build_images,
-    "e2e-run-tests": cmd_e2e_run,
-    "docker-images-cleanup": cmd_docker_images_cleanup
-}
-
 ARG_STREAMLIT_VERSION = ("--streamlit-version", "latest", "Streamlit version for which tests will be run.")
+ARG_STREAMLIT_WHEEL_FILE = ("--streamlit-wheel-file", "", "")
 ARG_PYTHON_VERSION = ("--python-version", os.environ.get("PYTHON_VERSION", "3.11.4"), "Python version for which tests will be run.")
 
-ARGUMENTS = {
-    "e2e-build-images": [
-        ARG_STREAMLIT_VERSION,
-        ARG_PYTHON_VERSION,
-        ("--build-target", "e2e_pip", "Docker image build target")
-    ],
-    "e2e-run-tests": [
-        ARG_STREAMLIT_VERSION,
-        ARG_PYTHON_VERSION
-    ],
-    "docker-images-cleanup": [
-        (*ARG_STREAMLIT_VERSION[:2], f"Streamlit version used to create the Docker resources"),
-        (*ARG_PYTHON_VERSION[:2], f"Python version used to create the Docker resources")
-    ]
+COMMANDS = {
+    "all-npm-install": {
+        "fn": cmd_all_npm_install}
+    ,
+    "all-npm-build": {
+        "fn": cmd_all_npm_build
+    },
+    "all-python-build-package": {
+        "fn": cmd_all_python_build_package
+    },
+    "examples-check-deps": {
+        "fn": cmd_example_check_deps
+    },
+    "templates-check-not-modified": {
+        "fn": cmd_check_templates_using_cookiecutter
+    },
+    "templates-update": {
+        "fn": cmd_update_templates
+    },
+    "e2e-utils-check": {
+        "fn": cmd_check_test_utils
+    },
+    "e2e-build-images": {
+        "fn": cmd_e2e_build_images,
+        "arguments": [
+            ARG_STREAMLIT_VERSION,
+            ARG_STREAMLIT_WHEEL_FILE,
+            ARG_PYTHON_VERSION,
+        ]
+    },
+    "e2e-run-tests": {
+        "fn": cmd_e2e_run,
+        "arguments": [
+            ARG_STREAMLIT_VERSION,
+            ARG_PYTHON_VERSION,
+        ]
+    },
+    "docker-images-cleanup": {
+        "fn": cmd_docker_images_cleanup,
+        "arguments": [
+            (*ARG_STREAMLIT_VERSION[:2], f"Streamlit version used to create the Docker resources"),
+            (*ARG_STREAMLIT_WHEEL_FILE[:2], f""),
+            (*ARG_PYTHON_VERSION[:2], f"Python version used to create the Docker resources")
+        ]
+    }
 }
 
 
@@ -340,12 +347,12 @@ def get_parser():
     parser = argparse.ArgumentParser(prog=__file__, description=__doc__)
     subparsers = parser.add_subparsers(dest="subcommand", metavar="COMMAND")
     subparsers.required = True
-    for command_name, command_fn in COMMANDS.items():
+    for command_name, command_info in COMMANDS.items():
+        command_fn = command_info['fn']
         subparser = subparsers.add_parser(command_name, help=command_fn.__doc__)
 
-        if command_name in ARGUMENTS:
-            for arg_name, arg_default, arg_help in ARGUMENTS[command_name]:
-                subparser.add_argument(arg_name, default=arg_default, help=arg_help)
+        for arg_name, arg_default, arg_help in command_info.get('arguments', []):
+            subparser.add_argument(arg_name, default=arg_default, help=arg_help)
 
         subparser.set_defaults(func=command_fn)
 

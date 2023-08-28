@@ -84,7 +84,7 @@ runs:
 
     - name: Run e2e tests
       if: matrix.node_version == '19.x'
-      uses: ./.github/actions/e2e-tests
+      uses: ./.github/actions/run_e2e
       with:
         streamlit_version: ${{ env.STREAMLIT_VERSION }}
         python_version: ${{ env.PYTHON_VERSION }}
