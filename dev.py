@@ -107,15 +107,7 @@ def cmd_e2e_run(args):
                 image_tag,
                 "/bin/sh", "-c",  # Run a shell command inside the container
                 "find /component/dist/ -name '*.whl' | xargs -I {} echo '{}[devel]' | xargs pip install && " # Install whl package and dev dependencies
-                f"playwright install webkit chromium firefox --with-deps && "  # Install browsers
-                f"pytest",  # Run pytest
-                "-s",
-                "--browser", "webkit",
-                "--browser", "chromium",
-                "--browser", "firefox",
-                "--reruns", "5",
-                "--capture=no",
-                "--setup-show"
+                f"pytest -S --browser webkit --browser chromium --browser firefox --reruns 5 --capture=no --setup-show",  # Run pytest
             ])
 
 
