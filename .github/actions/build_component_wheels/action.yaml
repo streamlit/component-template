@@ -3,7 +3,7 @@ description: 'Action for building all components wheels'
 inputs:
   custom_streamlit_component_lib_file:
     required: false
-    description: ''
+    description: 'Streamlit Component Library package'
     default: ''
 
 outputs:
