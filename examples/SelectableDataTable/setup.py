@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit-SelectableDataTable",
+    name="streamlit-selectable-data-table",
     version="0.0.1",
     author="",
     author_email="",

@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit-RadioButton",
+    name="streamlit-radio-button",
     version="0.0.1",
     author="",
     author_email="",
