@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit-custom-data-frame",
+    name="streamlit-custom-dataframe",
     version="0.0.1",
     author="",
     author_email="",

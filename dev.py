@@ -101,7 +101,7 @@ def cmd_e2e_run(args):
                 "docker",
                 "run",
                 "--tty",
-                # "--rm",
+                "--rm",
                 "--name", container_name,
                 "--volume", f"{e2e_dir.parent}/:/component/",
                 image_tag,
