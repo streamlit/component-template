@@ -1,5 +1,5 @@
 name: 'Build Streamlit Component Library'
-description: 'Action for building Steamlit Component Library'
+description: 'Building Streamlit Component Library'
 inputs:
   working_directory:
     required: false
