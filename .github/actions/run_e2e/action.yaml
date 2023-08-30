@@ -3,21 +3,21 @@ description: Run e2e tests for templates and examples in separate docker images
 
 inputs:
   python_version:
-    description: 'Python version'
+    description: 'A Python version used to create a Docker Image'
     required: true
     default: '3.8'
   streamlit_version:
-    description: 'Streamlit version'
+    description: 'Streamlit version to be installed in a Docker Image'
     required: false
     default: ''
   streamlit_wheel_file:
-    description: 'Streamlit wheel file'
+    description: 'Wheel file of a development version Streamlit to be installed in a Docker Image'
     required: false
     default: ''
 
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Build docker images
       run: |

@@ -57,7 +57,7 @@ jobs:
       run: ./dev.py e2e-utils-check
       working-directory: ./component-template/
 
-    - name: Build Streamlit Component Library
+    - name: Pack Streamlit Component Library
       uses: ./component-template/.github/actions/pack_streamlit_component_library
       if: matrix.component_lib_version == 'develop'
       id: streamlit_component_library

@@ -296,8 +296,8 @@ ARG_PYTHON_VERSION = ("--python-version", os.environ.get("PYTHON_VERSION", "3.11
 
 COMMANDS = {
     "all-npm-install": {
-        "fn": cmd_all_npm_install}
-    ,
+        "fn": cmd_all_npm_install
+    },
     "all-npm-build": {
         "fn": cmd_all_npm_build
     },

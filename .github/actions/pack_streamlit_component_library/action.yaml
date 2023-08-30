@@ -1,18 +1,18 @@
-name: 'Build Streamlit Component Library'
-description: 'Building Streamlit Component Library'
+name: 'Pack Streamlit Component Library'
+description: 'Packing Streamlit Component Library'
 inputs:
   working_directory:
     required: false
-    description: ""
-    default: "streamlit"
+    description: 'Directory where the streamlit/streamlit repository will be checked out'
+    default: 'streamlit'
 
 outputs:
   output_file:
-    description: ''
+    description: 'Packed Streamlit Component Library file'
     value: ${{ steps.final_step.outputs.output_file }}
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Check prerequisite
       shell: bash
@@ -38,7 +38,7 @@ runs:
         npm install -g yarn
         yarn install
 
-    - name: Build streamlit-component-lib package
+    - name: Pack streamlit-component-lib package
       working-directory: ${{ inputs.working_directory }}/component-lib/
       shell: bash
       run: yarn run build && npm pack

@@ -3,16 +3,18 @@ description: 'Action for building all components wheels'
 inputs:
   custom_streamlit_component_lib_file:
     required: false
-    description: 'Streamlit Component Library package'
+    description: |
+      Path to local Streamlit Component Library package.
+      To generate a package, run the npm pack command in the directory with the Streamlit component library.
     default: ''
 
 outputs:
   output_directory:
-    description: ''
+    description: 'The directory where the built wheel packages of all the components are located'
     value: ${{ steps.final_step.outputs.output_directory }}
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Link develop version of streamlit-component-lib
       if: inputs.custom_streamlit_component_lib_file != ''
