@@ -68,3 +68,4 @@ template-reactless/**/package-lock.json
 # VSCode
 ########################################################################
 .vscode/
+buildcontext/
