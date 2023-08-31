@@ -42,6 +42,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         persist-credentials: false
+        path: component-template
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
@@ -50,77 +51,37 @@ jobs:
 
     - name: Check dependencies for examples
       run: ./dev.py examples-check-deps
+      working-directory: ./component-template/
 
     - name: Check e2e utils files
       run: ./dev.py e2e-utils-check
+      working-directory: ./component-template/
 
-    - name: Checkout streamlit/streamlit
+    - name: Pack Streamlit Component Library
+      uses: ./component-template/.github/actions/pack_streamlit_component_library
       if: matrix.component_lib_version == 'develop'
-      uses: actions/checkout@v3
+      id: streamlit_component_library
+
+    - name: Build components wheels
+      uses: ./component-template/.github/actions/build_component_wheels
+      id: component_wheels
       with:
-        persist-credentials: false
-        repository: streamlit/streamlit
-        ref: develop
-        path: streamlit
-
-    - name: Install node dependencies for streamlit-component-lib
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./streamlit/component-lib/
-      run: |
-        npm install -g yarn
-        yarn install
-
-    - name: Build streamlit-component-lib package
-      if: matrix.component_lib_version == 'develop'
-      working-directory: ./streamlit/component-lib/
-      run: yarn run build && npm pack
-
-    - name: Link develop version of streamlit-component-lib
-      if: matrix.component_lib_version == 'develop'
-      env:
-        COMPONENT_LIB_DIR: ${{ github.workspace }}/streamlit/component-lib/
-      run: |
-        component_lib_tar_gz=$(find "${COMPONENT_LIB_DIR}" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
-        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
-
-        find examples template template-reactless -name frontend -maxdepth 3 | while IFS= read -r line; do
-          (
-            cd "${line}";
-            npm install "${component_lib_tar_gz}"
-          )
-        done
-
-    - name: Install node dependencies
-      run: ./dev.py all-npm-install
-
-    - name: Build frontend code
-      run: ./dev.py all-npm-build
-
-    - name: Build wheel packages
-      run: |
-        find examples template template-reactless -maxdepth 3 -name '__init__.py' |\
-        xargs -n 1 sed -i 's/_RELEASE = False/_RELEASE = True/';
-
-        ./dev.py all-python-build-package
+        custom_streamlit_component_lib_file: >-
+          ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
 
     - name: Upload wheel packages
       uses: actions/upload-artifact@v3
       with:
         name: all-wheel
-        path: dist/*.whl
+        path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
         if-no-files-found: error
 
-    - name: Set up Docker Buildx
+    - name: Run E2E tests
       if: matrix.node_version == '19.x'
-      uses: docker/setup-buildx-action@7703e82fbced3d0c9eec08dff4429c023a5fd9a9 # v2.9.1
-
-    - name: Build docker images
-      if: matrix.node_version == '19.x'
-      run: ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
-
-    - name: Run e2e tests
-      if: matrix.node_version == '19.x'
-      run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      uses: ./component-template/.github/actions/run_e2e
+      with:
+        python_version: ${{ env.PYTHON_VERSION }}
+        streamlit_version: ${{ env.STREAMLIT_VERSION }}
 
   build-cookiecutter:
     runs-on: ubuntu-latest

@@ -1,0 +1,54 @@
+name: 'Pack Streamlit Component Library'
+description: 'Packing Streamlit Component Library'
+inputs:
+  working_directory:
+    required: false
+    description: 'Directory where the streamlit/streamlit repository will be checked out'
+    default: 'streamlit'
+
+outputs:
+  output_file:
+    description: 'Packed Streamlit Component Library file'
+    value: ${{ steps.final_step.outputs.output_file }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check prerequisite
+      shell: bash
+      run: |
+        if ! command -v node > /dev/null
+        then
+          echo "Node is required to use this action"
+          exit 1
+        fi
+
+    - name: Checkout streamlit/streamlit
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        repository: streamlit/streamlit
+        ref: develop
+        path: ${{ inputs.working_directory }}
+
+    - name: Install node dependencies for streamlit-component-lib
+      working-directory: ${{ inputs.working_directory }}/component-lib/
+      shell: bash
+      run: |
+        npm install -g yarn
+        yarn install
+
+    - name: Pack streamlit-component-lib package
+      working-directory: ${{ inputs.working_directory }}/component-lib/
+      shell: bash
+      run: yarn run build && npm pack
+
+    - name: Link develop version of streamlit-component-lib
+      if: inputs.custom_streamlit_component_lib_file != ''
+      working-directory: ${{ inputs.working_directory }}/component-lib/
+      id: final_step
+      shell: bash
+      run: |
+        component_lib_tar_gz=$(find "./" -maxdepth 1 -name 'streamlit-component-lib-*.tgz')
+        component_lib_tar_gz=$(readlink -e "${component_lib_tar_gz}")
+        echo "output_file=${component_lib_tar_gz}" >> $GITHUB_OUTPUT

@@ -1,0 +1,46 @@
+name: E2E tests
+description: Run e2e tests for templates and examples in separate docker images
+
+inputs:
+  python_version:
+    description: 'A Python version used to create a Docker Image'
+    required: true
+    default: '3.8'
+  streamlit_version:
+    description: 'Streamlit version to be installed in a Docker Image'
+    required: false
+    default: ''
+  streamlit_wheel_file:
+    description: 'Wheel file of a development version Streamlit to be installed in a Docker Image'
+    required: false
+    default: ''
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build docker images
+      run: |
+        if [ -n "${{ env.STREAMLIT_VERSION }}" ]; then
+          ./dev.py e2e-build-images "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+        elif [ -n "${{ env.STREAMLIT_WHEEL_FILE }}" ]; then
+          ./dev.py e2e-build-images "--streamlit-wheel-file=${{ env.STREAMLIT_WHEEL_FILE }}" "--python-version=${{ env.PYTHON_VERSION }}"
+        else
+          echo "One and exactly one input is required: streamlit_version, streamlit_wheel_file".
+          exit 1
+        fi
+      shell: bash
+      working-directory: ${{ github.action_path }}/../../../
+      env:
+        STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
+        STREAMLIT_WHEEL_FILE: ${{ inputs.streamlit_wheel_file }}
+        PYTHON_VERSION: ${{ inputs.python_version }}
+
+
+    - name: Run e2e tests
+      run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"
+      shell: bash
+      working-directory: ${{ github.action_path }}/../../../
+      env:
+        STREAMLIT_VERSION: ${{ inputs.streamlit_wheel_file == '' &&  inputs.streamlit_version || 'custom' }}
+        PYTHON_VERSION: ${{ inputs.python_version }}
