@@ -27,15 +27,37 @@ def test_should_render_selectable_data_table(page: Page):
         'iframe[title="selectable_data_table\\.selectable_data_table"]'
     )
 
-    main_checkbox = frame.get_by_role("row", name="First Name Last Name Age").get_by_role("checkbox")
-    first_row_checkbox = frame.get_by_role("row", name="Jason Miller 42").get_by_role("checkbox")
+    expect(frame.get_by_role('checkbox')).to_have_count(6)
+    root_checkbox = frame.get_by_role('checkbox').nth(0)
+    first_row_checkbox = frame.get_by_role('checkbox').nth(1)
+    second_row_checkbox = frame.get_by_role('checkbox').nth(2)
+    third_row_checkbox = frame.get_by_role('checkbox').nth(3)
+    fourth_row_checkbox = frame.get_by_role('checkbox').nth(4)
+    fifth_row_checkbox = frame.get_by_role('checkbox').nth(5)
+    none_root_checkboxes = [
+        first_row_checkbox,
+        second_row_checkbox,
+        third_row_checkbox,
+        fourth_row_checkbox,
+        fifth_row_checkbox
+    ]
 
-    main_checkbox.check()
-    expect(first_row_checkbox).to_be_checked()
-
-    expect(page.get_by_text("0:0")).to_be_visible()
+    root_checkbox.check()
+    for checkbox in none_root_checkboxes:
+        expect(checkbox).to_be_checked()
 
     first_row_checkbox.uncheck()
-    expect(main_checkbox).not_to_be_checked()
+    expect(root_checkbox).not_to_be_checked()
+    assert root_checkbox.get_attribute('data-indeterminate') == "true"
 
+    for checkbox in none_root_checkboxes:
+        checkbox.uncheck()
 
+    expect(root_checkbox).not_to_be_checked()
+    assert root_checkbox.get_attribute('data-indeterminate') == 'false'
+
+    for checkbox in none_root_checkboxes:
+        checkbox.check()
+
+    expect(root_checkbox).to_be_checked()
+    assert root_checkbox.get_attribute('data-indeterminate') == 'false'

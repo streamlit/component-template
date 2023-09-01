@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 import pytest
@@ -29,6 +30,8 @@ def test_should_render_dataframe(page: Page):
     cell_in_frame = frame.get_by_role("cell", name="Jason")
     expect(cell_in_frame).to_be_visible()
 
+    st_table = page.get_by_test_id('stTable')
+
     frame.get_by_role("button", name="Return dataframe").click()
-    cell_generated = page.get_by_role("cell", name="Jason")
+    cell_generated = st_table.get_by_role("cell", name="Jason")
     expect(cell_generated).to_be_visible()
