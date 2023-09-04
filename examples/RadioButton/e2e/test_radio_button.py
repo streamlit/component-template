@@ -23,12 +23,12 @@ def go_to_app(page: Page, streamlit_app: StreamlitRunner):
     page.get_by_role("img", name="Running...").is_hidden()
 
 
-def test_should_render_user_input(page: Page, assert_snapshot):
-    frame_0 = page.frame_locator(
+def test_should_render_user_input(page: Page):
+    frame = page.frame_locator(
         'iframe[title="radio_button\\.radio_button"]'
     )
 
-    radio_group = frame_0.get_by_role("radiogroup")
+    radio_group = frame.get_by_role("radiogroup")
     first_radio = radio_group.get_by_text("one bat")
     second_radio = radio_group.get_by_text("TWO bats")
     text = page.get_by_text("This many")
@@ -37,6 +37,13 @@ def test_should_render_user_input(page: Page, assert_snapshot):
     expect(second_radio).not_to_be_checked()
     expect(text).to_have_text("This many: one bat")
 
+    second_radio.check()
+
+    expect(first_radio).not_to_be_checked()
+    expect(second_radio).to_be_checked()
+    expect(text).to_have_text("This many: TWO bats")
+
+    # check if click on checked option will not uncheck it
     second_radio.check()
 
     expect(first_radio).not_to_be_checked()
