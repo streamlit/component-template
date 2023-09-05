@@ -119,3 +119,34 @@ Run following commands:
 $ ./dev.py e2e-build-images
 $ ./dev.py e2e-run-tests
 ```
+
+# Troubleshooting
+
+## Setting up template and template-reactless locally
+
+Template and template-reactless share the same component name. We can only have one component installed.
+To switch between them, we need to uninstall one and install another. To do that:
+
+### 1. Check installed template
+Run:
+```shell
+$ pip freeze
+```
+
+and find installed package. Copy egg name of this component.
+
+### 2. Uninstall template
+```shell
+$ pip uninstall <egg_name>
+```
+
+- egg_name - name of package name, by default it is: `streamlit_custom_component`
+
+### 3. Install another template
+Run:
+```shell
+$ pip install -e .
+```
+inside template directory.
+
+
