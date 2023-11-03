@@ -23,7 +23,7 @@ setuptools.setup(
         "devel": [
             "wheel",
             "pytest==7.4.0",
-            "playwright==1.36.0",
+            "playwright==1.39.0",
             "requests==2.31.0",
             "pytest-playwright-snapshot==1.0",
             "pytest-rerunfailures==12.0",
