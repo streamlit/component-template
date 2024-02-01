@@ -65,6 +65,7 @@ def test_should_change_iframe_height(page: Page):
 
     locator = page.locator('iframe[title="my_component\\.my_component"]').nth(1)
 
+    page.wait_for_timeout(1000)
     init_frame_height = locator.bounding_box()['height']
     assert init_frame_height != 0
 
@@ -75,6 +76,7 @@ def test_should_change_iframe_height(page: Page):
 
     expect(frame.get_by_text("Streamlit Streamlit Streamlit")).to_be_visible()
 
+    page.wait_for_timeout(1000)
     frame_height = locator.bounding_box()['height']
     assert frame_height > init_frame_height
 
@@ -82,5 +84,6 @@ def test_should_change_iframe_height(page: Page):
 
     expect(frame.get_by_text("Streamlit Streamlit Streamlit")).not_to_be_in_viewport()
 
+    page.wait_for_timeout(1000)
     frame_height_after_viewport_change = locator.bounding_box()['height']
     assert frame_height_after_viewport_change > frame_height
