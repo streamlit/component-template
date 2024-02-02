@@ -48,16 +48,16 @@ def test_should_render_selectable_data_table(page: Page):
 
     first_row_checkbox.uncheck()
     expect(root_checkbox).not_to_be_checked()
-    assert root_checkbox.get_attribute('data-indeterminate') == "true"
+    expect(root_checkbox).to_have_attribute('data-indeterminate', 'true')
 
     for checkbox in none_root_checkboxes:
         checkbox.uncheck()
 
     expect(root_checkbox).not_to_be_checked()
-    assert root_checkbox.get_attribute('data-indeterminate') == 'false'
+    expect(root_checkbox).to_have_attribute('data-indeterminate', 'false')
 
     for checkbox in none_root_checkboxes:
         checkbox.check()
 
     expect(root_checkbox).to_be_checked()
-    assert root_checkbox.get_attribute('data-indeterminate') == 'false'
+    expect(root_checkbox).to_have_attribute('data-indeterminate', 'false')
