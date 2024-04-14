@@ -1,9 +1,8 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import BaseWebButton from "./Button"
+import React from "react";
+import ReactDOM from "react-dom";
+import BaseWebButton from "./Button";
 import { Provider as StyletronProvider } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
-
 
 const engine = new Styletron();
 
@@ -13,5 +12,5 @@ ReactDOM.render(
       <BaseWebButton />
     </StyletronProvider>
   </React.StrictMode>,
-  document.getElementById("root")
-)
+  document.getElementById("root"),
+);
