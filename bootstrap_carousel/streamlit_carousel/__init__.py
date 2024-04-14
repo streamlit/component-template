@@ -1,5 +1,6 @@
 import os
 from typing import TypedDict, List
+
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -15,7 +16,8 @@ __author__ = "Thomas Bouamoud"
 
 if not _RELEASE:
     _bootstrap_carousel = components.declare_component(
-        "streamlit_carousel", url="http://localhost:3000",
+        "streamlit_carousel",
+        url="http://localhost:3000",
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))

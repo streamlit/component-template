@@ -11,10 +11,12 @@ __author__ = "Thomas Bouamoud"
 
 if not _RELEASE:
     _base_web_modal = components.declare_component(
-        "base_web_modal", url="http://localhost:3000",
+        "base_web_modal",
+        url="http://localhost:3000",
     )
     _base_web_button = components.declare_component(
-        "base_web_button", url="http://localhost:3001",
+        "base_web_button",
+        url="http://localhost:3001",
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
