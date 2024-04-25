@@ -38,7 +38,7 @@ test_items = [
     ),
 ]
 
-carousel(items=test_items)
+carousel(items=test_items, width=0.5)
 
 ```
 
