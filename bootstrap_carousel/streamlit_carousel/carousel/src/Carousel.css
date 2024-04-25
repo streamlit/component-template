@@ -1,0 +1,16 @@
+.carousel-inner {
+  height: 100% !important;
+}
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Ensure the container takes full height of the carousel item */
+}
+
+.carousel-image-container img {
+  max-width: 100%; /* Prevent larger images from stretching */
+  max-height: 100%; /* Ensure the image doesn't overflow */
+  margin: auto; /* Center the image */
+}

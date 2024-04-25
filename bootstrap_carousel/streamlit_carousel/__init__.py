@@ -5,7 +5,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 # TODO:
-#  - add 'use_container_width' argument
 #  - enable image files
 #  - fix overflow issue when item's text is too long
 
@@ -31,6 +30,7 @@ class Item(TypedDict):
     title: str
     text: str
     img: str
+    link: str
 
 
 def validate_items(items: List[Item]) -> List[Item]:
@@ -49,6 +49,8 @@ def validate_items(items: List[Item]) -> List[Item]:
             )
         if "interval" not in item:
             item["interval"] = None
+        if "link" not in item:
+            item["link"] = None
     return items
 
 
@@ -58,10 +60,10 @@ def carousel(
     fade: bool = False,
     controls: bool = True,
     indicators: bool = True,
-    interval: int = 1000,
+    interval: int = 5000,
     pause: str = None,
     wrap: bool = True,
-    height: int = 400,
+    container_height: int = 400,
     width: float = 1,
     key=None,
 ) -> None:
@@ -75,9 +77,9 @@ def carousel(
         Items should be defined in the below format:
 
     carousel([
-    {"img": "image1.jpg", "title": "Slide 1", "text": "Description for Slide 1"},
-    {"img": "image2.jpg", "title": "Slide 2", "text": "Description for Slide 2"},
-    {"img": "image3.jpg", "title": "Slide 3", "text": "Description for Slide 3"}
+    {"img": "image1.jpg", "title": "Slide 1", "text": "Description for Slide 1", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"},
+    {"img": "image2.jpg", "title": "Slide 2", "text": "Description for Slide 2", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"},
+    {"img": "image3.jpg", "title": "Slide 3", "text": "Description for Slide 3", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"}
 
     - slide (bool, optional): Add sliding animation between items.
         Defaults to True.
@@ -87,7 +89,7 @@ def carousel(
         Defaults to True.
     - indicators (bool, optional): Determines whether slide indicators (dots indicating the current slide) should be displayed.
         Defaults to True.
-    - interval (int, optional): The duration (in milliseconds) between slide transitions. Defaults to 1000 (1 second).
+    - interval (int, optional): The duration (in milliseconds) between slide transitions. Defaults to 5000 (5 seconds).
     - pause (str, optional): If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling
                             of the carousel on mouseleave. If set to false, hovering over the carousel won't pause it.
                             On touch-enabled devices, when set to "hover", cycling will pause on touchend (once the user
@@ -96,7 +98,7 @@ def carousel(
         Allowed values are "hover" or None. Defaults to None.
     - wrap (bool, optional): Whether the carousel should cycle continuously or have hard stops.
         Defaults to False.
-    - height (int, optional): The height (in pixels) of the carousel component.
+    - container_height (int, optional): The height (in pixels) of the Streamlit container holding the carousel component.
         Defaults to 400.
     - width (float, optional): The width of the carousel component as a percentage of the container width.
         Defaults to 100%.
@@ -114,14 +116,15 @@ def carousel(
         fade=fade,
         controls=controls,
         indicators=indicators,
-        size=interval,
+        interval=interval,
         validation_button_label=pause,
         wrap=wrap,
         key=key,
-        height=height,
+        width=width,
+        height=container_height,
         default=0,
     )
-    width = int(width * 100)
+    width = 100
     width_css = (
         """
     div[data-stale="false"]>iframe[title="streamlit_carousel.streamlit_carousel"] {
