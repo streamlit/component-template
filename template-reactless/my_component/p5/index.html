@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #1b1b1b;
+      }
+    </style>
+    <script src="./p5.min.js"></script>
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  </head>
+  <body>
+    <script>
+      // ----------------------------------------------------
+      // Just copy/paste these functions as-is:
+      let loaded=false
+      function sendMessageToStreamlitClient(type, data) {
+        var outData = Object.assign({
+          isStreamlitMessage: true,
+          type: type,
+        }, data);
+        window.parent.postMessage(outData, "*");
+      }
+
+      function init() {
+        sendMessageToStreamlitClient("streamlit:componentReady", {apiVersion: 1});
+      }
+
+      function setFrameHeight(height) {
+        sendMessageToStreamlitClient("streamlit:setFrameHeight", {height: height});
+      }
+
+      function setFrameWidth(width) {
+        sendMessageToStreamlitClient("streamlit:setFrameWidth", {width: width});
+      }
+
+      // The `data` argument can be any JSON-serializable value.
+      function sendDataToPython(data) {
+        sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+      }
+
+      function onDataFromPython(event) {
+        // if (event.data.type !== "streamlit:render") return;
+        // myInput.value = event.data.args.my_input_value;  // Access values sent from Python here!
+        console.log(event.data)
+        if (event.data.args.my_input_value && !loaded) {
+          window.eval(event.data.args.my_input_value)
+          setFrameHeight(event.data.args.height)
+          setFrameWidth(window.init.innerWidth)
+          new p5()
+          loaded=true
+          
+        }
+      }
+
+      // Hook things up!
+      window.addEventListener("message", onDataFromPython);
+      init();
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function(event) {
+        console.log(event)
+
+        window.setTimeout(function() {
+          setFrameHeight(height)
+          setFrameWidth(height)
+        }, 0);
+      });
+
+      // Optionally, if the automatic height computation fails you, give this component a height manually
+      // by commenting out below:
+      //setFrameHeight(200);
+    </script>
+  </body>
+</html>
