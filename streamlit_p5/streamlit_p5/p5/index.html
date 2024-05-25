@@ -8,11 +8,10 @@
         margin: 0;
         width: 100%;
         height: 100%;
-        background-color: #1b1b1b;
+        background-color: rgba(0, 0, 0, 0);
       }
     </style>
     <script src="./p5.min.js"></script>
-  <!-- <script src="../addons/p5.sound.js"></script> -->
   </head>
   <body>
     <script>
@@ -45,11 +44,9 @@
       }
 
       function onDataFromPython(event) {
-        // if (event.data.type !== "streamlit:render") return;
-        // myInput.value = event.data.args.my_input_value;  // Access values sent from Python here!
-        console.log(event.data)
-        if (event.data.args.my_input_value && !loaded) {
-          window.eval(event.data.args.my_input_value)
+        if (event.data.type !== "streamlit:render") return;
+        if (event.data.args.sketch && !loaded) {
+          window.eval(event.data.args.sketch)
           setFrameHeight(event.data.args.height)
           setFrameWidth(window.init.innerWidth)
           new p5()
@@ -71,10 +68,6 @@
           setFrameWidth(height)
         }, 0);
       });
-
-      // Optionally, if the automatic height computation fails you, give this component a height manually
-      // by commenting out below:
-      //setFrameHeight(200);
     </script>
   </body>
 </html>

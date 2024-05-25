@@ -6,11 +6,11 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
-    name="streamlit-custom-component",
+    name="streamlit_p5",
     version="0.0.1",
-    author="John Smith",
-    author_email="john@example.com",
-    description="Streamlit component that allows you to do X",
+    author="Neal Riley",
+    author_email="neal.riley@gmail.com",
+    description="Embed the power of Processing.org in your Streamlit app",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="",
