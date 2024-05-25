@@ -5,7 +5,7 @@ Embed your processing sketches in Streamlit!
 ## Installation instructions
 
 ```sh
-pip install streamlit-p5
+pip install streamlit_p5
 ```
 
 ## Usage instructions
