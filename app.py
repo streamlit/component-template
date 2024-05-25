@@ -1,18 +1,7 @@
-# streamlit-p5
-
-Embed your processing sketches in Streamlit!
-
-## Installation instructions
-
-```sh
-pip install streamlit_p5
-```
-
-## Usage instructions
-
-```python
 import streamlit as st
 from streamlit_p5 import sketch
+
+st.title("Hello")
 
 p5_sketch = sketch("""
 function setup() {
@@ -25,4 +14,3 @@ function draw() {
    background(204, 153, 0);
 }
 """, width=700, height=500)
-```
