@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit_p5",
-    version="0.0.3",
+    version="0.0.1",
     author="Neal Riley",
     author_email="neal.riley@gmail.com",
     description="Embed the power of Processing.org in your Streamlit app",
