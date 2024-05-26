@@ -543,6 +543,46 @@ Boid.prototype.cohesion = function(boids) {
     return createVector(0, 0);
   }
 }
+""",
+"""
+let message = 'tickle',
+  font,
+  bounds, // holds x, y, w, h of the text's bounding box
+  fontsize = 60,
+  x,
+  y; // x and y coordinates of the text
+
+
+function setup() {
+  createCanvas(710, 400);
+
+  // set up the font
+  textFont('Courier New');
+  textSize(fontsize);
+
+  // get the width and height of the text so we can center it initially
+  x = width / 2 - 200 / 2;
+  y = height / 2 - 100 / 2;
+}
+
+function draw() {
+  background(204, 120);
+
+  // write the text in black and get its bounding box
+  fill(0);
+  text(message, x, y);
+
+  // check if the mouse is inside the bounding box and tickle if so
+  if (
+    mouseX >= x - 50 &&
+    mouseX <= x + 250 &&
+    mouseY >= y - 50 &&
+    mouseY <= y+50
+  ) {
+    x += random(-5, 5);
+    y += random(-5, 5);
+  }
+}
 """
 ]
 
