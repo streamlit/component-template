@@ -18,6 +18,7 @@
       // ----------------------------------------------------
       // Just copy/paste these functions as-is:
       let loaded=false
+      window.dataToPass=""
       function sendMessageToStreamlitClient(type, data) {
         var outData = Object.assign({
           isStreamlitMessage: true,
@@ -46,23 +47,21 @@
       function onDataFromPython(event) {
         if (event.data.type !== "streamlit:render") return;
         if (event.data.args.sketch && !loaded) {
+          window.dataToPass=event.data.args.data
           window.eval(event.data.args.sketch)
           setFrameHeight(event.data.args.height)
           setFrameWidth(window.init.innerWidth)
           new p5()
           loaded=true
-          
+          sendDataToPython({})
         }
       }
-
       // Hook things up!
       window.addEventListener("message", onDataFromPython);
       init();
 
       // Hack to autoset the iframe height.
       window.addEventListener("load", function(event) {
-        console.log(event)
-
         window.setTimeout(function() {
           setFrameHeight(height)
           setFrameWidth(height)

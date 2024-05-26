@@ -12,7 +12,7 @@ _component_func = components.declare_component("streamlit_p5", path=build_dir)
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def sketch(sketch, width=100, height=100, key=""):
+def sketch(sketch, data="", width=100, height=100, key=""):
     """Create a new processing sketch.
 
     Parameters
@@ -25,7 +25,7 @@ def sketch(sketch, width=100, height=100, key=""):
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(sketch=sketch, width=width, height=height, default="")
+    component_value = _component_func(sketch=sketch, data=data, width=width, height=height, default="")
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.

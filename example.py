@@ -583,6 +583,37 @@ function draw() {
     y += random(-5, 5);
   }
 }
+""",
+"""
+let word=""
+function setup() { 
+  createCanvas(700, 500);
+  noStroke();
+  word=dataToPass.name
+}
+
+function draw() {
+  background(204, 120);
+  fill(0)
+  textFont('Courier New')
+  textSize(50)
+  if (word==="") {
+    textSize(12)
+    text("Type something in the input box, click to send mouse pos to Streamlit", 0, height / 2)
+  } else {
+    text(word, mouseX, mouseY)
+  }
+}
+
+function mousePressed() {
+  sendDataToPython({
+          value: {
+            mouseX: mouseX,
+            mouseY: mouseY
+          },
+          dataType: "json",
+        })
+}
 """
 ]
 
@@ -594,6 +625,10 @@ if 'selected' not in st.session_state:
 
 if st.button("Random!"):
     st.session_state.selected=random.choice(sketches)
-value = sketch(st.session_state.selected, width=700, height=500)
+data_to_pass=st.text_input('Pass along a message')
+value = sketch(st.session_state.selected, data={
+  "name" : data_to_pass
+}, width=700, height=500)
+st.write(value)
 st.write("*Code:*")
 st.code(st.session_state.selected)

@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit_p5",
-    version="0.0.1",
+    version="0.0.3",
     author="Neal Riley",
     author_email="neal.riley@gmail.com",
     description="Embed the power of Processing.org in your Streamlit app",
@@ -19,9 +19,6 @@ setuptools.setup(
     classifiers=[],
     python_requires=">=3.7",
     install_requires=[
-        # By definition, a Custom Component depends on Streamlit.
-        # If your component has other Python dependencies, list
-        # them here.
         "streamlit >= 0.63",
     ],
     extras_require={
