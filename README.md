@@ -1,6 +1,6 @@
 # streamlit_p5
 
-Embed your processing sketches in Streamlit!
+Embed your processing sketches in Streamlit! Check out the demo [here](https://streamlit-p5-examples.fly.dev/)
 
 ## Installation instructions
 
