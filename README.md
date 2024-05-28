@@ -1,88 +1,89 @@
-# Streamlit Component Templates
+# streamlit_p5
 
-This repo contains templates and example code for creating [Streamlit](https://streamlit.io) Components.
+Embed your processing sketches in Streamlit! Check out the demo [here](https://streamlit-p5-examples.fly.dev/)
 
-For complete information, please see the [Streamlit Components documentation](https://docs.streamlit.io/en/latest/streamlit_components.html)!
+You can find the source code at: [https://github.com/salable/streamlit-p5](https://github.com/salable/streamlit-p5)
 
-## Overview
+## Installation instructions
 
-A Streamlit Component is made out of a Python API and a frontend (built using any web tech you prefer). 
-
-A Component can be used in any Streamlit app, can pass data between Python and frontend code, and and can optionally be distributed on [PyPI](https://pypi.org/) for the rest of the world to use.
-
-* Create a component's API in a single line of Python:
-```python
-import streamlit.components.v1 as components
-
-# Declare the component:
-my_component = components.declare_component("my_component", path="frontend/build")
-
-# Use it:
-my_component(greeting="Hello", name="World")
-```
-
-* Build the component's frontend out of HTML and JavaScript (or TypeScript, or ClojureScript, or whatever you fancy). React is supported, but not required:
-```typescript
-class MyComponent extends StreamlitComponentBase {
-    public render(): ReactNode {
-        // Access arguments from Python via `this.props.args`:
-        const greeting = this.props.args["greeting"]
-        const name = this.props.args["name"]
-        return <div>{greeting}, {name}!</div>
-    }
-}
+```sh
+pip install streamlit streamlit_p5
 ```
 
 ## Quickstart
 
-* Ensure you have [Python 3.6+](https://www.python.org/downloads/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
-* Clone this repo.
-* Create a new Python virtual environment for the template:
+```python
+streamlit run example.py
 ```
-$ cd template
-$ python3 -m venv venv  # create venv
-$ . venv/bin/activate   # activate venv
-$ pip install streamlit # install streamlit
+
+## Usage instructions
+
+The `sketch` object takes a few arguments: 
+
+- sketch : a string representing your P5js sketch
+- width : width of the element in Streamlit
+- height : height of the element in Streamlit (make sure to match these with your sketch!)
+- data : a Python dict to pass to the p5 sketch
+
+### Example:
+
+#### Basic 
+
+```python
+import streamlit as st
+from streamlit_p5 import sketch
+
+p5_sketch = sketch("""
+function setup() {
+   createCanvas(700, 500);
+}
+
+// The background function is a statement that tells the computer
+// which color (or gray value) to make the background of the display window 
+function draw() {
+   background(204, 153, 0);
+}
+""", width=700, height=500)
 ```
-* Initialize and run the component template frontend:
+
+#### Advanced
+
+```python
+import streamlit as st
+from streamlit_p5 import sketch
+
+value = sketch("""
+let word=""
+function setup() { 
+  createCanvas(700, 500);
+  noStroke();
+  word=dataToPass.name. // get value passed from Streamlit
+}
+
+function draw() {
+  background(204, 120);
+  fill(0)
+  textFont('Courier New')
+  textSize(50)
+  text(word, mouseX, mouseY)
+}
+
+function mousePressed() {
+  sendDataToPython({  //Send data to Streamlit - causes a re-render
+          value: {
+            mouseX: mouseX,
+            mouseY: mouseY
+          },
+          dataType: "json",
+        })
+}
+""", data={
+  "name" : "Bob the Builder"
+}, width=700, height=500)
 ```
-$ cd template/my_component/frontend
-$ npm install    # Install npm dependencies
-$ npm run start  # Start the Webpack dev server
+
+Wanna build this from source? just run: 
+
+```sh
+python setup.py sdist bdist_wheel && twine upload dist/*
 ```
-* From a separate terminal, run the template's Streamlit app:
-```
-$ cd template
-$ . venv/bin/activate  # activate the venv you created earlier
-$ pip install -e . # install template as editable package
-$ streamlit run my_component/example.py  # run the example
-```
-* If all goes well, you should see something like this:
-![Quickstart Success](quickstart.png)
-* Modify the frontend code at `my_component/frontend/src/MyComponent.tsx`.
-* Modify the Python code at `my_component/__init__.py`.
-
-## Examples
-
-See the `template-reactless` directory for a template that does not use [React](https://reactjs.org/).
-
-See the `examples` directory for examples on working with pandas DataFrames, integrating with third-party libraries, and more.
-
-## Community-provided Templates
-
-These templates are provided by the community. If you run into any issues, please file your issues against their repositories.
-
-- [streamlit-component-svelte-template](https://github.com/93degree/streamlit-component-svelte-template) - [@93degree](https://github.com/93degree)
-- [streamlit-component-vue-vite-template](https://github.com/gabrieltempass/streamlit-component-vue-vite-template) - [@gabrieltempass](https://github.com/gabrieltempass)
-- [streamlit-component-template-vue](https://github.com/andfanilo/streamlit-component-template-vue) - [@andfanilo](https://github.com/andfanilo)
-- [streamlit-component-template-react-hooks](https://github.com/whitphx/streamlit-component-template-react-hooks) - [@whitphx](https://github.com/whitphx)
-
-## Contributing
-
-If you want to contribute to this project, `./dev.py` script will be helpful for you. For details, run `./dev.py --help`.
-
-## More Information
-
-* [Streamlit Components documentation](https://docs.streamlit.io/library/components)
-* [Streamlit Forums](https://discuss.streamlit.io/tag/custom-components)
-* [Streamlit Components gallery](https://www.streamlit.io/components)

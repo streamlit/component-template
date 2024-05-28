@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    </style>
+    <script src="./p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // ----------------------------------------------------
+      // Just copy/paste these functions as-is:
+      let loaded=false
+      window.dataToPass=""
+      function sendMessageToStreamlitClient(type, data) {
+        var outData = Object.assign({
+          isStreamlitMessage: true,
+          type: type,
+        }, data);
+        window.parent.postMessage(outData, "*");
+      }
+
+      function init() {
+        sendMessageToStreamlitClient("streamlit:componentReady", {apiVersion: 1});
+      }
+
+      function setFrameHeight(height) {
+        sendMessageToStreamlitClient("streamlit:setFrameHeight", {height: height});
+      }
+
+      function setFrameWidth(width) {
+        sendMessageToStreamlitClient("streamlit:setFrameWidth", {width: width});
+      }
+
+      // The `data` argument can be any JSON-serializable value.
+      function sendDataToPython(data) {
+        sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+      }
+
+      function onDataFromPython(event) {
+        if (event.data.type !== "streamlit:render") return;
+        if (event.data.args.sketch && !loaded) {
+          window.dataToPass=event.data.args.data
+          window.eval(event.data.args.sketch)
+          setFrameHeight(event.data.args.height)
+          setFrameWidth(window.init.innerWidth)
+          new p5()
+          loaded=true
+          sendDataToPython({})
+        }
+      }
+      // Hook things up!
+      window.addEventListener("message", onDataFromPython);
+      init();
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function(event) {
+        window.setTimeout(function() {
+          setFrameHeight(height)
+          setFrameWidth(height)
+        }, 0);
+      });
+    </script>
+  </body>
+</html>
