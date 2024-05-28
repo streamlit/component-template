@@ -86,5 +86,4 @@ Wanna build this from source? just run:
 
 ```sh
 python setup.py sdist bdist_wheel && twine upload dist/*
-twine upload dist/*
 ```
