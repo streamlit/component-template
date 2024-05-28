@@ -7,13 +7,13 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit_p5",
-    version="0.0.3",
+    version="0.0.4",
     author="Neal Riley",
     author_email="neal.riley@gmail.com",
-    description="Embed the power of Processing.org in your Streamlit app",
+    description="Bring the power of ProcessingJS (aka P5) to Streamlit. This module allows you to create Processing sketches, interact with those sketches using the mouse and keyboard, and share data between your Processing Sketch and Stremalit.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://streamlit-p5-examples.fly.dev/",
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[],

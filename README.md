@@ -2,6 +2,8 @@
 
 Embed your processing sketches in Streamlit! Check out the demo [here](https://streamlit-p5-examples.fly.dev/)
 
+You can find the source code at: [https://github.com/salable/streamlit-p5](https://github.com/salable/streamlit-p5)
+
 ## Installation instructions
 
 ```sh
