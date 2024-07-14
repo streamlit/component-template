@@ -1,9 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2024-07-14
+### Features
+- support for local images
+- fixed Item type
+
 ## [1.0.0] - 2024-04-25
 ### Bug fix
-- transitionned TS code to JS
+- transitioned TS code to JS
 - updated dependencies
 - bug fix with interval argument
 - match carousel theme to Streamlit theme

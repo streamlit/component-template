@@ -1,6 +1,6 @@
 import os
 import base64
-from typing import TypedDict, List
+from typing import TypedDict, List, NotRequired
 
 import streamlit as st
 import streamlit.components.v1 as components
@@ -30,7 +30,8 @@ class Item(TypedDict):
     title: str
     text: str
     img: str
-    link: str
+    link: NotRequired[str | None]
+    interval: NotRequired[int | None]
 
 
 def get_image_data_url(file_path: str) -> str:
@@ -83,12 +84,12 @@ def carousel(
     -------
     - items (List[Item]): A list of items to be displayed in the carousel.
         Each item is represented by a dictionary containing the necessary information for the carousel slide.
-        Items should be defined in the below format:
+        Items should be defined in the below format ('link' and 'interval' are optional):
 
     carousel([
-    {"img": "image1.jpg", "title": "Slide 1", "text": "Description for Slide 1", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"},
-    {"img": "image2.jpg", "title": "Slide 2", "text": "Description for Slide 2", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"},
-    {"img": "image3.jpg", "title": "Slide 3", "text": "Description for Slide 3", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819"}
+    {"img": "image1.jpg", "title": "Slide 1", "text": "Description for Slide 1", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819", interval=2000},
+    {"img": "image2.jpg", "title": "Slide 2", "text": "Description for Slide 2", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819", interval=3000},
+    {"img": "image3.jpg", "title": "Slide 3", "text": "Description for Slide 3", "link": "https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819", interval=4000}
 
     - slide (bool, optional): Add sliding animation between items.
         Defaults to True.
