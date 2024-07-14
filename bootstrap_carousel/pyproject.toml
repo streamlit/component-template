@@ -27,3 +27,16 @@ Homepage = "https://github.com/thomasbs17/streamlit-contributions/tree/master/bo
 
 [project.scripts]
 realpython = "reader.__main__:main"
+
+[tool.bumpver]
+current_version = "1.0.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    '^version = "{version}"',
+    '^current_version = "{version}"',
+]
+"setup.py" = [
+    'version="{version}",$',
+]
