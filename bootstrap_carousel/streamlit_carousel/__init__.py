@@ -1,11 +1,11 @@
 import os
+import base64
 from typing import TypedDict, List
 
 import streamlit as st
 import streamlit.components.v1 as components
 
 # TODO:
-#  - enable image files
 #  - fix overflow issue when item's text is too long
 
 _RELEASE = True
@@ -33,6 +33,13 @@ class Item(TypedDict):
     link: str
 
 
+def get_image_data_url(file_path: str) -> str:
+    """Convert a local image file to a data URL."""
+    with open(file_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    return f"data:image/png;base64,{encoded_string}"
+
+
 def validate_items(items: List[Item]) -> List[Item]:
     for item in items:
         if "img" not in item:
@@ -51,6 +58,8 @@ def validate_items(items: List[Item]) -> List[Item]:
             item["interval"] = None
         if "link" not in item:
             item["link"] = None
+        if os.path.isfile(item["img"]):
+            item["img"] = get_image_data_url(item["img"])
     return items
 
 
