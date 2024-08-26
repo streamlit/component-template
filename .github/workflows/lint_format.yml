@@ -1,0 +1,40 @@
+name: Lint and Format
+
+on:
+  pull_request:
+    branches:
+      - '**'  # Triggers on any branch
+
+jobs:
+  lint_and_format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff
+          npm install --save-dev prettier
+
+      - name: Lint code with Ruff
+        run: |
+          ruff check .
+
+      - name: Format code with Ruff
+        run: |
+          ruff check . --fix
+
+      - name: Run Prettier
+        run: |
+          npx prettier --write .
+
+      - name: Verify formatting
+        run: |
+          git diff --exit-code
