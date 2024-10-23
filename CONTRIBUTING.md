@@ -2,7 +2,7 @@
 
 Welcome to Streamlit component template! We appreciate your interest in contributing to our project.
 
-## Setting up pyenv and Intellij Idea
+## Setting up pyenv and Intellij IDEA
 
 ### 1. Install pyenv
 
@@ -16,11 +16,11 @@ $ curl https://pyenv.run | bash
 ```shell
 $ pyenv install <python_version>
 ```
-- python_version - version of python, you can use
+- python_version - version of python. To check all available versions (recommended 3.11.4) use:
 ```shell
 $ pyenv install --list
 ```
-to check all available version, recommended 3.11.4
+
 
 ### 3. Creating virtual environment
 
@@ -44,11 +44,11 @@ $ pyenv activate <environment_name>
 To configure your Python SDK in your project, follow these steps:
 
 1. Open "File" menu.
-2. Navigate to "Project Structure."
-3. Under "Project," locate "Edit (SDK)."
+2. Navigate to "Project Structure".
+3. Under "Project," locate "Edit (SDK)".
 4. Click on "Add Python SDK" (using the plus button).
-5. Select "Virtualenv Environment."
-6. Choose "Existing environment."
+5. Select "Virtualenv Environment".
+6. Choose "Existing environment".
 7. Specify the path to your Python environment using <your_pyenv_location>.
 
 ## Run locally example
@@ -82,9 +82,9 @@ $ pip install -e .
 
 ### 5. Run python script and frontend
 
-Example for CustomDataframe
+**Example for CustomDataframe**
 
-Run python script
+Run python script:
 ```shell
 $ streamlit run examples/CustomDataframe/custom_dataframe/example.py
 ```
@@ -101,11 +101,11 @@ $ npm run start
 
 ### 1. Run example locally
 
-Please check "Run Locally example" section
+Please check "Run Locally example" section.
 
 ### 2. Run pytest command
 
-Example for CustomDataframe
+Example for CustomDataframe:
 
 ```shell
 $ pytest examples/CustomDataframe/e2e
@@ -148,5 +148,3 @@ Run:
 $ pip install -e .
 ```
 inside template directory.
-
-
