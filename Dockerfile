@@ -6,13 +6,13 @@ FROM python:${PYTHON_VERSION}-slim-bullseye as e2e_base
 SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
 # Setup Pip
-ARG PIP_VERSION="23.2.1"
+ARG PIP_VERSION="24.3.1"
 ENV PIP_VERSION=${PIP_VERSION}
 
 RUN pip install --no-cache-dir --upgrade "pip==${PIP_VERSION}" && pip --version
 
 # Setup Playwright
-ARG PLAYWRIGHT_VERSION="1.39.0"
+ARG PLAYWRIGHT_VERSION="1.48.0"
 ENV PLAYWRIGHT_VERSION=${PLAYWRIGHT_VERSION}
 
 RUN pip install --no-cache-dir playwright=="${PLAYWRIGHT_VERSION}" && playwright install webkit chromium firefox --with-deps
