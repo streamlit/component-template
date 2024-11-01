@@ -12,7 +12,7 @@ ENV PIP_VERSION=${PIP_VERSION}
 RUN pip install --no-cache-dir --upgrade "pip==${PIP_VERSION}" && pip --version
 
 # Setup Playwright
-ARG PLAYWRIGHT_VERSION="1.39.0"
+ARG PLAYWRIGHT_VERSION="1.48.0"
 ENV PLAYWRIGHT_VERSION=${PLAYWRIGHT_VERSION}
 
 RUN pip install --no-cache-dir playwright=="${PLAYWRIGHT_VERSION}" && playwright install webkit chromium firefox --with-deps
