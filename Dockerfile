@@ -6,7 +6,7 @@ FROM python:${PYTHON_VERSION}-slim-bullseye as e2e_base
 SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
 # Setup Pip
-ARG PIP_VERSION="23.2.1"
+ARG PIP_VERSION="24.3.1"
 ENV PIP_VERSION=${PIP_VERSION}
 
 RUN pip install --no-cache-dir --upgrade "pip==${PIP_VERSION}" && pip --version
