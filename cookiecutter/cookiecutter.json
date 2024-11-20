@@ -14,7 +14,17 @@
     "Not open source"
   ],
   "framework": [
-    "React + Typescript",
-    "Pure Typescript"
-  ]
+    "Pure Typescript",
+    "React + Typescript"
+  ],
+  "__prompts__": {
+    "author_name": "Your name",
+    "author_email": "Your e-mail",
+    "project_name": "Project name",
+    "package_name": "Package name",
+    "import_name": "The name of the function that will initialize component",
+    "description": "Description",
+    "open_source_license": "Select Open Source License",
+    "framework": "Which framework you want to use?"
+  }
 }
