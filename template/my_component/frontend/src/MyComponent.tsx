@@ -28,24 +28,26 @@ function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
     Streamlit.setComponentValue(numClicks)
   }, [numClicks])
 
+  // setFrameHeight should be called on first render and evertime the size might change (e.g. due to a DOM update).
+  // Adding the style and theme here since they might effect the visual size of the component.
   useEffect(() => {
     Streamlit.setFrameHeight()
-  }, [style, numClicks])
+  }, [style, theme])
 
   /** Click handler for our "Click Me!" button. */
   const onClicked = useCallback((): void => {
     setNumClicks((prevNumClicks) => prevNumClicks + 1)
-  }, [setNumClicks])
+  }, [])
 
   /** Focus handler for our "Click Me!" button. */
   const onFocus = useCallback((): void => {
     setIsFocused(true)
-  }, [setIsFocused])
+  }, [])
 
   /** Blur handler for our "Click Me!" button. */
   const onBlur = useCallback((): void => {
     setIsFocused(false)
-  }, [setIsFocused])
+  }, [])
 
   // Show a button and some text.
   // When the button is clicked, we'll increment our "numClicks" state
