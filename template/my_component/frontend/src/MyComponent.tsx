@@ -3,26 +3,25 @@ import {
   withStreamlitConnection,
   ComponentProps,
 } from "streamlit-component-lib"
-import React, { useEffect, useState, ReactElement } from "react"
+import React, { useCallback, useEffect, useMemo, useState, ReactElement } from "react"
 
 /**
- * This is a React-based component template. The `render()` function is called
- * automatically when your component should be re-rendered.
+ * This is a React-based component template. The passed props are coming from the 
+ * Streamlit library. Your custom args can be accessed via the `args` props.
  */
 function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
   const { name } = args
 
   const [isFocused, setIsFocused] = useState(false)
-  const [style, setStyle] = useState<React.CSSProperties>({})
   const [numClicks, setNumClicks] = useState(0)
 
-  useEffect(() => {
-    if (!theme) return
+  const style: React.CSSProperties = useMemo(() => {
+    if (!theme) return {}
 
     // Use the theme object to style our button border. Alternatively, the
     // theme style is defined in CSS vars.
     const borderStyling = `1px solid ${isFocused ? theme.primaryColor : "gray"}`
-    setStyle({ border: borderStyling, outline: borderStyling })
+    return { border: borderStyling, outline: borderStyling }
   }, [theme, isFocused])
 
   useEffect(() => {
@@ -34,19 +33,19 @@ function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
   }, [style, numClicks])
 
   /** Click handler for our "Click Me!" button. */
-  const onClicked = (): void => {
+  const onClicked = useCallback((): void => {
     setNumClicks((prevNumClicks) => prevNumClicks + 1)
-  }
+  }, [setNumClicks])
 
   /** Focus handler for our "Click Me!" button. */
-  const onFocus = (): void => {
+  const onFocus = useCallback((): void => {
     setIsFocused(true)
-  }
+  }, [setIsFocused])
 
   /** Blur handler for our "Click Me!" button. */
-  const onBlur = (): void => {
+  const onBlur = useCallback((): void => {
     setIsFocused(false)
-  }
+  }, [setIsFocused])
 
   // Show a button and some text.
   // When the button is clicked, we'll increment our "numClicks" state
