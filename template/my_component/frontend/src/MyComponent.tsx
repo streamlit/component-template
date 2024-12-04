@@ -1,84 +1,72 @@
 import {
   Streamlit,
-  StreamlitComponentBase,
   withStreamlitConnection,
+  ComponentProps,
 } from "streamlit-component-lib"
-import React, { ReactNode } from "react"
-
-interface State {
-  numClicks: number
-  isFocused: boolean
-}
+import React, { useCallback, useEffect, useMemo, useState, ReactElement } from "react"
 
 /**
- * This is a React-based component template. The `render()` function is called
- * automatically when your component should be re-rendered.
+ * This is a React-based component template. The passed props are coming from the 
+ * Streamlit library. Your custom args can be accessed via the `args` props.
  */
-class MyComponent extends StreamlitComponentBase<State> {
-  public state = { numClicks: 0, isFocused: false }
+function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
+  const { name } = args
 
-  public render = (): ReactNode => {
-    // Arguments that are passed to the plugin in Python are accessible
-    // via `this.props.args`. Here, we access the "name" arg.
-    const name = this.props.args["name"]
+  const [isFocused, setIsFocused] = useState(false)
+  const [numClicks, setNumClicks] = useState(0)
 
-    // Streamlit sends us a theme object via props that we can use to ensure
-    // that our component has visuals that match the active theme in a
-    // streamlit app.
-    const { theme } = this.props
-    const style: React.CSSProperties = {}
+  const style: React.CSSProperties = useMemo(() => {
+    if (!theme) return {}
 
-    // Maintain compatibility with older versions of Streamlit that don't send
-    // a theme object.
-    if (theme) {
-      // Use the theme object to style our button border. Alternatively, the
-      // theme style is defined in CSS vars.
-      const borderStyling = `1px solid ${
-        this.state.isFocused ? theme.primaryColor : "gray"
-      }`
-      style.border = borderStyling
-      style.outline = borderStyling
-    }
+    // Use the theme object to style our button border. Alternatively, the
+    // theme style is defined in CSS vars.
+    const borderStyling = `1px solid ${isFocused ? theme.primaryColor : "gray"}`
+    return { border: borderStyling, outline: borderStyling }
+  }, [theme, isFocused])
 
-    // Show a button and some text.
-    // When the button is clicked, we'll increment our "numClicks" state
-    // variable, and send its new value back to Streamlit, where it'll
-    // be available to the Python program.
-    return (
-      <span>
-        Hello, {name}! &nbsp;
-        <button
-          style={style}
-          onClick={this.onClicked}
-          disabled={this.props.disabled}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-        >
-          Click Me!
-        </button>
-      </span>
-    )
-  }
+  useEffect(() => {
+    Streamlit.setComponentValue(numClicks)
+  }, [numClicks])
+
+  // setFrameHeight should be called on first render and evertime the size might change (e.g. due to a DOM update).
+  // Adding the style and theme here since they might effect the visual size of the component.
+  useEffect(() => {
+    Streamlit.setFrameHeight()
+  }, [style, theme])
 
   /** Click handler for our "Click Me!" button. */
-  private onClicked = (): void => {
-    // Increment state.numClicks, and pass the new value back to
-    // Streamlit via `Streamlit.setComponentValue`.
-    this.setState(
-      prevState => ({ numClicks: prevState.numClicks + 1 }),
-      () => Streamlit.setComponentValue(this.state.numClicks)
-    )
-  }
+  const onClicked = useCallback((): void => {
+    setNumClicks((prevNumClicks) => prevNumClicks + 1)
+  }, [])
 
   /** Focus handler for our "Click Me!" button. */
-  private _onFocus = (): void => {
-    this.setState({ isFocused: true })
-  }
+  const onFocus = useCallback((): void => {
+    setIsFocused(true)
+  }, [])
 
   /** Blur handler for our "Click Me!" button. */
-  private _onBlur = (): void => {
-    this.setState({ isFocused: false })
-  }
+  const onBlur = useCallback((): void => {
+    setIsFocused(false)
+  }, [])
+
+  // Show a button and some text.
+  // When the button is clicked, we'll increment our "numClicks" state
+  // variable, and send its new value back to Streamlit, where it'll
+  // be available to the Python program.
+  return (
+    <span>
+      Hello, {name}! &nbsp;
+      <button
+        style={style}
+        onClick={onClicked}
+        disabled={disabled}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      >
+        Click Me!
+      </button>
+    </span>
+  )
 }
 
 // "withStreamlitConnection" is a wrapper function. It bootstraps the
