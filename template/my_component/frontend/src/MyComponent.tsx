@@ -29,6 +29,10 @@ function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
     Streamlit.setComponentValue(numClicks)
   }, [numClicks])
 
+  useEffect(() => {
+    Streamlit.setFrameHeight()
+  }, [style, numClicks])
+
   /** Click handler for our "Click Me!" button. */
   const onClicked = (): void => {
     setNumClicks((prevNumClicks) => prevNumClicks + 1)
