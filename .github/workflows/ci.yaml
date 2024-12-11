@@ -70,9 +70,9 @@ jobs:
           ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
 
     - name: Upload wheel packages
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: all-wheel
+        name: all-wheel-${{ matrix.node_version }}-${{ matrix.component_lib_version }}-${{ matrix.streamlit_version }}
         path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
         if-no-files-found: error
 
