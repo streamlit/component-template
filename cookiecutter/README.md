@@ -1,10 +1,10 @@
-# Streamlit template for CookieCutter
+# Streamlit template for ``cookiecutter``
 
 Template for creating a streamlit component
 
 ## Usage
 
-Make sure you have [https://pypi.org/project/cookiecutter/](cookiecutter) installed. To install it, you can use [pipx](https://pypa.github.io/pipx/):
+Make sure you have [cookiecutter](https://pypi.org/project/cookiecutter/) installed. To install it, you can use [pipx](https://pypa.github.io/pipx/):
 ```sh
 pipx install cookiecutter
 ```
