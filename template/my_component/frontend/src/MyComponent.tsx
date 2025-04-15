@@ -3,10 +3,16 @@ import {
   withStreamlitConnection,
   ComponentProps,
 } from "streamlit-component-lib"
-import React, { useCallback, useEffect, useMemo, useState, ReactElement } from "react"
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  ReactElement,
+} from "react"
 
 /**
- * This is a React-based component template. The passed props are coming from the 
+ * This is a React-based component template. The passed props are coming from the
  * Streamlit library. Your custom args can be accessed via the `args` props.
  */
 function MyComponent({ args, disabled, theme }: ComponentProps): ReactElement {
