@@ -8,4 +8,7 @@ export default defineConfig({
   server: {
     port: process.env.PORT ? parseInt(process.env.PORT) : 3001,
   },
+  build: {
+    outDir: "build",
+  },
 }) satisfies UserConfig
