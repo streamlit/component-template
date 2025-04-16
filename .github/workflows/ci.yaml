@@ -16,13 +16,11 @@ jobs:
       fail-fast: false
       matrix:
         node_version:
-          # For details, see: https://nodejs.dev/en/about/releases/
-          # Maintenance LTS. End Of Life: 2023-09-11
-          - 16.x
-          # Active LTS. End Of Life: 2025-04-30
-          - 18.x
-          # Current version
-          - 19.x
+          # For details, see: https://github.com/nodejs/release#release-schedule
+          # Maintenance LTS 2024-10-22 - 2026-04-30
+          - 20.x
+          # Active LTS 2024-10-29 - 2025-10-21
+          - 22.x
         component_lib_version:
           - current
           - develop
@@ -77,7 +75,7 @@ jobs:
         if-no-files-found: error
 
     - name: Run E2E tests
-      if: matrix.node_version == '19.x'
+      if: matrix.node_version == '22.x'
       uses: ./component-template/.github/actions/run_e2e
       with:
         python_version: ${{ env.PYTHON_VERSION }}
