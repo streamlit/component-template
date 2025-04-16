@@ -2,21 +2,19 @@
   "name": "my_component",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "react-scripts": "^5.0.1",
-    "streamlit-component-lib": "^2.0.0",
-    "typescript": "^4.2.0"
+    "streamlit-component-lib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vite": "^6.2.6"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "start": "vite",
+    "build": "tsc && vite build"
   },
   "browserslist": {
     "production": [
