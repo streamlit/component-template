@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv, UserConfig } from "vite"
-import react from "@vitejs/plugin-react-swc"
 
 /**
  * Vite configuration for Streamlit React Component development
