@@ -10,18 +10,18 @@ button.textContent = "Click Me!"
 // Add a click handler to our button. It will send data back to Streamlit.
 let numClicks = 0
 let isFocused = false
-button.onclick = function(): void {
+button.onclick = function (): void {
   // Increment numClicks, and pass the new value back to
   // Streamlit via `Streamlit.setComponentValue`.
   numClicks += 1
   Streamlit.setComponentValue(numClicks)
 }
 
-button.onfocus = function(): void {
+button.onfocus = function (): void {
   isFocused = true
 }
 
-button.onblur = function(): void {
+button.onblur = function (): void {
   isFocused = false
 }
 
