@@ -35,7 +35,8 @@ runs:
       working-directory: ${{ inputs.working_directory }}/component-lib/
       shell: bash
       run: |
-        npm install -g yarn
+        corepack enable
+        corepack install
         yarn install
 
     - name: Pack streamlit-component-lib package
