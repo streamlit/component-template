@@ -1,7 +1,11 @@
 import { defineConfig, UserConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 
-/** @see https://vitejs.dev/config/ */
+/**
+ * Vite configuration for Streamlit React Component development
+ *
+ * @see https://vitejs.dev/config/ for complete Vite configuration options
+ */
 export default defineConfig({
   base: "./",
   plugins: [react()],
