@@ -2,11 +2,11 @@ name: CI
 
 on:
   push:
-    branches:
-      - 'master'
+    branches: 
+      - "master"
   pull_request:
-    branches:
-      - 'master'
+    branches: 
+      - "master"
 
 jobs:
   build-examples-templates-and-run-dockerized-e2e-tests:
@@ -30,56 +30,56 @@ jobs:
 
     env:
       NODE_VERSION: ${{ matrix.node_version }}
-      PYTHON_VERSION: 3.8 # Oldest version supported by Streamlit
+      PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
     name: Examples + Templates / node_version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          path: component-template
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        path: component-template
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
 
-      - name: Check dependencies for examples
-        run: ./dev.py examples-check-deps
-        working-directory: ./component-template/
+    - name: Check dependencies for examples
+      run: ./dev.py examples-check-deps
+      working-directory: ./component-template/
 
-      - name: Check e2e utils files
-        run: ./dev.py e2e-utils-check
-        working-directory: ./component-template/
+    - name: Check e2e utils files
+      run: ./dev.py e2e-utils-check
+      working-directory: ./component-template/
 
-      - name: Pack Streamlit Component Library
-        uses: ./component-template/.github/actions/pack_streamlit_component_library
-        if: matrix.component_lib_version == 'develop'
-        id: streamlit_component_library
+    - name: Pack Streamlit Component Library
+      uses: ./component-template/.github/actions/pack_streamlit_component_library
+      if: matrix.component_lib_version == 'develop'
+      id: streamlit_component_library
 
-      - name: Build components wheels
-        uses: ./component-template/.github/actions/build_component_wheels
-        id: component_wheels
-        with:
-          custom_streamlit_component_lib_file: >-
-            ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
+    - name: Build components wheels
+      uses: ./component-template/.github/actions/build_component_wheels
+      id: component_wheels
+      with:
+        custom_streamlit_component_lib_file: >-
+          ${{ matrix.component_lib_version == 'develop' && steps.streamlit_component_library.outputs.output_file || '' }}
 
-      - name: Upload wheel packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: all-wheel-${{ matrix.node_version }}-${{ matrix.component_lib_version }}-${{ matrix.streamlit_version }}
-          path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
-          if-no-files-found: error
+    - name: Upload wheel packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-wheel-${{ matrix.node_version }}-${{ matrix.component_lib_version }}-${{ matrix.streamlit_version }}
+        path: ${{ steps.component_wheels.outputs.output_directory }}/*.whl
+        if-no-files-found: error
 
-      - name: Run E2E tests
-        if: matrix.node_version == '22.x'
-        uses: ./component-template/.github/actions/run_e2e
-        with:
-          python_version: ${{ env.PYTHON_VERSION }}
-          streamlit_version: ${{ env.STREAMLIT_VERSION }}
+    - name: Run E2E tests
+      if: matrix.node_version == '22.x'
+      uses: ./component-template/.github/actions/run_e2e
+      with:
+        python_version: ${{ env.PYTHON_VERSION }}
+        streamlit_version: ${{ env.STREAMLIT_VERSION }}
 
   build-cookiecutter:
     runs-on: ubuntu-latest

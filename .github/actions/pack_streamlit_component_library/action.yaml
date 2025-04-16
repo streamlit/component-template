@@ -34,8 +34,6 @@ runs:
     - name: Install node dependencies for streamlit-component-lib
       working-directory: ${{ inputs.working_directory }}/component-lib/
       shell: bash
-      # Note that the version here needs to match the version of yarn specified in the
-      # Streamlit repo: https://github.com/streamlit/streamlit/blob/develop/frontend/package.json
       run: |
         corepack enable
         corepack install
