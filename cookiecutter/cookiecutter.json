@@ -14,7 +14,7 @@
     "Not open source"
   ],
   "framework": [
-    "React + Typescript",
-    "Pure Typescript"
+    "React + TypeScript",
+    "Pure TypeScript"
   ]
 }
