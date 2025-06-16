@@ -23,7 +23,8 @@ class Table extends React.PureComponent<TableProps> {
     const hasHeader = table.headerRows > 0
     const hasData = table.dataRows > 0
     const id = table.uuid ? "T_" + table.uuid : undefined
-    const classNames = "table table-bordered" + (hasData ? undefined : "empty-table")
+    const classNames =
+      "table table-bordered" + (hasData ? undefined : "empty-table")
     const caption = table.caption ? <caption>{table.caption}</caption> : null
 
     return (
@@ -68,7 +69,7 @@ interface TableRowsProps {
   table: ArrowTable
 }
 
-const TableRows: React.SFC<TableRowsProps> = (props) => {
+const TableRows: React.FC<TableRowsProps> = (props) => {
   const { isHeader, table } = props
   const { headerRows, rows } = table
   const startRow = isHeader ? 0 : headerRows
@@ -95,7 +96,7 @@ interface TableRowProps {
   table: ArrowTable
 }
 
-const TableRow: React.SFC<TableRowProps> = (props) => {
+const TableRow: React.FC<TableRowProps> = (props) => {
   const { rowIndex, table } = props
   const { columns } = table
 
@@ -106,7 +107,7 @@ const TableRow: React.SFC<TableRowProps> = (props) => {
     )
 
     // Format the content if needed
-    const formattedContent = (content || '').toString()
+    const formattedContent = (content || "").toString()
 
     switch (type) {
       case "blank": {
