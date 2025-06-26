@@ -8,6 +8,9 @@ on:
     branches: 
       - "master"
 
+env:
+  FORCE_COLOR: "true"
+
 jobs:
   build-examples-templates-and-run-dockerized-e2e-tests:
     runs-on: ubuntu-latest
