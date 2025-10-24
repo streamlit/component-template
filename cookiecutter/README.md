@@ -1,17 +1,14 @@
-# Streamlit template for CookieCutter
-
-Template for creating a streamlit component
+# Streamlit Component Template
 
 ## Usage
 
-Make sure you have [https://pypi.org/project/cookiecutter/](cookiecutter) installed. To install it, you can use [pipx](https://pypa.github.io/pipx/):
-```sh
-pipx install cookiecutter
+### Generate st.components.v1.component() via uvx
+
+```
+uvx cookiecutter https://github.com/streamlit/component-template.git --directory=cookiecutter/v1
 ```
 
-Then run
-```
-cookiecutter https://github.com/streamlit/component-template.git --directory=cookiecutter
-```
+References
 
-And follow the instructions
+- Cookiecutter CLI: `https://pypi.org/project/cookiecutter/`
+- uv tools and uvx: `https://docs.astral.sh/uv/guides/tools/`

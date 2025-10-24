@@ -5,7 +5,7 @@ inputs:
   python_version:
     description: 'A Python version used to create a Docker Image'
     required: true
-    default: '3.8'
+    default: '3.10'
   streamlit_version:
     description: 'Streamlit version to be installed in a Docker Image'
     required: false
@@ -14,7 +14,6 @@ inputs:
     description: 'Wheel file of a development version Streamlit to be installed in a Docker Image'
     required: false
     default: ''
-
 
 runs:
   using: 'composite'
@@ -35,7 +34,6 @@ runs:
         STREAMLIT_VERSION: ${{ inputs.streamlit_version }}
         STREAMLIT_WHEEL_FILE: ${{ inputs.streamlit_wheel_file }}
         PYTHON_VERSION: ${{ inputs.python_version }}
-
 
     - name: Run e2e tests
       run: ./dev.py e2e-run-tests "--streamlit-version=${{ env.STREAMLIT_VERSION }}" "--python-version=${{ env.PYTHON_VERSION }}"

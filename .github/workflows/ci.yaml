@@ -17,10 +17,10 @@ jobs:
       matrix:
         node_version:
           # For details, see: https://github.com/nodejs/release#release-schedule
-          # Maintenance LTS 2024-10-22 - 2026-04-30
-          - 20.x
-          # Active LTS 2024-10-29 - 2025-10-21
+          # Maintenance LTS 2025-10-21 - 2027-04-30
           - 22.x
+          # Active LTS 2025-10-28 - 2026-10-20
+          - 24.x
         component_lib_version:
           - current
           - develop
@@ -30,7 +30,7 @@ jobs:
 
     env:
       NODE_VERSION: ${{ matrix.node_version }}
-      PYTHON_VERSION: 3.8  # Oldest version supported by Streamlit
+      PYTHON_VERSION: '3.10'  # Oldest version supported by Streamlit
       STREAMLIT_VERSION: ${{ matrix.streamlit_version }}
       COMPONENT_LIB_VERSION: ${{ matrix.component_lib_version }}
 
@@ -75,7 +75,7 @@ jobs:
         if-no-files-found: error
 
     - name: Run E2E tests
-      if: matrix.node_version == '22.x'
+      if: matrix.node_version == '24.x'
       uses: ./component-template/.github/actions/run_e2e
       with:
         python_version: ${{ env.PYTHON_VERSION }}
