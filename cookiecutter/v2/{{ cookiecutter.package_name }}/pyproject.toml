@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.package_name }}"
+version = "0.0.1"
+description = "{{ cookiecutter.description }}"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
+]
+# TODO: Restore this
+# dependencies = ["streamlit >= 1.51"]
+
+[project.optional-dependencies]
+devel = [
+  "wheel",
+  "pytest==7.4.0",
+  "playwright==1.48.0",
+  "requests==2.31.0",
+  "pytest-playwright-snapshot==1.0",
+  "pytest-rerunfailures==12.0",
+]
+
+[project.license]
+file = "LICENSE"
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.import_name }}*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+{{ cookiecutter.import_name }} = ["frontend/build/**/*", "pyproject.toml"]
+
+[[tool.streamlit.component.components]]
+name = "{{ cookiecutter.import_name }}"
+asset_dir = "{{ cookiecutter.import_name }}/frontend/build"

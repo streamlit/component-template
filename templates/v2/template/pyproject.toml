@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit-custom-component"
+version = "0.0.1"
+description = "Streamlit component that allows you to do X"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "John Smith", email = "john@example.com" },
+]
+# TODO: Restore this
+# dependencies = ["streamlit >= 1.51"]
+
+[project.optional-dependencies]
+devel = [
+  "wheel",
+  "pytest==7.4.0",
+  "playwright==1.48.0",
+  "requests==2.31.0",
+  "pytest-playwright-snapshot==1.0",
+  "pytest-rerunfailures==12.0",
+]
+
+[project.license]
+file = "LICENSE"
+
+[tool.setuptools.packages.find]
+include = ["my_component*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+my_component = ["frontend/build/**/*", "pyproject.toml"]
+
+[[tool.streamlit.component.components]]
+name = "my_component"
+asset_dir = "my_component/frontend/build"
