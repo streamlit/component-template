@@ -3,7 +3,14 @@ import streamlit as st
 out = st.components.v2.component(
     "streamlit-custom-component.my_component",
     js="index-*.js",
-    html='<div class="react-root"></div>',
+    html="""
+        <div class="component-root">
+            <span>
+                <h1></h1>
+                <button>Click me!</button>
+            </span>
+        </div>
+    """,
 )
 
 
