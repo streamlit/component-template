@@ -8,6 +8,14 @@
 uv pip install {{ cookiecutter.package_name }}
 ```
 
+### Development install (editable)
+
+When developing this component locally, install it in editable mode so Streamlit picks up code changes without rebuilding a wheel. Run this from the directory that contains `pyproject.toml`:
+
+```sh
+uv pip install -e . --force-reinstall
+```
+
 ## Usage instructions
 
 ```python
