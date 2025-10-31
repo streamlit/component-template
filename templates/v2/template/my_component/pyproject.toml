@@ -1,3 +1,4 @@
+# Ship a minimal metadata file that can be picked up by Streamlit at runtime.
 [project]
 name = "streamlit-custom-component"
 version = "0.0.1"
