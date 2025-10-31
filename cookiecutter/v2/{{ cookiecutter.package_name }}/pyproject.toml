@@ -8,9 +8,7 @@ version = "0.0.1"
 description = "{{ cookiecutter.description }}"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [
-  { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
-]
+authors = [{ name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }]
 # TODO: Restore this
 # dependencies = ["streamlit >= 1.51"]
 

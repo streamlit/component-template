@@ -1,14 +1,20 @@
-from typing import TYPE_CHECKING
-
 import streamlit as st
-
-if TYPE_CHECKING:
-    from streamlit.components.v2.bidi_component import BidiComponentResult
 
 out = st.components.v2.component(
     "{{ cookiecutter.package_name }}.{{ cookiecutter.import_name }}",
     js="index-*.js",
+    {%- if cookiecutter.framework == "React + Typescript" %}
     html='<div class="react-root"></div>',
+    {%- else %}
+    html="""
+        <div class="component-root">
+            <span>
+                <h1></h1>
+                <button>Click me!</button>
+            </span>
+        </div>
+    """,
+    {%- endif %}
 )
 
 
