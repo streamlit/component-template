@@ -1,0 +1,2 @@
+recursive-include my_component/frontend/build *
+include pyproject.toml

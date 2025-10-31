@@ -1,13 +1,12 @@
 from pathlib import Path
 
 import pytest
-
-from playwright.sync_api import Page, expect
-
 from e2e_utils import StreamlitRunner
+from playwright.sync_api import Page, expect
 
 ROOT_DIRECTORY = Path(__file__).parent.parent.absolute()
 BASIC_EXAMPLE_FILE = ROOT_DIRECTORY / "my_component" / "example.py"
+
 
 @pytest.fixture(autouse=True, scope="module")
 def streamlit_app():
@@ -23,15 +22,11 @@ def go_to_app(page: Page, streamlit_app: StreamlitRunner):
 
 
 def test_should_render_template(page: Page):
-    frame_0 = page.frame_locator(
-        'iframe[title="my_component\\.my_component"]'
-    ).nth(0)
-    frame_1 = page.frame_locator(
-        'iframe[title="my_component\\.my_component"]'
-    ).nth(1)
+    frame_0 = page.frame_locator('iframe[title="my_component\\.my_component"]').nth(0)
+    frame_1 = page.frame_locator('iframe[title="my_component\\.my_component"]').nth(1)
 
-    st_markdown_0 = page.get_by_role('paragraph').nth(0)
-    st_markdown_1 = page.get_by_role('paragraph').nth(1)
+    st_markdown_0 = page.get_by_role("paragraph").nth(0)
+    st_markdown_1 = page.get_by_role("paragraph").nth(1)
 
     expect(st_markdown_0).to_contain_text("You've clicked 0 times!")
 
@@ -66,7 +61,7 @@ def test_should_change_iframe_height(page: Page):
     locator = page.locator('iframe[title="my_component\\.my_component"]').nth(1)
 
     page.wait_for_timeout(1000)
-    init_frame_height = locator.bounding_box()['height']
+    init_frame_height = locator.bounding_box()["height"]
     assert init_frame_height != 0
 
     page.get_by_label("Enter a name").click()
@@ -77,7 +72,7 @@ def test_should_change_iframe_height(page: Page):
     expect(frame.get_by_text("Streamlit Streamlit Streamlit")).to_be_visible()
 
     page.wait_for_timeout(1000)
-    frame_height = locator.bounding_box()['height']
+    frame_height = locator.bounding_box()["height"]
     assert frame_height > init_frame_height
 
     page.set_viewport_size({"width": 150, "height": 150})
@@ -85,5 +80,5 @@ def test_should_change_iframe_height(page: Page):
     expect(frame.get_by_text("Streamlit Streamlit Streamlit")).not_to_be_in_viewport()
 
     page.wait_for_timeout(1000)
-    frame_height_after_viewport_change = locator.bounding_box()['height']
+    frame_height_after_viewport_change = locator.bounding_box()["height"]
     assert frame_height_after_viewport_change > frame_height

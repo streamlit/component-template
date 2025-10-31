@@ -1,0 +1,2 @@
+recursive-include {{ cookiecutter.import_name }}/frontend/build *
+include pyproject.toml

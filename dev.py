@@ -339,7 +339,11 @@ class CookiecutterVariant(typing.NamedTuple):
 
 COOKIECUTTER_VARIANTS = [
     CookiecutterVariant(
-        replay_file=THIS_DIRECTORY / ".github" / "replay-files" / "template.json",
+        replay_file=THIS_DIRECTORY
+        / ".github"
+        / "replay-files"
+        / "v1"
+        / "template.json",
         repo_directory=THIS_DIRECTORY / "templates" / "v1" / "template",
         cookiecutter_dir=THIS_DIRECTORY / "cookiecutter" / "v1",
     ),
@@ -347,9 +351,28 @@ COOKIECUTTER_VARIANTS = [
         replay_file=THIS_DIRECTORY
         / ".github"
         / "replay-files"
+        / "v1"
         / "template-reactless.json",
         repo_directory=THIS_DIRECTORY / "templates" / "v1" / "template-reactless",
         cookiecutter_dir=THIS_DIRECTORY / "cookiecutter" / "v1",
+    ),
+    CookiecutterVariant(
+        replay_file=THIS_DIRECTORY
+        / ".github"
+        / "replay-files"
+        / "v2"
+        / "template.json",
+        repo_directory=THIS_DIRECTORY / "templates" / "v2" / "template",
+        cookiecutter_dir=THIS_DIRECTORY / "cookiecutter" / "v2",
+    ),
+    CookiecutterVariant(
+        replay_file=THIS_DIRECTORY
+        / ".github"
+        / "replay-files"
+        / "v2"
+        / "template-reactless.json",
+        repo_directory=THIS_DIRECTORY / "templates" / "v2" / "template-reactless",
+        cookiecutter_dir=THIS_DIRECTORY / "cookiecutter" / "v2",
     ),
 ]
 

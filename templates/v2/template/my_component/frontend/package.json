@@ -1,0 +1,35 @@
+{
+  "name": "my_component",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run clean && npm run typecheck && npm run build:frontend:production",
+    "build:frontend:production": "NODE_ENV=production vite build",
+    "clean": "rm -rf build",
+    "dev": "NODE_ENV=development vite build --watch",
+    "format": "prettier --write src/**/*.{ts,tsx} vite.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "prettier": {},
+  "dependencies": {
+    "@streamlit/component-v2-lib": "^0.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.6",
+    "@vitejs/plugin-react": "^5.1.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "vite": "^7.1.12"
+  }
+}

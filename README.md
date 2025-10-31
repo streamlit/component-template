@@ -10,74 +10,102 @@ A Streamlit Component is made out of a Python API and a frontend (built using an
 
 A Component can be used in any Streamlit app, can pass data between Python and frontend code, and can optionally be distributed on [PyPI](https://pypi.org/) for the rest of the world to use.
 
-- Create a component's API in a single line of Python:
+```python
+import streamlit as st
 
-  ```python
-  import streamlit.components.v1 as components
+# Declare the component
+my_component = st.components.v2.component(
+    "your-package.your_component",
+    js="index-*.js",
+    html='<div class="react-root"></div>',
+)
 
-  # Declare the component:
-  my_component = components.declare_component("my_component", path="frontend/build")
+# Use it directly or via a small wrapper
+value = my_component(data={"name": "World"}, default={"num_clicks": 0})
+```
 
-  # Use it:
-  my_component(greeting="Hello", name="World")
-  ```
+```tsx
+import { Component } from '@streamlit/component-v2-lib';
+import { createRoot } from 'react-dom/client';
 
-- Build the component's frontend out of HTML and JavaScript (or TypeScript, or ClojureScript, or whatever you fancy). React is supported, but not required:
+const MyComponent: Component = (args) => {
+  const root = createRoot(args.parentElement.querySelector('.react-root'));
+  root.render(<div>Hello, {args.data.name}!</div>);
+};
 
-  ```tsx
-  import React from 'react';
-  import {
-    withStreamlitConnection,
-    ComponentProps,
-  } from 'streamlit-component-lib';
+export default MyComponent;
+```
 
-  function MyComponent({ args }: ComponentProps) {
-    // Access arguments from Python via `props.args`:
-    const { greeting, name } = args;
-    return (
-      <div>
-        {greeting}, {name}!
-      </div>
-    );
-  }
+See full examples in `templates/v2/template/` and `templates/v2/template-reactless/`.
 
-  export default withStreamlitConnection(MyComponent);
-  ```
+<details>
+<summary>Show v1 code samples</summary>
 
-## Quickstart
+```python
+import streamlit.components.v1 as components
 
-- Ensure you have [Python 3.9+](https://www.python.org/downloads/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
-- Clone this repo.
-- Create a new Python virtual environment for the template:
-  ```bash
-  $ cd template
-  $ python3 -m venv venv  # create venv
-  $ . venv/bin/activate   # activate venv
-  $ pip install streamlit # install streamlit
-  ```
-- Initialize and run the component template frontend:
-  ```bash
-  $ cd template/my_component/frontend
-  $ npm install    # Install npm dependencies
-  $ npm run start  # Start the Vite dev server
-  ```
-- From a separate terminal, run the template's Streamlit app:
-  ```bash
-  $ cd template
-  $ . venv/bin/activate  # activate the venv you created earlier
-  $ pip install -e . # install template as editable package
-  $ streamlit run my_component/example.py  # run the example
-  ```
-- If all goes well, you should see something like this:
-  ![Quickstart Success](quickstart.png)
-- Modify the frontend code at `my_component/frontend/src/MyComponent.tsx`.
-- Modify the Python code at `my_component/__init__.py`.
+# Declare the component (v1)
+my_component = components.declare_component("my_component", path="frontend/build")
+
+# Use it
+value = my_component(name="World", default=0)
+```
+
+```tsx
+import {
+  withStreamlitConnection,
+  ComponentProps,
+} from 'streamlit-component-lib';
+
+function MyComponent({ args }: ComponentProps) {
+  return <div>Hello, {args.name}!\n</div>;
+}
+
+export default withStreamlitConnection(MyComponent);
+```
+
+</details>
+
+See full examples in `templates/v1/template/` and `templates/v1/template-reactless/`.
+
+## Supported template versions
+
+This repo provides templates for both Streamlit Component APIs:
+
+- v2: Uses `st.components.v2.component()` and `@streamlit/component-v2-lib`.
+- v1: Uses `st.components.v1.component()` and `streamlit-component-lib`.
+
+## Quickstart (generate a new component with Cookiecutter)
+
+- Ensure you have [uv](https://docs.astral.sh/uv/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
+- Generate from this template using Cookiecutter via `uvx`:
+
+  - v2 (recommended):
+
+    ```bash
+    uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v2
+    ```
+
+  - v1:
+    ```bash
+    uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v1
+    ```
+
+- Follow the interactive prompts to generate your project.
+- Once created, follow the `README` in your new project to get started.
+
+## Just browsing? Pre-generated outputs
+
+If you want to quickly explore without running Cookiecutter, browse the pre-generated templates in this repo:
+
+- v2 outputs: `templates/v2/template/` and `templates/v2/template-reactless/`
+- v1 outputs: `templates/v1/template/` and `templates/v1/template-reactless/`
+
+From within one of these folders, you can inspect the Python package layout and the `my_component/frontend` code. Refer to the template-level `README` for build instructions.
 
 ## Examples
 
-See the `template-reactless` directory for a template that does not use [React](https://reactjs.org/).
-
-See the `examples` directory for examples on working with pandas DataFrames, integrating with third-party libraries, and more.
+See the `examples/v1/` directory for examples working with pandas DataFrames, integrating with third-party libraries, and more.
 
 ## Community-provided Templates
 
