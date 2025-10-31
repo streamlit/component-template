@@ -1,0 +1,7 @@
+[project]
+name = "streamlit-custom-component"
+version = "0.0.1"
+
+[[tool.streamlit.component.components]]
+name = "my_component"
+asset_dir = "frontend/build"

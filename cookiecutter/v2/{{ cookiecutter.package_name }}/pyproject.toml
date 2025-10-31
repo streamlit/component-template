@@ -9,8 +9,7 @@ description = "{{ cookiecutter.description }}"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }]
-# TODO: Restore this
-# dependencies = ["streamlit >= 1.51"]
+dependencies = ["streamlit >= 1.51"]
 
 [project.optional-dependencies]
 devel = [
@@ -33,7 +32,3 @@ include-package-data = true
 
 [tool.setuptools.package-data]
 {{ cookiecutter.import_name }} = ["frontend/build/**/*", "pyproject.toml"]
-
-[[tool.streamlit.component.components]]
-name = "{{ cookiecutter.import_name }}"
-asset_dir = "{{ cookiecutter.import_name }}/frontend/build"

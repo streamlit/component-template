@@ -1,0 +1,7 @@
+[project]
+name = "{{ cookiecutter.package_name }}"
+version = "0.0.1"
+
+[[tool.streamlit.component.components]]
+name = "{{ cookiecutter.import_name }}"
+asset_dir = "frontend/build"

@@ -39,9 +39,9 @@ To package this component for distribution:
    npm run build
    ```
 
-2. Build the Python wheel using UV (from the project root with `pyproject.toml`):
+2. Build the Python wheel using UV (from the project root):
    ```sh
-   uv run --with build python -m build --wheel
+   uv build
    ```
 
 This will create a `dist/` directory containing your wheel. The wheel includes the compiled frontend from `{{ cookiecutter.import_name }}/frontend/build`.
