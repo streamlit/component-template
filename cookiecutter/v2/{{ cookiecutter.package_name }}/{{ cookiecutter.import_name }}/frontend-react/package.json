@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && npm run typecheck && npm run build:frontend:production",
     "build:frontend:production": "NODE_ENV=production vite build",
-    "clean": "rm -rf build",
+    "clean": "rimraf build",
     "dev": "NODE_ENV=development vite build --watch",
     "format": "prettier --write src/**/*.{ts,tsx} vite.config.ts",
     "typecheck": "tsc --noEmit"
@@ -29,6 +29,7 @@
     "@types/react-dom": "^18.3.6",
     "@vitejs/plugin-react": "^5.1.0",
     "prettier": "^3.6.2",
+    "rimraf": "^6.1.0",
     "typescript": "^5.8.3",
     "vite": "^7.1.12"
   }
