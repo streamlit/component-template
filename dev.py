@@ -141,7 +141,16 @@ def cmd_all_npm_install(args):
     """Install all node dependencies for all examples"""
     for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
         frontend_dir = next(project_dir.glob("*/frontend/"))
-        run_verbose(["npm", "install"], cwd=str(frontend_dir))
+        run_verbose(
+            [
+                "npm",
+                "install",
+                # 2025-11-07: There is a bug in the postinstall script of a transitive dependency.
+                # We can safely ignore the scripts to avoid the bug.
+                "--ignore-scripts",
+            ],
+            cwd=str(frontend_dir),
+        )
 
 
 def cmd_all_npm_build(args):
