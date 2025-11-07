@@ -30,7 +30,7 @@ runs:
       run: |
         find examples templates -maxdepth 5 -type d -name frontend -print0 | while IFS= read -r -d '' line; do
           (
-            cd "${line}" && npm install "${STREAMLIT_COMPONENT_LIB_FILE}"
+            cd "${line}" && npm install --ignore-scripts "${STREAMLIT_COMPONENT_LIB_FILE}"
           )
         done
 
