@@ -7,6 +7,8 @@ name = "streamlit-custom-component"
 version = "0.0.1"
 description = "Streamlit component that allows you to do X"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "John Smith", email = "john@example.com" }]
 dependencies = ["streamlit >= 1.51"]
@@ -20,9 +22,6 @@ devel = [
   "pytest-playwright-snapshot==1.0",
   "pytest-rerunfailures==12.0",
 ]
-
-[project.license]
-file = "LICENSE"
 
 [tool.setuptools.packages.find]
 include = ["my_component*"]
