@@ -11,7 +11,7 @@
     "ISC",
     "Apache-2.0",
     "GPL-3.0-or-later",
-    "Proprietary"
+    "LicenseRef-Proprietary"
   ],
   "framework": [
     "React + Typescript",
