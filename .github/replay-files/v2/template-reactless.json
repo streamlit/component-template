@@ -6,7 +6,7 @@
     "package_name": "streamlit-custom-component",
     "import_name": "my_component",
     "description": "Streamlit component that allows you to do X",
-    "open_source_license": "MIT license",
+    "open_source_license": "MIT",
     "framework": "Pure Typescript"
   }
 }
