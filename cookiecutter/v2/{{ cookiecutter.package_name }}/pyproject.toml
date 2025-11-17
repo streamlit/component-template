@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,6 +7,8 @@ name = "{{ cookiecutter.package_name }}"
 version = "0.0.1"
 description = "{{ cookiecutter.description }}"
 readme = "README.md"
+license = "{{ cookiecutter.open_source_license }}"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }]
 dependencies = ["streamlit >= 1.51"]
@@ -20,9 +22,6 @@ devel = [
   "pytest-playwright-snapshot==1.0",
   "pytest-rerunfailures==12.0",
 ]
-
-[project.license]
-file = "LICENSE"
 
 [tool.setuptools.packages.find]
 include = ["{{ cookiecutter.import_name }}*"]
