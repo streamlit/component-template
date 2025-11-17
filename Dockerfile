@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
 
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bullseye as e2e_base
+FROM python:3.13-slim-bullseye as e2e_base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
