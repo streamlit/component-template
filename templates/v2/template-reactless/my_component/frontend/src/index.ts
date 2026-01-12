@@ -1,6 +1,9 @@
-import { Component, ComponentArgs } from "@streamlit/component-v2-lib";
+import {
+  FrontendRenderer,
+  FrontendRendererArgs,
+} from "@streamlit/component-v2-lib";
 
-export type ComponentState = {
+export type FrontendState = {
   num_clicks: number;
 };
 
@@ -10,9 +13,14 @@ export type ComponentData = {
 
 // Handle the possibility of multiple instances of the component to keep track
 // of any long-running state for each component instance.
-const instances: WeakMap<ComponentArgs["parentElement"], { numClicks: number }> = new WeakMap();
+const instances: WeakMap<
+  FrontendRendererArgs["parentElement"],
+  { numClicks: number }
+> = new WeakMap();
 
-const MyComponent: Component<ComponentState, ComponentData> = (args) => {
+const MyComponent: FrontendRenderer<FrontendState, ComponentData> = (
+  args
+) => {
   const { parentElement, data, setStateValue } = args;
 
   const rootElement = parentElement.querySelector(".component-root");

@@ -1,4 +1,7 @@
-import { Component, ComponentArgs } from "@streamlit/component-v2-lib";
+import {
+  FrontendRenderer,
+  FrontendRendererArgs,
+} from "@streamlit/component-v2-lib";
 import { StrictMode } from "react";
 import { createRoot, Root } from "react-dom/client";
 
@@ -9,9 +12,10 @@ import MyComponent, {
 
 // Handle the possibility of multiple instances of the component to keep track
 // of the React roots for each component instance.
-const reactRoots: WeakMap<ComponentArgs["parentElement"], Root> = new WeakMap();
+const reactRoots: WeakMap<FrontendRendererArgs["parentElement"], Root> =
+  new WeakMap();
 
-const MyComponentRoot: Component<
+const MyComponentRoot: FrontendRenderer<
   MyComponentStateShape,
   MyComponentDataShape
 > = (args) => {
