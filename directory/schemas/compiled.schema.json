@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/compiled.schema.json",
+  "title": "Component Gallery compiled catalog (compiled/components.json)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generatedAt", "schemaVersion", "categories", "components"],
+  "properties": {
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "author",
+          "socialUrl",
+          "pipLink",
+          "categories",
+          "image",
+          "gitHubUrl",
+          "enabled",
+          "appUrl"
+        ],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "author": { "type": "string", "minLength": 1 },
+          "pipLink": {
+            "oneOf": [
+              { "type": "string", "minLength": 1 },
+              { "type": "null" }
+            ]
+          },
+          "pypi": {
+            "oneOf": [
+              { "type": "string", "minLength": 1 },
+              { "type": "null" }
+            ]
+          },
+          "categories": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string" }
+          },
+          "image": { "type": ["string", "null"], "format": "uri" },
+          "gitHubUrl": { "type": "string", "format": "uri" },
+          "enabled": { "type": "boolean" },
+          "appUrl": { "type": ["string", "null"], "format": "uri" },
+          "socialUrl": { "type": ["string", "null"], "format": "uri" },
+          "metrics": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "properties": {
+              "github": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "properties": {
+                  "stars": { "type": ["integer", "null"], "minimum": 0 },
+                  "forks": { "type": ["integer", "null"], "minimum": 0 },
+                  "contributorsCount": {
+                    "type": ["integer", "null"],
+                    "minimum": 0
+                  },
+                  "openIssues": { "type": ["integer", "null"], "minimum": 0 },
+                  "lastPushAt": {
+                    "type": ["string", "null"],
+                    "format": "date-time"
+                  },
+                  "fetchedAt": {
+                    "type": ["string", "null"],
+                    "format": "date-time"
+                  },
+                  "isStale": { "type": ["boolean", "null"] }
+                }
+              },
+              "pypi": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "properties": {
+                  "latestVersion": {
+                    "oneOf": [
+                      { "type": "string", "minLength": 1 },
+                      { "type": "null" }
+                    ]
+                  },
+                  "latestReleaseAt": {
+                    "type": ["string", "null"],
+                    "format": "date-time"
+                  },
+                  "fetchedAt": {
+                    "type": ["string", "null"],
+                    "format": "date-time"
+                  },
+                  "isStale": { "type": ["boolean", "null"] }
+                }
+              },
+              "pypistats": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "properties": {
+                  "lastDay": { "type": ["integer", "null"], "minimum": 0 },
+                  "lastWeek": { "type": ["integer", "null"], "minimum": 0 },
+                  "lastMonth": { "type": ["integer", "null"], "minimum": 0 },
+                  "fetchedAt": {
+                    "type": ["string", "null"],
+                    "format": "date-time"
+                  },
+                  "isStale": { "type": ["boolean", "null"] }
+                }
+              }
+            }
+          },
+          "ranking": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["score", "signals", "computedAt"],
+            "properties": {
+              "score": { "type": "number" },
+              "computedAt": { "type": "string", "format": "date-time" },
+              "signals": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "starsScore": { "type": ["number", "null"] },
+                  "recencyScore": { "type": ["number", "null"] },
+                  "daysSinceUpdate": {
+                    "type": ["number", "null"],
+                    "minimum": 0
+                  },
+                  "contributorsScore": { "type": ["number", "null"] },
+                  "daysSinceGithubPush": {
+                    "type": ["number", "null"],
+                    "minimum": 0
+                  },
+                  "daysSincePypiRelease": {
+                    "type": ["number", "null"],
+                    "minimum": 0
+                  },
+                  "downloadsScore": { "type": ["number", "null"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

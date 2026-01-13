@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/component.schema.json",
+  "title": "Component Gallery submission (source-of-truth)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "title", "author", "links", "governance", "categories"],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["github"],
+      "properties": {
+        "github": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 39,
+          "pattern": "^[A-Za-z0-9_]+(?:-[A-Za-z0-9_]+)*$",
+          "description": "GitHub username (no @)."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["github"],
+      "properties": {
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+/?$"
+        },
+        "pypi": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "description": "PyPI project name (not a URL)."
+        },
+        "demo": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "docs": {
+          "type": ["string", "null"],
+          "format": "uri"
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "image": {
+          "type": ["string", "null"],
+          "format": "uri"
+        }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pip": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "maxLength": 200
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "maxLength": 500
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "LLMs",
+          "Widgets",
+          "Charts",
+          "Authentication",
+          "Connections",
+          "Images & video",
+          "Audio",
+          "Text",
+          "Maps",
+          "Dataframes",
+          "Graphs",
+          "Molecules & genes",
+          "Code editors",
+          "Page navigation",
+          "Developer tools",
+          "Integrations"
+        ]
+      }
+    }
+  }
+}
