@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Js Eval",
+    "author": {
+        "github": "aghasemi",
+        "displayName": "aghasemi"
+    },
+    "links": {
+        "github": "https://github.com/aghasemi/streamlit_js_eval",
+        "pypi": "streamlit-js-eval",
+        "demo": "https://aghasemi-streamlit-js-eval-example-yleu91.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-js-eval"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

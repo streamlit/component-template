@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Multipage",
+    "author": {
+        "github": "crxi",
+        "displayName": "crxi"
+    },
+    "links": {
+        "github": "https://github.com/crxi/multipage_streamlit",
+        "pypi": "multipage-streamlit",
+        "demo": "https://share.streamlit.io/crxi/multipage_streamlit/main/example/demo/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install multipage-streamlit"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

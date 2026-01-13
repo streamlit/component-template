@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Telegram Login",
+    "author": {
+        "github": "berkutsoft",
+        "displayName": "berkutsoft"
+    },
+    "links": {
+        "github": "https://github.com/berkutsoft/streamlit-telegram-login",
+        "pypi": "streamlit-telegram-login",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/berkutsoft/streamlit-telegram-login/raw/main/resources/botfather.jpg"
+    },
+    "install": {
+        "pip": "pip install streamlit-telegram-login"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

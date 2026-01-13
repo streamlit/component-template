@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Msal Authentication Dentro",
+    "author": {
+        "github": "dentro-innovation",
+        "displayName": "dentro-innovation"
+    },
+    "links": {
+        "github": "https://github.com/dentro-innovation/msal_streamlit_authentication",
+        "pypi": "msal-streamlit-authentication-dentro",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install msal-streamlit-authentication-dentro"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

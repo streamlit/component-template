@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Globe",
+    "author": {
+        "github": "padmalcom",
+        "displayName": "padmalcom"
+    },
+    "links": {
+        "github": "https://github.com/padmalcom/streamlit_globe",
+        "pypi": "streamlit-globe",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/padmalcom/streamlit_globe/raw/main/globe.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-globe"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}

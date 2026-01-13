@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Cardselectable",
+    "author": {
+        "github": "Mathtzt",
+        "displayName": "Mathtzt"
+    },
+    "links": {
+        "github": "https://github.com/Mathtzt/st_cardselectable",
+        "pypi": "streamlit-cardselectable",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Mathtzt/st_cardselectable/raw/master/example/cards_init.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-cardselectable"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

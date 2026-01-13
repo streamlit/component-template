@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Cropper",
+    "author": {
+        "github": "turner-anderson",
+        "displayName": "turner-anderson"
+    },
+    "links": {
+        "github": "https://github.com/turner-anderson/streamlit-cropper",
+        "pypi": "streamlit-cropper",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/turner-anderson/streamlit-cropper/raw/master/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-cropper"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

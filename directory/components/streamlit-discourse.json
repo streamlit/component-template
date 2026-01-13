@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Discourse",
+    "author": {
+        "github": "okld",
+        "displayName": "okld"
+    },
+    "links": {
+        "github": "https://github.com/okld/streamlit-discourse",
+        "pypi": "streamlit-discourse",
+        "demo": "https://share.streamlit.io/okld/streamlit-gallery/main?p=discourse",
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/okld/streamlit-discourse/main/preview.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-discourse"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations"
+    ]
+}

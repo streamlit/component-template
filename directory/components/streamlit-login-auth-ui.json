@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Login Auth UI",
+    "author": {
+        "github": "GauriSP10",
+        "displayName": "GauriSP10"
+    },
+    "links": {
+        "github": "https://github.com/GauriSP10/streamlit_login_auth_ui",
+        "pypi": "streamlit-login-auth-ui",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/75731631/185765909-a70dd7af-240d-4a90-9140-45d6292e76f0.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-login-auth-ui"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

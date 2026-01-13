@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Stvis",
+    "author": {
+        "github": "napoles-uach",
+        "displayName": "napoles-uach"
+    },
+    "links": {
+        "github": "https://github.com/napoles-uach/stvis",
+        "pypi": "stvis",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/napoles-uach/stvis/raw/main/image/stvis.png"
+    },
+    "install": {
+        "pip": "pip install stvis"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

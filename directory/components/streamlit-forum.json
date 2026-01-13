@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Forum",
+    "author": {
+        "github": "snehankekre",
+        "displayName": "snehankekre"
+    },
+    "links": {
+        "github": "https://github.com/snehankekre/streamlit-forum",
+        "pypi": "streamlit-forum",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-forum"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

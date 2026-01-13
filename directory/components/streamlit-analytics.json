@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Analytics",
+    "author": {
+        "github": "jrieke",
+        "displayName": "jrieke"
+    },
+    "links": {
+        "github": "https://github.com/jrieke/streamlit-analytics",
+        "pypi": "streamlit-analytics",
+        "demo": "https://share.streamlit.io/jrieke/streamlit-analytics/main/examples/sharing-demo.py?analytics=on",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jrieke/streamlit-analytics/raw/main/images/example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-analytics"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

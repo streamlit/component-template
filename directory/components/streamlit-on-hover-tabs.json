@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "title": "On Hover Tabs",
+  "author": {
+    "github": "Socvest",
+    "displayName": "Socvest"
+  },
+  "links": {
+    "github": "https://github.com/Socvest/streamlit-on-Hover-tabs",
+    "pypi": null,
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": "https://github.com/Socvest/streamlit-on-Hover-tabs/raw/main/img/demonstration-on-hover.gif"
+  },
+  "install": {
+    "pip": null
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": ["Page navigation"]
+}

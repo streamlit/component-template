@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Material Table",
+    "author": {
+        "github": "icheft",
+        "displayName": "icheft"
+    },
+    "links": {
+        "github": "https://github.com/icheft/st-material-table",
+        "pypi": "st-material-table",
+        "demo": "https://share.streamlit.io/icheft/ntuclasscrawler/react-table/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-material-table"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Dataframes"
+    ]
+}

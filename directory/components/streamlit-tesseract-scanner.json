@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Tesseract Scanner",
+    "author": {
+        "github": "phamxtien",
+        "displayName": "phamxtien"
+    },
+    "links": {
+        "github": "https://github.com/phamxtien/streamlit_tesseract_scanner",
+        "pypi": "streamlit-tesseract-scanner",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-tesseract-scanner"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

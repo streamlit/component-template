@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Image Crop",
+    "author": {
+        "github": "mitsuse",
+        "displayName": "mitsuse"
+    },
+    "links": {
+        "github": "https://github.com/mitsuse/streamlit-image-crop",
+        "pypi": "streamlit-image-crop",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/mitsuse/streamlit-image-crop/master/screenshot.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-image-crop"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

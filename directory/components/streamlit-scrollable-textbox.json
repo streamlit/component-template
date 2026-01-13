@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Scrollable Textbox",
+    "author": {
+        "github": "RobertoFN",
+        "displayName": "RobertoFN"
+    },
+    "links": {
+        "github": "https://github.com/RobertoFN/streamlit-scrollable-textbox",
+        "pypi": "streamlit-scrollable-textbox",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/108201791/198837373-45be2528-01b3-484d-b91d-2c1111515593.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-scrollable-textbox"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets",
+        "Text"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "WebRTC",
+  "author": {
+    "github": "whitphx",
+    "displayName": "whitphx"
+  },
+  "links": {
+    "github": "https://github.com/whitphx/streamlit-webrtc",
+    "pypi": "streamlit-webrtc",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-webrtc"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Images & video"
+  ]
+}

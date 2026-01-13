@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Keplergl",
+    "author": {
+        "github": "chrieke",
+        "displayName": "chrieke"
+    },
+    "links": {
+        "github": "https://github.com/chrieke/streamlit-keplergl",
+        "pypi": "streamlit-keplergl",
+        "demo": "https://share.streamlit.io/chrieke/streamlit-keplergl/main/examples/streamlit-keplergl-example.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/chrieke/streamlit-keplergl/raw/main/examples/example-screenshot.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-keplergl"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Lottie",
+    "author": {
+        "github": "andfanilo",
+        "displayName": "andfanilo"
+    },
+    "links": {
+        "github": "https://github.com/andfanilo/streamlit-lottie",
+        "pypi": "streamlit-lottie",
+        "demo": "https://share.streamlit.io/andfanilo/streamlit-lottie-demo/master/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/andfanilo/streamlit-lottie/raw/main/img/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-lottie"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Super Slider",
+    "author": {
+        "github": "fgdvir",
+        "displayName": "fgdvir"
+    },
+    "links": {
+        "github": "https://github.com/fgdvir/streamlit-super-slider",
+        "pypi": "streamlit-super-slider",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/fgdvir/streamlit-super-slider/raw/main/assets/slider_img.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-super-slider"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

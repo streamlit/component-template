@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Observable",
+    "author": {
+        "github": "asg017",
+        "displayName": "asg017"
+    },
+    "links": {
+        "github": "https://github.com/asg017/streamlit-observable",
+        "pypi": "streamlit-observable",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/15178711/91647141-030e5700-ea0c-11ea-9afd-fbef728db533.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-observable"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations"
+    ]
+}

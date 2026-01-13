@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Code Editor",
+    "author": {
+        "github": "bouzidanas",
+        "displayName": "bouzidanas"
+    },
+    "links": {
+        "github": "https://github.com/bouzidanas/streamlit-code-editor",
+        "pypi": "streamlit-code-editor",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/bouzidanas/streamlit-code-editor/raw/master/examples/resources/guide_screenshot.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-code-editor"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Code editors"
+    ]
+}

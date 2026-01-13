@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pygwalker",
+    "author": {
+        "github": "Kanaries",
+        "displayName": "Kanaries"
+    },
+    "links": {
+        "github": "https://github.com/Kanaries/pygwalker",
+        "pypi": "pygwalker",
+        "demo": "https://pygwalkerdemo-cxz7f7pt5oc.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/8137814/221879671-70379d15-81ac-44b9-b267-a8fa3842a0d9.png"
+    },
+    "install": {
+        "pip": "pip install pygwalker"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

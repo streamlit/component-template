@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Nivo",
+    "author": {
+        "github": "aswan-heart-centre",
+        "displayName": "aswan-heart-centre"
+    },
+    "links": {
+        "github": "https://github.com/aswan-heart-centre/streamlit_nivo",
+        "pypi": "streamlit-nivo",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/aswan-heart-centre/streamlit_nivo/raw/master/st-nivo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-nivo"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

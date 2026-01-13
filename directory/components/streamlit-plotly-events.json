@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Plotly Events",
+    "author": {
+        "github": "null-jones",
+        "displayName": "null-jones"
+    },
+    "links": {
+        "github": "https://github.com/null-jones/streamlit-plotly-events",
+        "pypi": "streamlit-plotly-events",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/null-jones/streamlit-plotly-events/raw/master/example.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-plotly-events"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

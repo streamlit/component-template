@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Permalink",
+    "author": {
+        "github": "franekp",
+        "displayName": "franekp"
+    },
+    "links": {
+        "github": "https://github.com/franekp/streamlit-permalink",
+        "pypi": "streamlit-permalink",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-permalink"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools",
+        "Widgets"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Text Label",
+    "author": {
+        "github": "sweatybridge",
+        "displayName": "sweatybridge"
+    },
+    "links": {
+        "github": "https://github.com/sweatybridge/streamlit-text-label",
+        "pypi": "streamlit-text-label",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/1639722/136137713-752622a5-25f0-42b2-9645-a800674bff31.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-text-label"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}

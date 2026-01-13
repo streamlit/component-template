@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "ECharts",
+    "author": {
+        "github": "andfanilo",
+        "displayName": "andfanilo"
+    },
+    "links": {
+        "github": "https://github.com/andfanilo/streamlit-echarts",
+        "pypi": "streamlit-echarts",
+        "demo": "https://share.streamlit.io/andfanilo/streamlit-echarts-demo/master/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/andfanilo/streamlit-echarts/raw/develop/img/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-echarts"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

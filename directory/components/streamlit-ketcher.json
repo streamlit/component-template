@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Ketcher",
+  "author": {
+    "github": "mik-laj",
+    "displayName": "mik-laj"
+  },
+  "links": {
+    "github": "https://github.com/mik-laj/streamlit-ketcher",
+    "pypi": "streamlit-ketcher",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-ketcher"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Molecules & genes"
+  ]
+}

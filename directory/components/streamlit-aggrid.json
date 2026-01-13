@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "title": "AgGrid",
+  "author": {
+    "github": "PablocFonseca",
+    "displayName": "PablocFonseca"
+  },
+  "links": {
+    "github": "https://github.com/PablocFonseca/streamlit-aggrid",
+    "pypi": "streamlit-aggrid",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": "https://github.com/PablocFonseca/streamlit-aggrid/raw/main/group_selection_example.gif"
+  },
+  "install": {
+    "pip": "pip install streamlit-aggrid"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Dataframes"
+  ]
+}
+
+

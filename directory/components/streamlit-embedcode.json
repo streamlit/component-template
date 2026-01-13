@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Embedcode",
+    "author": {
+        "github": "randyzwitch",
+        "displayName": "randyzwitch"
+    },
+    "links": {
+        "github": "https://github.com/randyzwitch/streamlit-embedcode",
+        "pypi": "streamlit-embedcode",
+        "demo": "https://share.streamlit.io/randyzwitch/streamlit-embedcode/examples/streamlit_app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/randyzwitch/streamlit-embedcode/raw/master/_static/gh_gist_example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-embedcode"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Code editors"
+    ]
+}

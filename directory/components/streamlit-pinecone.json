@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Pinecone",
+  "author": {
+    "github": "eliotjlee",
+    "displayName": "eliotjlee"
+  },
+  "links": {
+    "github": "https://github.com/eliotjlee/streamlit-pinecone",
+    "pypi": "streamlit-pinecone",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-pinecone"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Connections"
+  ]
+}

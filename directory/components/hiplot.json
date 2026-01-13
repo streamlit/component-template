@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "HiPlot",
+    "author": {
+        "github": "facebookresearch",
+        "displayName": "facebookresearch"
+    },
+    "links": {
+        "github": "https://github.com/facebookresearch/hiplot",
+        "pypi": "hiplot",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/facebookresearch/hiplot/main/assets/notebook.png"
+    },
+    "install": {
+        "pip": "pip install hiplot"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

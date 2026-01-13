@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Monaco",
+    "author": {
+        "github": "marcusschiesser",
+        "displayName": "marcusschiesser"
+    },
+    "links": {
+        "github": "https://github.com/marcusschiesser/streamlit-monaco",
+        "pypi": "streamlit-monaco",
+        "demo": "https://vs-code.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/marcusschiesser/streamlit-monaco/raw/main/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-monaco"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Code editors"
+    ]
+}

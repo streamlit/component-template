@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Kaggle Connector",
+  "author": {
+    "github": "arsentievalex",
+    "displayName": "arsentievalex"
+  },
+  "links": {
+    "github": "https://github.com/arsentievalex/kaggle-streamlit-data-connector",
+    "pypi": "st-kaggle-connector",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install st-kaggle-connector"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Connections"
+  ]
+}

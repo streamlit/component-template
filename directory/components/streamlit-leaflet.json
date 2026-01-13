@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Leaflet",
+    "author": {
+        "github": "giswqs",
+        "displayName": "giswqs"
+    },
+    "links": {
+        "github": "https://github.com/giswqs/streamlit-leaflet",
+        "pypi": "streamlit-leaflet",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-leaflet"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}
