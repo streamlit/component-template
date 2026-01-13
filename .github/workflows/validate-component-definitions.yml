@@ -1,0 +1,39 @@
+name: Validate Component Definitions
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+    paths:
+      - 'directory/components/**'
+
+jobs:
+  validate-submissions:
+    name: Validate Component Definitions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: requirements.txt
+
+      - name: Create venv and install deps (uv)
+        run: |
+          set -euo pipefail
+          uv venv .venv
+          uv pip install -r requirements.txt
+
+      - name: Validate Component Definitions
+        run: |
+          set -euo pipefail
+          .venv/bin/python ./directory/scripts/validate.py

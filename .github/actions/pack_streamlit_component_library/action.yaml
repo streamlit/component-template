@@ -24,7 +24,7 @@ runs:
         fi
 
     - name: Checkout streamlit/streamlit
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
         repository: streamlit/streamlit

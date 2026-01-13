@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - "master"
   pull_request:
-    branches: 
+    branches:
       - "master"
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
     name: Examples + Templates / node_version=${{ matrix.node_version }} / streamlit_version=${{ matrix.streamlit_version }}  / component_lib_version=${{ matrix.component_lib_version }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         persist-credentials: false
         path: component-template
@@ -87,7 +87,7 @@ jobs:
     name: Cookiecutter
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
 
