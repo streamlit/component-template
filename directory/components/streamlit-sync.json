@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Sync",
+    "author": {
+        "github": "Wauplin",
+        "displayName": "Wauplin"
+    },
+    "links": {
+        "github": "https://github.com/Wauplin/streamlit-sync",
+        "pypi": "streamlit-sync",
+        "demo": "https://share.streamlit.io/wauplin/streamlit-sync/main/toy_example.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Wauplin/streamlit-sync/raw/main/images/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-sync"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

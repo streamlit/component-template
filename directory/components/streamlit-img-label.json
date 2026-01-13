@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Img Label",
+    "author": {
+        "github": "lit26",
+        "displayName": "lit26"
+    },
+    "links": {
+        "github": "https://github.com/lit26/streamlit-img-label",
+        "pypi": "streamlit-img-label",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/lit26/streamlit-img-label/raw/main/asset/st_img_label.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-img-label"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

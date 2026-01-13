@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Supabase Auth",
+    "author": {
+        "github": "sweatybridge",
+        "displayName": "sweatybridge"
+    },
+    "links": {
+        "github": "https://github.com/sweatybridge/streamlit-supabase-auth",
+        "pypi": "streamlit-supabase-auth",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/1639722/164980408-22bbd548-348d-449b-8865-b024f9fe7a68.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-supabase-auth"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

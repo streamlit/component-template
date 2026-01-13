@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Raw Echarts",
+    "author": {
+        "github": "liunux4odoo",
+        "displayName": "liunux4odoo"
+    },
+    "links": {
+        "github": "https://github.com/liunux4odoo/streamlit-raw-echarts",
+        "pypi": "streamlit-raw-echarts",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-raw-echarts"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

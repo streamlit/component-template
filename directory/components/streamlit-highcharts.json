@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Highcharts",
+    "author": {
+        "github": "aalteirac",
+        "displayName": "aalteirac"
+    },
+    "links": {
+        "github": "https://github.com/aalteirac/streamlit_highcharts",
+        "pypi": "streamlit_highcharts",
+        "demo": "https://aalteirac-streamlit-highcharts-test-app-main-3vgde6.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit_highcharts"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

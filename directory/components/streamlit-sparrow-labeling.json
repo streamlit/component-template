@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Sparrow Labeling",
+    "author": {
+        "github": "katanaml",
+        "displayName": "katanaml"
+    },
+    "links": {
+        "github": "https://github.com/katanaml/streamlit-sparrow-labeling-comp",
+        "pypi": "streamlit-sparrow-labeling",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/katanaml/streamlit-sparrow-labeling-comp/raw/main/img/demo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-sparrow-labeling"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

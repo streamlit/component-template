@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Inspect",
+    "author": {
+        "github": "cceyda",
+        "displayName": "cceyda"
+    },
+    "links": {
+        "github": "https://github.com/cceyda/streamlit-inspect",
+        "pypi": "streamlit-inspect",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-inspect"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

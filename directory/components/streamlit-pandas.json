@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pandas",
+    "author": {
+        "github": "wjbmattingly",
+        "displayName": "wjbmattingly"
+    },
+    "links": {
+        "github": "https://github.com/wjbmattingly/streamlit-pandas",
+        "pypi": "streamlit-pandas",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/wjbmattingly/streamlit-pandas/raw/main/images/streamlit-pandas-app.jpg"
+    },
+    "install": {
+        "pip": "pip install streamlit-pandas"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Dataframes"
+    ]
+}

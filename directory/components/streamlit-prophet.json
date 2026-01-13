@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Prophet",
+    "author": {
+        "github": "artefactory-global",
+        "displayName": "artefactory-global"
+    },
+    "links": {
+        "github": "https://github.com/artefactory-global/streamlit_prophet",
+        "pypi": "streamlit-prophet",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/artefactory/streamlit_prophet/raw/main/streamlit_prophet/references/input_format.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-prophet"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations"
+    ]
+}

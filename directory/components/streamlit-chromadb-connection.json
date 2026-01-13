@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Chromadb Connection",
+    "author": {
+        "github": "Dev317",
+        "displayName": "Dev317"
+    },
+    "links": {
+        "github": "https://github.com/Dev317/streamlit_chromadb_connection",
+        "pypi": "streamlit-chromadb-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Dev317/streamlit_chromadb_connection/raw/236d4c4cecbd56c19695f55b20b58492518e8300/demo_ss.png?raw=True"
+    },
+    "install": {
+        "pip": "pip install streamlit-chromadb-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

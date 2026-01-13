@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Bokeh Events",
+    "author": {
+        "github": "ash2shukla",
+        "displayName": "ash2shukla"
+    },
+    "links": {
+        "github": "https://github.com/ash2shukla/streamlit-bokeh-events",
+        "pypi": "streamlit-bokeh-events",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ash2shukla/streamlit-bokeh-events/raw/master/assets/plots.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-bokeh-events"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

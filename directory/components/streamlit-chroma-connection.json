@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Chroma Connection",
+    "author": {
+        "github": "pltoledo",
+        "displayName": "pltoledo"
+    },
+    "links": {
+        "github": "https://github.com/pltoledo/st-connections-hackathon",
+        "pypi": "streamlit-chroma-connection",
+        "demo": "https://pltoledo-st-connections-hackathon.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/pltoledo/st-connections-hackathon/blob/main/images/app_screenshot.png?raw=True"
+    },
+    "install": {
+        "pip": "pip install streamlit-chroma-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

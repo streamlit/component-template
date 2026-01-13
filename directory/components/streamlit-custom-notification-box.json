@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Custom Notification Box",
+    "author": {
+        "github": "Socvest",
+        "displayName": "Socvest"
+    },
+    "links": {
+        "github": "https://github.com/Socvest/streamlit-custom-notification-box",
+        "pypi": "streamlit-custom-notification-box",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Socvest/streamlit-custom-notification-box/raw/main/img/custom-notification-box.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-custom-notification-box"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

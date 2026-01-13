@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Plotly Mapboxevents",
+    "author": {
+        "github": "reyemb",
+        "displayName": "reyemb"
+    },
+    "links": {
+        "github": "https://github.com/reyemb/streamlit-plotly-mapbox-events",
+        "pypi": "streamlit-plotly-mapbox-events",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/reyemb/streamlit-plotly-mapbox-events/raw/main/example.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-plotly-mapboxEvents"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}

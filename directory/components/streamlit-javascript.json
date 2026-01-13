@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Javascript",
+    "author": {
+        "github": "thunderbug1",
+        "displayName": "thunderbug1"
+    },
+    "links": {
+        "github": "https://github.com/thunderbug1/streamlit-javascript",
+        "pypi": "streamlit-javascript",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/thunderbug1/streamlit-javascript/raw/master/example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-javascript"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "title": "Trubrics",
+  "author": {
+    "github": "trubrics",
+    "displayName": "trubrics"
+  },
+  "links": {
+    "github": "https://github.com/trubrics/trubrics-sdk",
+    "pypi": "trubrics",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install trubrics"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "LLMs",
+    "Integrations"
+  ]
+}

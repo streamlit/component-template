@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Visgraph",
+    "author": {
+        "github": "tbhuy",
+        "displayName": "tbhuy"
+    },
+    "links": {
+        "github": "https://github.com/tbhuy/streamlit_visgraph",
+        "pypi": "streamlit-visgraph",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/tbhuy/streamlit_visgraph/raw/main/examples/example1.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-visgraph"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

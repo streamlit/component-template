@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Jupyter",
+    "author": {
+        "github": "ddobrinskiy",
+        "displayName": "ddobrinskiy"
+    },
+    "links": {
+        "github": "https://github.com/ddobrinskiy/streamlit-jupyter",
+        "pypi": "streamlit-jupyter",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ddobrinskiy/streamlit-jupyter/raw/master/images/img1_jupyter.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-jupyter"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools",
+        "Integrations"
+    ]
+}

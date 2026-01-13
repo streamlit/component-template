@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Timeline",
+    "author": {
+        "github": "innerdoc",
+        "displayName": "innerdoc"
+    },
+    "links": {
+        "github": "https://github.com/innerdoc/streamlit-timeline",
+        "pypi": "streamlit-timeline",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/innerdoc/streamlit-timeline/raw/main/example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-timeline"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

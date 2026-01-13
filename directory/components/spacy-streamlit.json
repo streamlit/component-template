@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "SpaCy",
+    "author": {
+        "github": "explosion",
+        "displayName": "explosion"
+    },
+    "links": {
+        "github": "https://github.com/explosion/spacy-streamlit",
+        "pypi": "spacy-streamlit",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/13643239/85388081-f2da8700-b545-11ea-9bd4-e303d3c5763c.png"
+    },
+    "install": {
+        "pip": "pip install spacy-streamlit"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}

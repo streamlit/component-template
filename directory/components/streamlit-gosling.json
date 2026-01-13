@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Gosling",
+    "author": {
+        "github": "gosling-lang",
+        "displayName": "gosling-lang"
+    },
+    "links": {
+        "github": "https://github.com/gosling-lang/streamlit-gosling",
+        "pypi": "streamlit-gosling",
+        "demo": "https://wangqianwen0418-streamlit-gosling-demo-st-gos-demo-zo60pz.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/gosling-lang/streamlit-gosling/raw/master/assets/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-gosling"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts",
+        "Molecules & genes"
+    ]
+}

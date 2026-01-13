@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Lightweight Charts",
+    "author": {
+        "github": "freyastreamlit",
+        "displayName": "freyastreamlit"
+    },
+    "links": {
+        "github": "https://github.com/freyastreamlit/streamlit-lightweight-charts",
+        "pypi": "streamlit-lightweight-charts",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/freyastreamlit/streamlit-lightweight-charts/raw/main/examples/PriceVolumeChart.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install streamlit-lightweight-charts"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

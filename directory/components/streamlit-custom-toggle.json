@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Custom Toggle",
+    "author": {
+        "github": "ShruAgarwal",
+        "displayName": "ShruAgarwal"
+    },
+    "links": {
+        "github": "https://github.com/ShruAgarwal/streamlit-custom-toggle",
+        "pypi": "streamlit-custom-toggle",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ShruAgarwal/streamlit-custom-toggle/raw/main/toggle_demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-custom-toggle"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

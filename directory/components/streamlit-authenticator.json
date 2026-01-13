@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Authenticator",
+    "author": {
+        "github": "mkhorasani",
+        "displayName": "mkhorasani"
+    },
+    "links": {
+        "github": "https://github.com/mkhorasani/Streamlit-Authenticator",
+        "pypi": "streamlit-authenticator",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/mkhorasani/Streamlit-Authenticator/raw/main/graphics/login_form.JPG"
+    },
+    "install": {
+        "pip": "pip install streamlit-authenticator"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

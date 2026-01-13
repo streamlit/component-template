@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Calendar",
+    "author": {
+        "github": "im-perativa",
+        "displayName": "im-perativa"
+    },
+    "links": {
+        "github": "https://github.com/im-perativa/streamlit-calendar",
+        "pypi": "streamlit-calendar",
+        "demo": "https://calendar-component.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/im-perativa/streamlit-calendar-demo/raw/main/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-calendar"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

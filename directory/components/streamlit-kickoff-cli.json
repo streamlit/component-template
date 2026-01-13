@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Kickoff CLI",
+    "author": {
+        "github": "arnaudmiribel",
+        "displayName": "arnaudmiribel"
+    },
+    "links": {
+        "github": "https://github.com/arnaudmiribel/streamlit-kickoff-cli",
+        "pypi": "streamlit-kickoff-cli",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/7164864/186680966-f70851a6-867a-4608-a52c-aa139d0ebf20.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-kickoff-cli"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

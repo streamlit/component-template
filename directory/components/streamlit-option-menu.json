@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Option Menu",
+    "author": {
+        "github": "victoryhb",
+        "displayName": "victoryhb"
+    },
+    "links": {
+        "github": "https://github.com/victoryhb/streamlit-option-menu",
+        "pypi": "streamlit-option-menu",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/victoryhb/streamlit-option-menu/raw/master/img/menu.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-option-menu"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

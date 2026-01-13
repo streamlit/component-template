@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Book",
+  "author": {
+    "github": "sebastiandres",
+    "displayName": "sebastiandres"
+  },
+  "links": {
+    "github": "https://github.com/sebastiandres/streamlit_book",
+    "pypi": "streamlit-book",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-book"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Page navigation"
+  ]
+}

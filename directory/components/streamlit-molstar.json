@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Molstar",
+    "author": {
+        "github": "pragmatic-streamlit",
+        "displayName": "pragmatic-streamlit"
+    },
+    "links": {
+        "github": "https://github.com/pragmatic-streamlit/streamlit-molstar",
+        "pypi": "streamlit-molstar",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/pragmatic-streamlit/streamlit-molstar/raw/main/examples/example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-molstar"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Molecules & genes"
+    ]
+}

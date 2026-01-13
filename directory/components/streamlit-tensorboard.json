@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Tensorboard",
+    "author": {
+        "github": "snehankekre",
+        "displayName": "snehankekre"
+    },
+    "links": {
+        "github": "https://github.com/snehankekre/streamlit-tensorboard",
+        "pypi": "streamlit-tensorboard",
+        "demo": "https://share.streamlit.io/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/snehankekre/streamlit-tensorboard/raw/master/_static/st-tensorboard-example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-tensorboard"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "NLU",
+    "author": {
+        "github": "JohnSnowLabs",
+        "displayName": "JohnSnowLabs"
+    },
+    "links": {
+        "github": "https://github.com/JohnSnowLabs/nlu",
+        "pypi": "nlu",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/JohnSnowLabs/nlu/master/docs/assets/streamlit_docs_assets/gif/start.gif"
+    },
+    "install": {
+        "pip": "pip install nlu"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}

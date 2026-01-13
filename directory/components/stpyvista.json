@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Stpyvista",
+  "author": {
+    "github": "edsaac",
+    "displayName": "edsaac"
+  },
+  "links": {
+    "github": "https://github.com/edsaac/streamlit-PyVista-viewer",
+    "pypi": "stpyvista",
+    "demo": "https://stpyvista.streamlit.app/",
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install stpyvista"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Charts"
+  ]
+}

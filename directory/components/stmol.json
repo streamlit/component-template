@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Stmol",
+    "author": {
+        "github": "napoles-uach",
+        "displayName": "napoles-uach"
+    },
+    "links": {
+        "github": "https://github.com/napoles-uach/streamlit_3dmol",
+        "pypi": "stmol",
+        "demo": "https://napoles-uach-stmol-home-pom051.streamlitapp.com/Documentation",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/napoles-uach/stmol/raw/master/Resources/Quickstart-1.gif"
+    },
+    "install": {
+        "pip": "pip install stmol"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Molecules & genes"
+    ]
+}

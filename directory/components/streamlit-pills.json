@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pills",
+    "author": {
+        "github": "jrieke",
+        "displayName": "jrieke"
+    },
+    "links": {
+        "github": "https://github.com/jrieke/streamlit-pills",
+        "pypi": "streamlit-pills",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jrieke/streamlit-pills/raw/main/images/demo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-pills"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

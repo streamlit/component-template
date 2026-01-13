@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Folium",
+    "author": {
+        "github": "randyzwitch",
+        "displayName": "randyzwitch"
+    },
+    "links": {
+        "github": "https://github.com/randyzwitch/streamlit-folium",
+        "pypi": "streamlit-folium",
+        "demo": "https://share.streamlit.io/randyzwitch/streamlit-folium/examples/streamlit_app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/randyzwitch/streamlit-folium/master/tests/visual_baseline/test_basic/first_test/baseline.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-folium"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}

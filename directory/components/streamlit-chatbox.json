@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Chatbox",
+    "author": {
+        "github": "liunux4odoo",
+        "displayName": "liunux4odoo"
+    },
+    "links": {
+        "github": "https://github.com/liunux4odoo/streamlit-chatbox",
+        "pypi": "streamlit-chatbox",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/liunux4odoo/streamlit-chatbox/raw/master/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-chatbox"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "LLMs"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Star Rating",
+    "author": {
+        "github": "flucas96",
+        "displayName": "flucas96"
+    },
+    "links": {
+        "github": "https://github.com/flucas96/streamlit_star_rating",
+        "pypi": "st-star-rating",
+        "demo": "https://st-star-rating-component.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-star-rating"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

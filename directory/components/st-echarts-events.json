@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Echarts Events",
+    "author": {
+        "github": "brightxml",
+        "displayName": "brightxml"
+    },
+    "links": {
+        "github": "https://github.com/brightxml/st_echarts_events",
+        "pypi": "st-echarts-events",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-echarts-events"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

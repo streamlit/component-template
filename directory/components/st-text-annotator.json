@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Text Annotator",
+    "author": {
+        "github": "rmarquet21",
+        "displayName": "rmarquet21"
+    },
+    "links": {
+        "github": "https://github.com/rmarquet21/st-text-annotator",
+        "pypi": "st-text-annotator",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/rmarquet21/streamlit-annotation-tools/raw/master/docs/highlight_tool.gif"
+    },
+    "install": {
+        "pip": "pip install st-text-annotator"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}

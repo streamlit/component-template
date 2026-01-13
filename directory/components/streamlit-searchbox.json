@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Searchbox",
+    "author": {
+        "github": "m-wrzr",
+        "displayName": "m-wrzr"
+    },
+    "links": {
+        "github": "https://github.com/m-wrzr/streamlit-searchbox",
+        "pypi": "streamlit-searchbox",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/m-wrzr/streamlit-searchbox/raw/main/assets/example.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-searchbox"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

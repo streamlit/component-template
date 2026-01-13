@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Letsplot",
+    "author": {
+        "github": "randyzwitch",
+        "displayName": "randyzwitch"
+    },
+    "links": {
+        "github": "https://github.com/randyzwitch/streamlit-letsplot",
+        "pypi": "streamlit-letsplot",
+        "demo": "https://share.streamlit.io/randyzwitch/streamlit-letsplot/examples/streamlit_app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/randyzwitch/streamlit-letsplot/raw/master/_static/simple_example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-letsplot"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

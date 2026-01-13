@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "title": "Firstlanguage",
+  "author": {
+    "github": "FirstLanguage",
+    "displayName": "FirstLanguage"
+  },
+  "links": {
+    "github": "https://github.com/FirstLanguage/streamlit-firstlanguage",
+    "pypi": "streamlit-firstlanguage",
+    "demo": "https://share.streamlit.io/firstlanguage/streamlit-firstlanguage/main/streamlit_firstlanguage/examples/firstlanguage_app.py",
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-firstlanguage"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Text",
+    "Integrations"
+  ]
+}

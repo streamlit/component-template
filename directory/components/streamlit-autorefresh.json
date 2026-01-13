@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Autorefresh",
+    "author": {
+        "github": "kmcgrady",
+        "displayName": "kmcgrady"
+    },
+    "links": {
+        "github": "https://github.com/kmcgrady/streamlit-autorefresh",
+        "pypi": "streamlit-autorefresh",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-autorefresh"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

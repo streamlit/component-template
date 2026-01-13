@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Datalist",
+    "author": {
+        "github": "RobertoFN",
+        "displayName": "RobertoFN"
+    },
+    "links": {
+        "github": "https://github.com/RobertoFN/streamlit-datalist",
+        "pypi": "streamlit-datalist",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/108201791/200101163-b91ed217-d60a-4695-a5e1-a198cf2c857c.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-datalist"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

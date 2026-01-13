@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Vertical Slider",
+    "author": {
+        "github": "sqlinsights",
+        "displayName": "sqlinsights"
+    },
+    "links": {
+        "github": "https://github.com/sqlinsights/streamlit-vertical-slider",
+        "pypi": "streamlit-vertical-slider",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/light.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-vertical-slider"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

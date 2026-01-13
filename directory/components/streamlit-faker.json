@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Faker",
+    "author": {
+        "github": "arnaudmiribel",
+        "displayName": "arnaudmiribel"
+    },
+    "links": {
+        "github": "https://github.com/arnaudmiribel/streamlit-faker",
+        "pypi": "streamlit-faker",
+        "demo": "https://fakker.streamlitapp.com",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/7164864/194157363-f8078096-b5e4-40dd-acdf-4d5bedc5585b.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-faker"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

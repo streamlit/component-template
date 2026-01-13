@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Toggle Switch",
+    "author": {
+        "github": "sqlinsights",
+        "displayName": "sqlinsights"
+    },
+    "links": {
+        "github": "https://github.com/sqlinsights/streamlit-toggle-switch",
+        "pypi": "streamlit-toggle-switch",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/sqlinsights/streamlit-toggle-switch/raw/main/sample.gif?raw=true"
+    },
+    "install": {
+        "pip": "pip install streamlit-toggle-switch"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

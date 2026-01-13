@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Dynamodb Connection",
+    "author": {
+        "github": "mrtj",
+        "displayName": "mrtj"
+    },
+    "links": {
+        "github": "https://github.com/mrtj/st-dynamodb-connection",
+        "pypi": "st-dynamodb-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/mrtj/st-dynamodb-connection/raw/main/docs/pandas_api.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install st-dynamodb-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "File Browser",
+    "author": {
+        "github": "y805939188",
+        "displayName": "y805939188"
+    },
+    "links": {
+        "github": "https://github.com/y805939188/streamlit-file-browser",
+        "pypi": "streamlit-file-browser",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/pragmatic-streamlit/streamlit-file-browser/raw/main/img/20230627-164346.jpeg"
+    },
+    "install": {
+        "pip": "pip install streamlit-file-browser"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

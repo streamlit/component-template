@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Audio Plot",
+    "author": {
+        "github": "philtgun",
+        "displayName": "philtgun"
+    },
+    "links": {
+        "github": "https://github.com/philtgun/streamlit-audio-plot",
+        "pypi": "streamlit-audio-plot",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-audio-plot"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Audio"
+    ]
+}

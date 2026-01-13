@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Login Form",
+    "author": {
+        "github": "SiddhantSadangi",
+        "displayName": "SiddhantSadangi"
+    },
+    "links": {
+        "github": "https://github.com/SiddhantSadangi/st_login_form",
+        "pypi": "st-login-form",
+        "demo": "https://st-lgn-form.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/SiddhantSadangi/st_login_form/raw/main/assets/screenshot.png"
+    },
+    "install": {
+        "pip": "pip install st-login-form"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

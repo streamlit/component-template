@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Audio Recorder",
+    "author": {
+        "github": "Joooohan",
+        "displayName": "Joooohan"
+    },
+    "links": {
+        "github": "https://github.com/Joooohan/audio-recorder-streamlit",
+        "pypi": "audio-recorder-streamlit",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/Joooohan/audio-recorder-streamlit/main/img/recorder.png"
+    },
+    "install": {
+        "pip": "pip install audio-recorder-streamlit"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Audio"
+    ]
+}

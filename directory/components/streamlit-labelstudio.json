@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "title": "Labelstudio",
+    "author": {
+        "github": "deneland",
+        "displayName": "deneland"
+    },
+    "links": {
+        "github": "https://github.com/deneland/streamlit-labelstudio",
+        "pypi": "streamlit-labelstudio",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-labelstudio"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations",
+        "Text",
+        "Images & video"
+    ]
+}

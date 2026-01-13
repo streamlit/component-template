@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Ws Localstorage",
+    "author": {
+        "github": "gagangoku",
+        "displayName": "gagangoku"
+    },
+    "links": {
+        "github": "https://github.com/gagangoku/streamlit-ws-localstorage",
+        "pypi": "streamlit-ws-localstorage",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-ws-localstorage"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

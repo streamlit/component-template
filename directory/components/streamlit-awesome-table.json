@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Awesome Table",
+    "author": {
+        "github": "caiodearaujo",
+        "displayName": "caiodearaujo"
+    },
+    "links": {
+        "github": "https://github.com/caiodearaujo/streamlit-awesome-table",
+        "pypi": "streamlit-awesome-table",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/caiodearaujo/streamlit-awesome-table/raw/main/samples/simple_table/awesome-table-simple.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-awesome-table"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Dataframes"
+    ]
+}

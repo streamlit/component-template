@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Keycloak",
+    "author": {
+        "github": "bleumink",
+        "displayName": "bleumink"
+    },
+    "links": {
+        "github": "https://github.com/bleumink/streamlit-keycloak",
+        "pypi": "streamlit-keycloak",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/bleumink/streamlit-keycloak/raw/master/example.gif?raw=true"
+    },
+    "install": {
+        "pip": "pip install streamlit-keycloak"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Modal",
+    "author": {
+        "github": "teamtv",
+        "displayName": "teamtv"
+    },
+    "links": {
+        "github": "https://github.com/teamtv/streamlit_modal",
+        "pypi": "streamlit-modal",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-modal"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

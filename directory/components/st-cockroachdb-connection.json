@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "CockroachDB Connection",
+    "author": {
+        "github": "putuwaw",
+        "displayName": "putuwaw"
+    },
+    "links": {
+        "github": "https://github.com/putuwaw/st-cockroachdb-connection",
+        "pypi": "st-cockroachdb-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://repository-images.githubusercontent.com/670126131/afb8a269-9835-4c5e-b15f-ab954ff455de"
+    },
+    "install": {
+        "pip": "pip install st-cockroachdb-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

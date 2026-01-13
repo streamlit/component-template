@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Antd Components",
+  "author": {
+    "github": "nicedouble",
+    "displayName": "nicedouble"
+  },
+  "links": {
+    "github": "https://github.com/nicedouble/StreamlitAntdComponents",
+    "pypi": "streamlit-antd-components",
+    "demo": "https://nicedouble-streamlitantdcomponentsdemo-app-middmy.streamlit.app/",
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-antd-components"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Widgets"
+  ]
+}

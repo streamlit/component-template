@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pretty Notification Box",
+    "author": {
+        "github": "Socvest",
+        "displayName": "Socvest"
+    },
+    "links": {
+        "github": "https://github.com/Socvest/streamlit_pretty_notification_box",
+        "pypi": "streamlit-pretty-notification-box",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Socvest/streamlit_pretty_notification_box/raw/main/img/pretty.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-pretty-notification-box"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

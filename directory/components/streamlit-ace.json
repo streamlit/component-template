@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "title": "Ace",
+  "author": {
+    "github": "okld",
+    "displayName": "okld"
+  },
+  "links": {
+    "github": "https://github.com/okld/streamlit-ace",
+    "pypi": "streamlit-ace",
+    "demo": "https://share.streamlit.io/okld/streamlit-gallery/main?p=ace-editor",
+    "docs": null
+  },
+  "media": {
+    "image": "https://raw.githubusercontent.com/okld/streamlit-ace/main/preview.png"
+  },
+  "install": {
+    "pip": "pip install streamlit-ace"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Text",
+    "Code editors"
+  ]
+}
+
+

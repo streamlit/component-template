@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Click Detector",
+    "author": {
+        "github": "vivien000",
+        "displayName": "vivien000"
+    },
+    "links": {
+        "github": "https://github.com/vivien000/st-click-detector",
+        "pypi": "st-click-detector",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/vivien000/st-click-detector/raw/master/screenshot.gif"
+    },
+    "install": {
+        "pip": "pip install st-click-detector"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets",
+        "Images & video"
+    ]
+}

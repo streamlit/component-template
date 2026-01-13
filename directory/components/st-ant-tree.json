@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Ant Tree",
+    "author": {
+        "github": "flucas96",
+        "displayName": "flucas96"
+    },
+    "links": {
+        "github": "https://github.com/flucas96/st_ant_tree",
+        "pypi": "st-ant-tree",
+        "demo": "https://flucas96-streamlit-tree-select-example-app-s0vkjx.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-ant-tree"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

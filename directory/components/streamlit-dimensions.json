@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Dimensions",
+    "author": {
+        "github": "avsolatorio",
+        "displayName": "avsolatorio"
+    },
+    "links": {
+        "github": "https://github.com/avsolatorio/streamlit-dimensions",
+        "pypi": "streamlit-dimensions",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/avsolatorio/streamlit-dimensions/raw/main/img/demo-app.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-dimensions"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools",
+        "Widgets"
+    ]
+}

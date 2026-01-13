@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Elements",
+    "author": {
+        "github": "okld",
+        "displayName": "okld"
+    },
+    "links": {
+        "github": "https://github.com/okld/streamlit-elements",
+        "pypi": "streamlit-elements",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/okld/streamlit-elements/raw/main/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-elements"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

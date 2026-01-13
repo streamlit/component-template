@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Inspector",
+    "author": {
+        "github": "jrieke",
+        "displayName": "jrieke"
+    },
+    "links": {
+        "github": "https://github.com/jrieke/streamlit-inspector",
+        "pypi": "streamlit-inspector",
+        "demo": "https://share.streamlit.io/jrieke/streamlit-inspector/main",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jrieke/streamlit-inspector/raw/main/images/demo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-inspector"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

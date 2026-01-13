@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pages",
+    "author": {
+        "github": "blackary",
+        "displayName": "blackary"
+    },
+    "links": {
+        "github": "https://github.com/blackary/st_pages",
+        "pypi": "st-pages",
+        "demo": "https://st-pages-sections.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/4040678/204576356-a436713f-93e4-41e3-82b9-6efeff744355.png"
+    },
+    "install": {
+        "pip": "pip install st-pages"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

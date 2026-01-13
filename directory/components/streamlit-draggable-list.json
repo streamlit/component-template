@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Draggable List",
+    "author": {
+        "github": "tk42",
+        "displayName": "tk42"
+    },
+    "links": {
+        "github": "https://github.com/tk42/streamlit-draggable-list",
+        "pypi": "streamlit-draggable-list",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/tk42/streamlit-draggable-list/raw/main/draggable_list.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-draggable-list"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

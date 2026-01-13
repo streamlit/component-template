@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Tags",
+    "author": {
+        "github": "gagan3012",
+        "displayName": "gagan3012"
+    },
+    "links": {
+        "github": "https://github.com/gagan3012/streamlit-tags",
+        "pypi": "streamlit-tags",
+        "demo": "https://share.streamlit.io/gagan3012/streamlit-tags/examples/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/49101362/114277814-83cb1200-9a35-11eb-8761-9d8bb81ffadc.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-tags"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

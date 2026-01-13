@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Yellowbrick",
+    "author": {
+        "github": "snehankekre",
+        "displayName": "snehankekre"
+    },
+    "links": {
+        "github": "https://github.com/snehankekre/streamlit-yellowbrick",
+        "pypi": "streamlit-yellowbrick",
+        "demo": "https://share.streamlit.io/snehankekre/streamlit-yellowbrick/examples/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/snehankekre/streamlit-yellowbrick/raw/master/_static/example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-yellowbrick"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Image Annotation",
+    "author": {
+        "github": "hirune924",
+        "displayName": "hirune924"
+    },
+    "links": {
+        "github": "https://github.com/hirune924/Streamlit-Image-Annotation",
+        "pypi": "streamlit-image-annotation",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/hirune924/Streamlit-Image-Annotation/raw/master/image/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-image-annotation"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

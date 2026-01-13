@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Btn Select",
+    "author": {
+        "github": "0phoff",
+        "displayName": "0phoff"
+    },
+    "links": {
+        "github": "https://github.com/0phoff/st-btn-select",
+        "pypi": "st-btn-select",
+        "demo": "https://share.streamlit.io/0phoff/st-btn-select/demo/test.py",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-btn-select"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Image Coordinates",
+    "author": {
+        "github": "blackary",
+        "displayName": "blackary"
+    },
+    "links": {
+        "github": "https://github.com/blackary/streamlit-image-coordinates",
+        "pypi": "streamlit-image-coordinates",
+        "demo": "https://image-coordinates.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-image-coordinates"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

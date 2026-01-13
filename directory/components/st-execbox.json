@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Execbox",
+    "author": {
+        "github": "tvst",
+        "displayName": "tvst"
+    },
+    "links": {
+        "github": "https://github.com/tvst/st-execbox",
+        "pypi": "st-execbox",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-execbox"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Code editors"
+    ]
+}

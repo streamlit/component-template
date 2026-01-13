@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Clickable Images",
+    "author": {
+        "github": "vivien000",
+        "displayName": "vivien000"
+    },
+    "links": {
+        "github": "https://github.com/vivien000/st-clickable-images",
+        "pypi": "st-clickable-images",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/vivien000/st-clickable-images/raw/master/screenshot.gif"
+    },
+    "install": {
+        "pip": "pip install st-clickable-images"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

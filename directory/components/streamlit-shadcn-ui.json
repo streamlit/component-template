@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Shadcn UI",
+    "author": {
+        "github": "ObservedObserver",
+        "displayName": "ObservedObserver"
+    },
+    "links": {
+        "github": "https://github.com/ObservedObserver/streamlit-shadcn-ui",
+        "pypi": "streamlit-shadcn-ui",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-shadcn-ui"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

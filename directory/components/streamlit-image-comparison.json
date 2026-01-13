@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Image Comparison",
+    "author": {
+        "github": "fcakyon",
+        "displayName": "fcakyon"
+    },
+    "links": {
+        "github": "https://github.com/fcakyon/streamlit-image-comparison",
+        "pypi": "streamlit-image-comparison",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/34196005/143328163-2976a3b6-91d0-47c5-b872-c92dd6ea404e.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-image-comparison"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

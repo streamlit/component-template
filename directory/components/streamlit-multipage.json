@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Multipage",
+    "author": {
+        "github": "ELC",
+        "displayName": "ELC"
+    },
+    "links": {
+        "github": "https://github.com/ELC/streamlit-multipage",
+        "pypi": "streamlit-multipage",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-multipage"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Auth0 Avs",
+    "author": {
+        "github": "avsolatorio",
+        "displayName": "avsolatorio"
+    },
+    "links": {
+        "github": "https://github.com/avsolatorio/streamlit-auth0-avs",
+        "pypi": "streamlit-auth0-avs",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/avsolatorio/streamlit-auth0-avs/raw/main/demo.gif?raw=true"
+    },
+    "install": {
+        "pip": "pip install streamlit-auth0-avs"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

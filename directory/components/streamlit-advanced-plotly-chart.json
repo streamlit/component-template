@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Advanced Plotly Chart",
+    "author": {
+        "github": "fabianandresgrob",
+        "displayName": "fabianandresgrob"
+    },
+    "links": {
+        "github": "https://github.com/fabianandresgrob/streamlit-advanced-plotly-chart",
+        "pypi": "streamlit-advanced-plotly-chart",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-advanced-plotly-chart"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

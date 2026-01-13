@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Card Component",
+    "author": {
+        "github": "jamescalam",
+        "displayName": "jamescalam"
+    },
+    "links": {
+        "github": "https://github.com/jamescalam/st-card-component",
+        "pypi": "st-card-component",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-card-component"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

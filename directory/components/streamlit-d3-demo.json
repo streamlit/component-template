@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "D3 Demo",
+    "author": {
+        "github": "andfanilo",
+        "displayName": "andfanilo"
+    },
+    "links": {
+        "github": "https://github.com/andfanilo/streamlit-d3-demo",
+        "pypi": "streamlit-d3-demo",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/andfanilo/streamlit-d3-demo/raw/master/images/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-d3-demo"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

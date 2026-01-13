@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Cytoscapejs",
+    "author": {
+        "github": "andfanilo",
+        "displayName": "andfanilo"
+    },
+    "links": {
+        "github": "https://github.com/andfanilo/streamlit-cytoscapejs",
+        "pypi": "streamlit-cytoscapejs",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-cytoscapejs"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

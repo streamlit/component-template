@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Camera Input Live",
+    "author": {
+        "github": "blackary",
+        "displayName": "blackary"
+    },
+    "links": {
+        "github": "https://github.com/blackary/streamlit-camera-input-live",
+        "pypi": "streamlit-camera-input-live",
+        "demo": "https://camera.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-camera-input-live"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

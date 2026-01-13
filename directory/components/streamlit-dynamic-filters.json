@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Dynamic Filters",
+  "author": {
+    "github": "arsentievalex",
+    "displayName": "arsentievalex"
+  },
+  "links": {
+    "github": "https://github.com/arsentievalex/streamlit-dynamic-filters",
+    "pypi": "streamlit-dynamic-filters",
+    "demo": "https://dynamic-filters-demo.streamlit.app/",
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-dynamic-filters"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Widgets"
+  ]
+}

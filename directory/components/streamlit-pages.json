@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pages",
+    "author": {
+        "github": "bvenkatesh-ai",
+        "displayName": "bvenkatesh-ai"
+    },
+    "links": {
+        "github": "https://github.com/bvenkatesh-ai/streamlit_pages",
+        "pypi": "streamlit-pages",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/bvenkatesh-ai/streamlit_pages/raw/main/show.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-pages"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

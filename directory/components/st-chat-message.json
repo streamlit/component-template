@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Chat Message",
+    "author": {
+        "github": "undo76",
+        "displayName": "undo76"
+    },
+    "links": {
+        "github": "https://github.com/undo76/st-chat-message",
+        "pypi": "st-chat-message",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/undo76/st-chat-message/raw/master/docs/img.png"
+    },
+    "install": {
+        "pip": "pip install st-chat-message"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "LLMs"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Player",
+    "author": {
+        "github": "okld",
+        "displayName": "okld"
+    },
+    "links": {
+        "github": "https://github.com/okld/streamlit-player",
+        "pypi": "streamlit-player",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/okld/streamlit-player/main/preview.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-player"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

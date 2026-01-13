@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Launchpad",
+    "author": {
+        "github": "ideonate",
+        "displayName": "ideonate"
+    },
+    "links": {
+        "github": "https://github.com/ideonate/streamlit-launchpad",
+        "pypi": "streamlit-launchpad",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ideonate/streamlit-launchpad/raw/master/screenshots/Launchpad.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-launchpad"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}

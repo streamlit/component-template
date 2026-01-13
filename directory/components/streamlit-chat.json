@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Chat",
+    "author": {
+        "github": "AI-Yash",
+        "displayName": "AI-Yash"
+    },
+    "links": {
+        "github": "https://github.com/AI-Yash/st-chat",
+        "pypi": "streamlit-chat",
+        "demo": "https://share.streamlit.io/ai-yash/st-chat/main/examples/chatbot.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/90775147/210397700-5ab9e00d-a61b-4bc9-a34a-b5bd4454b084.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-chat"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text",
+        "LLMs"
+    ]
+}

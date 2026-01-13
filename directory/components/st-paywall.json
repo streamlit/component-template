@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Paywall",
+    "author": {
+        "github": "tylerjrichards",
+        "displayName": "tylerjrichards"
+    },
+    "links": {
+        "github": "https://github.com/tylerjrichards/st-paywall",
+        "pypi": "st-paywall",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-paywall"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

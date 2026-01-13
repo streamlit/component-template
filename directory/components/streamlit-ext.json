@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Ext",
+    "author": {
+        "github": "PaleNeutron",
+        "displayName": "PaleNeutron"
+    },
+    "links": {
+        "github": "https://github.com/PaleNeutron/streamlit-ext",
+        "pypi": "streamlit-ext",
+        "demo": "https://paleneutron-streamlit-ext-testse2etest-sync-widget-orfpyh.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/PaleNeutron/streamlit-ext/master/docs/examples.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-ext"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

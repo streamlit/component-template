@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Google Sheets Connection",
+    "author": {
+        "github": "streamlit",
+        "displayName": "streamlit"
+    },
+    "links": {
+        "github": "https://github.com/streamlit/gsheets-connection",
+        "pypi": "st-gsheets-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-gsheets-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

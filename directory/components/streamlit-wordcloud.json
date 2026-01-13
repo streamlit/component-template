@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Wordcloud",
+    "author": {
+        "github": "rezaho",
+        "displayName": "rezaho"
+    },
+    "links": {
+        "github": "https://github.com/rezaho/streamlit-wordcloud",
+        "pypi": "streamlit-wordcloud",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/rezaho/streamlit-wordcloud/raw/master/img/wordcloud-example.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-wordcloud"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}

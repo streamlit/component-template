@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Airtable Connection",
+    "author": {
+        "github": "marks",
+        "displayName": "marks"
+    },
+    "links": {
+        "github": "https://github.com/marks/streamlit-airtable-connection",
+        "pypi": "st-airtable-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/carolinefrasca/misc_component_images/blob/main/airtable.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install st-airtable-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

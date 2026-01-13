@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "CoinMarketCap Connection",
+    "author": {
+        "github": "mchl-schrdng",
+        "displayName": "mchl-schrdng"
+    },
+    "links": {
+        "github": "https://github.com/mchl-schrdng/st_coinmarketcap_connection",
+        "pypi": "coinmarketcap-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/mchl-schrdng/st_coinmarketcap_connection/blob/main/img/app.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install coinmarketcap-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

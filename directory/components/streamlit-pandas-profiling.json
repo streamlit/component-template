@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Pandas Profiling",
+    "author": {
+        "github": "okld",
+        "displayName": "okld"
+    },
+    "links": {
+        "github": "https://github.com/okld/streamlit-pandas-profiling",
+        "pypi": "streamlit-pandas-profiling",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/okld/streamlit-pandas-profiling/main/preview.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-pandas-profiling"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Dataframes",
+        "Developer tools"
+    ]
+}

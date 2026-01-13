@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Audiorecorder",
+    "author": {
+        "github": "theevann",
+        "displayName": "theevann"
+    },
+    "links": {
+        "github": "https://github.com/theevann/streamlit-audiorecorder",
+        "pypi": "streamlit-audiorecorder",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-audiorecorder"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Audio"
+    ]
+}

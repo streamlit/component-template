@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Back Camera Input",
+    "author": {
+        "github": "phamxtien",
+        "displayName": "phamxtien"
+    },
+    "links": {
+        "github": "https://github.com/phamxtien/streamlit_back_camera_input",
+        "pypi": "streamlit-back-camera-input",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/phamxtien/streamlit_back_camera_input/raw/main/image.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-back-camera-input"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

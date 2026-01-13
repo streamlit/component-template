@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Supabase Connection",
+    "author": {
+        "github": "SiddhantSadangi",
+        "displayName": "SiddhantSadangi"
+    },
+    "links": {
+        "github": "https://github.com/SiddhantSadangi/st_supabase_connection",
+        "pypi": "st-supabase-connection",
+        "demo": "https://st-supabase-connection.streamlit.app/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/carolinefrasca/misc_component_images/blob/main/supabase.jpeg?raw=true"
+    },
+    "install": {
+        "pip": "pip install st-supabase-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

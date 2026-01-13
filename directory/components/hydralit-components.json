@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Hydralit Components",
+    "author": {
+        "github": "TangleSpace",
+        "displayName": "TangleSpace"
+    },
+    "links": {
+        "github": "https://github.com/TangleSpace/hydralit_components",
+        "pypi": "hydralit-components",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/TangleSpace/hydralit_components/raw/main/resources/info_card.PNG?raw=true"
+    },
+    "install": {
+        "pip": "pip install hydralit-components"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation"
+    ]
+}
