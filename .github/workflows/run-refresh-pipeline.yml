@@ -1,0 +1,192 @@
+name: Run Refresh Pipeline
+
+on:
+  schedule:
+    # GitHub cron is evaluated in UTC. 03:00 UTC Monday == Sunday evening PT.
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      no_images:
+        description: Pass --no-images to the pipeline
+        type: boolean
+        required: false
+        default: false
+      allow_enrich_failures:
+        description: Pass --allow-enrich-failures to the pipeline
+        type: boolean
+        required: false
+        default: false
+      extra_args:
+        description: Extra args appended to run_pipeline.py (space-separated)
+        type: string
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-pipeline-refresh
+  cancel-in-progress: true
+
+jobs:
+  run-pipeline-and-open-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: requirements.txt
+
+      - name: Create venv and install deps (uv)
+        run: |
+          set -euo pipefail
+          uv venv .venv
+          uv pip install -r requirements.txt
+
+      - name: Run pipeline
+        id: pipeline
+        env:
+          # The pipeline scripts fall back to GITHUB_TOKEN for GitHub enrichment auth.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NO_IMAGES: ${{ github.event.inputs.no_images || 'false' }}
+          ALLOW_ENRICH_FAILURES: ${{ github.event.inputs.allow_enrich_failures || 'false' }}
+          EXTRA_ARGS: ${{ github.event.inputs.extra_args || '' }}
+        run: |
+          set -euo pipefail
+
+          ARGS=()
+          if [[ "${NO_IMAGES}" == "true" ]]; then ARGS+=("--no-images"); fi
+          if [[ "${ALLOW_ENRICH_FAILURES}" == "true" ]]; then ARGS+=("--allow-enrich-failures"); fi
+          if [[ -n "${EXTRA_ARGS}" ]]; then
+            # EXTRA_ARGS is documented as space-separated.
+            read -r -a EXTRA_ARGS_ARRAY <<< "${EXTRA_ARGS}"
+            ARGS+=("${EXTRA_ARGS_ARRAY[@]}")
+          fi
+          echo "pipeline_args=${ARGS[*]}" >> "${GITHUB_OUTPUT}"
+
+          .venv/bin/python ./directory/scripts/run_pipeline.py --enrich-progress-every 10 "${ARGS[@]}"
+
+      - name: Detect changes
+        id: changes
+        run: |
+          set -euo pipefail
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "has_changes=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "has_changes=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+          DATE_PT="$(TZ=America/Los_Angeles date +%Y-%m-%d)"
+          BRANCH="automation/weekly-pipeline-refresh-${DATE_PT}"
+          echo "date_pt=${DATE_PT}" >> "${GITHUB_OUTPUT}"
+          echo "branch=${BRANCH}" >> "${GITHUB_OUTPUT}"
+
+      - name: Create branch and commit
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          BRANCH: ${{ steps.changes.outputs.branch }}
+        run: |
+          set -euo pipefail
+          git config user.name "component-template-bot"
+          git config user.email "component-template-bot@users.noreply.github.com"
+
+          git checkout -B "${BRANCH}"
+          git add -A directory/
+          git commit -m "chore: weekly pipeline refresh"
+          git push --force-with-lease origin "${BRANCH}"
+
+      - name: Create or update PR
+        if: steps.changes.outputs.has_changes == 'true'
+        id: pr
+        uses: actions/github-script@v8
+        env:
+          BRANCH: ${{ steps.changes.outputs.branch }}
+          DATE_PT: ${{ steps.changes.outputs.date_pt }}
+          PIPELINE_ARGS: ${{ steps.pipeline.outputs.pipeline_args }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const branch = process.env.BRANCH;
+            const datePt = process.env.DATE_PT;
+            const pipelineArgs = (process.env.PIPELINE_ARGS || "").trim();
+
+            const { data: repoInfo } = await github.rest.repos.get({ owner, repo });
+            const base = repoInfo.default_branch;
+            const head = `${owner}:${branch}`;
+
+            const title = `chore: weekly pipeline refresh (${datePt})`;
+            const bodyLines = [
+              "Automated weekly refresh of the component gallery pipeline outputs.",
+              "",
+              `Command: \`.venv/bin/python ./directory/scripts/run_pipeline.py --enrich-progress-every 10${pipelineArgs ? " " + pipelineArgs : ""}\``,
+              "",
+              "This PR was created by a scheduled GitHub Actions workflow.",
+            ];
+            const body = bodyLines.join("\n");
+
+            const existing = await github.rest.pulls.list({
+              owner,
+              repo,
+              head,
+              state: "open",
+            });
+
+            let pr;
+            if (existing.data.length > 0) {
+              pr = existing.data[0];
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: pr.number,
+                title,
+                body,
+              });
+            } else {
+              const created = await github.rest.pulls.create({
+                owner,
+                repo,
+                title,
+                head: branch,
+                base,
+                body,
+                draft: false,
+              });
+              pr = created.data;
+            }
+
+            core.setOutput("pr_url", pr.html_url);
+            core.setOutput("pr_number", String(pr.number));
+
+      - name: Summary
+        env:
+          HAS_CHANGES: ${{ steps.changes.outputs.has_changes }}
+          BRANCH: ${{ steps.changes.outputs.branch }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
+        run: |
+          {
+            echo "## Weekly pipeline refresh";
+            echo "- has changes: ${HAS_CHANGES}";
+            echo "- branch: ${BRANCH}";
+            if [ "${HAS_CHANGES}" = "true" ]; then
+              echo "- PR: ${PR_URL:-n/a}";
+            else
+              echo "- PR: n/a (no changes detected)";
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
