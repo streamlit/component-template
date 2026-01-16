@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "halfLifeDays": 90.0,
+  "weights": {
+    "stars": 1.0,
+    "recency": 2.0,
+    "contributors": 0.5,
+    "downloads": 0.35
+  }
+}
