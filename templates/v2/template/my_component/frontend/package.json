@@ -19,7 +19,7 @@
   ],
   "prettier": {},
   "dependencies": {
-    "@streamlit/component-v2-lib": "^0.1.0",
+    "@streamlit/component-v2-lib": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

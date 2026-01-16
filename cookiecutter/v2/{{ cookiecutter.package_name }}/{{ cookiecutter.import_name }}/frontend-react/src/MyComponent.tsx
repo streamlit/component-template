@@ -1,4 +1,4 @@
-import { ComponentArgs } from "@streamlit/component-v2-lib";
+import { FrontendRendererArgs } from "@streamlit/component-v2-lib";
 import {
   CSSProperties,
   FC,
@@ -18,7 +18,7 @@ export type MyComponentDataShape = {
 };
 
 export type MyComponentProps = Pick<
-  ComponentArgs<MyComponentStateShape, MyComponentDataShape>,
+  FrontendRendererArgs<MyComponentStateShape, MyComponentDataShape>,
   "setStateValue"
 > &
   MyComponentDataShape;
