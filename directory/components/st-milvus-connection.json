@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Milvus Connection",
+    "author": {
+        "github": "bsenst",
+        "displayName": "bsenst"
+    },
+    "links": {
+        "github": "https://github.com/bsenst/st-milvus-connection",
+        "pypi": "st-milvus-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/carolinefrasca/misc_component_images/blob/main/milvus.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install st-milvus-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

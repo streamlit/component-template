@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Dynamic Tabs",
+    "author": {
+        "github": "Socvest",
+        "displayName": "Socvest"
+    },
+    "links": {
+        "github": "https://github.com/Socvest/streamlit-dynamic-tabs",
+        "pypi": "streamlit-dynamic-tabs",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Socvest/streamlit-dynamic-tabs/raw/main/videos/General-demonstration-pt1.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-dynamic-tabs"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

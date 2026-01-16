@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Terran Timeline",
+    "author": {
+        "github": "pento-group",
+        "displayName": "pento-group"
+    },
+    "links": {
+        "github": "https://github.com/pento-group/streamlit-terran-timeline",
+        "pypi": "streamlit-terran-timeline",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/pento-group/streamlit-terran-timeline/master/resources/animation.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-terran-timeline"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

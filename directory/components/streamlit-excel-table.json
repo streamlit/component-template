@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Excel Table",
+    "author": {
+        "github": "tk42",
+        "displayName": "tk42"
+    },
+    "links": {
+        "github": "https://github.com/tk42/streamlit-excel-table",
+        "pypi": "streamlit-excel-table",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/tk42/streamlit-excel-table/raw/main/sample.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-excel-table"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Dataframes"
+    ]
+}

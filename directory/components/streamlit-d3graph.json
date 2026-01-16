@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "D3Graph",
+    "author": {
+        "github": "snehankekre",
+        "displayName": "snehankekre"
+    },
+    "links": {
+        "github": "https://github.com/snehankekre/streamlit-d3graph",
+        "pypi": "streamlit-d3graph",
+        "demo": "https://share.streamlit.io/snehankekre/streamlit-d3graph/main/examples/example.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/snehankekre/streamlit-d3graph/raw/main/images/demo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-d3graph"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

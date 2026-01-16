@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "title": "Jina",
+    "author": {
+        "github": "jina-ai",
+        "displayName": "jina-ai"
+    },
+    "links": {
+        "github": "https://github.com/jina-ai/streamlit-jina",
+        "pypi": "streamlit-jina",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jina-ai/streamlit-jina/raw/main/.github/images/text.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-jina"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations",
+        "Text"
+    ]
+}

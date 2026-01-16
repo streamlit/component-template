@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Mongo Connection",
+    "author": {
+        "github": "Mortafix",
+        "displayName": "Mortafix"
+    },
+    "links": {
+        "github": "https://github.com/Mortafix/streamlit-mongo",
+        "pypi": "st-mongo-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Mortafix/streamlit-mongo/raw/main/src/media/app.png"
+    },
+    "install": {
+        "pip": "pip install st-mongo-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

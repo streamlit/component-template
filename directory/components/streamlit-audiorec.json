@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Audiorec",
+    "author": {
+        "github": "stefanrmmr",
+        "displayName": "stefanrmmr"
+    },
+    "links": {
+        "github": "https://github.com/stefanrmmr/streamlit-audio-recorder",
+        "pypi": "streamlit-audiorec",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/82606558/168626886-de128ffa-a3fe-422f-a748-395c29fa42f9.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-audiorec"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Audio"
+    ]
+}

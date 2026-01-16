@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Keyup",
+    "author": {
+        "github": "blackary",
+        "displayName": "blackary"
+    },
+    "links": {
+        "github": "https://github.com/blackary/streamlit-keyup",
+        "pypi": "streamlit-keyup",
+        "demo": "https://key-up.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://user-images.githubusercontent.com/4040678/189153486-7ff7641c-1c76-4fa1-b0d5-f6634f8f0e41.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-keyup"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

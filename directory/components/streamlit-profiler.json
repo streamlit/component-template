@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Profiler",
+    "author": {
+        "github": "jrieke",
+        "displayName": "jrieke"
+    },
+    "links": {
+        "github": "https://github.com/jrieke/streamlit-profiler",
+        "pypi": "streamlit-profiler",
+        "demo": "https://share.streamlit.io/jrieke/streamlit-profiler/main/examples/basic.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jrieke/streamlit-profiler/raw/main/images/demo.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-profiler"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

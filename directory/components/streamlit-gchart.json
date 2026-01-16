@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Gchart",
+    "author": {
+        "github": "consultimi",
+        "displayName": "consultimi"
+    },
+    "links": {
+        "github": "https://github.com/consultimi/streamlit-gchart",
+        "pypi": "streamlit-gchart",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-gchart"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

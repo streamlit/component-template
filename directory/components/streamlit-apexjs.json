@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Apexjs",
+    "author": {
+        "github": "drogbadvc",
+        "displayName": "drogbadvc"
+    },
+    "links": {
+        "github": "https://github.com/drogbadvc/streamlit-apexcharts",
+        "pypi": "streamlit-apexjs",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/drogbadvc/streamlit-apexcharts/raw/master/img/demo2.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-apexjs"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

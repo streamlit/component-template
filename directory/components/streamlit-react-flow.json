@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "React Flow",
+    "author": {
+        "github": "rajagurunath",
+        "displayName": "rajagurunath"
+    },
+    "links": {
+        "github": "https://github.com/rajagurunath/streamlit-react-flow",
+        "pypi": "streamlit-react-flow",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/rajagurunath/streamlit-react-flow/raw/main/friends_graph.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-react-flow"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

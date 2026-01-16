@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Quill",
+    "author": {
+        "github": "Ghasel",
+        "displayName": "Ghasel"
+    },
+    "links": {
+        "github": "https://github.com/Ghasel/streamlit-quill",
+        "pypi": "streamlit-quill",
+        "demo": "https://share.streamlit.io/okld/streamlit-gallery/main?p=quill-editor",
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/okld/streamlit-quill/main/preview.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-quill"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Code editors"
+    ]
+}

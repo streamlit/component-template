@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Shap",
+    "author": {
+        "github": "snehankekre",
+        "displayName": "snehankekre"
+    },
+    "links": {
+        "github": "https://github.com/snehankekre/streamlit-shap",
+        "pypi": "streamlit-shap",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/snehankekre/streamlit-shap/raw/main/example.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-shap"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

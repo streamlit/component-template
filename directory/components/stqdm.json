@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Stqdm",
+    "author": {
+        "github": "Wirg",
+        "displayName": "Wirg"
+    },
+    "links": {
+        "github": "https://github.com/Wirg/stqdm",
+        "pypi": "stqdm",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/Wirg/stqdm/main/assets/demo.gif"
+    },
+    "install": {
+        "pip": "pip install stqdm"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

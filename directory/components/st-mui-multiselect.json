@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Mui Multiselect",
+    "author": {
+        "github": "supern8ent",
+        "displayName": "supern8ent"
+    },
+    "links": {
+        "github": "https://github.com/supern8ent/st-mui-multiselect",
+        "pypi": "st-mui-multiselect",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-mui-multiselect"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pagination",
+    "author": {
+        "github": "Socvest",
+        "displayName": "Socvest"
+    },
+    "links": {
+        "github": "https://github.com/Socvest/streamlit-pagination",
+        "pypi": "streamlit-pagination",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Socvest/streamlit-pagination/raw/main/img/pagination.jpg"
+    },
+    "install": {
+        "pip": "pip install streamlit-pagination"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Agraph",
+    "author": {
+        "github": "ChrisChross",
+        "displayName": "ChrisChross"
+    },
+    "links": {
+        "github": "https://github.com/ChrisChross/streamlit-agraph",
+        "pypi": "streamlit-agraph",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ChrisDelClea/streamlit-agraph/raw/master/imgs/marvel_tree.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-agraph"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

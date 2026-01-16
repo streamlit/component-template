@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Speckmol",
+    "author": {
+        "github": "avrabyt",
+        "displayName": "avrabyt"
+    },
+    "links": {
+        "github": "https://github.com/avrabyt/Specklit",
+        "pypi": "st-speckmol",
+        "demo": "https://hellostspeckmol.streamlitapp.com",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/avrabyt/Specklit/raw/main/Resources/SpeckLit_demo.gif"
+    },
+    "install": {
+        "pip": "pip install st-speckmol"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Molecules & genes"
+    ]
+}

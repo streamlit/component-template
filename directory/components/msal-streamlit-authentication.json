@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Msal Authentication",
+    "author": {
+        "github": "mstaal",
+        "displayName": "mstaal"
+    },
+    "links": {
+        "github": "https://github.com/mstaal/msal_streamlit_authentication",
+        "pypi": "msal-streamlit-authentication",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install msal-streamlit-authentication"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

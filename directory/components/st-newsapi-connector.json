@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "NewsAPI Connector",
+    "author": {
+        "github": "dcarpintero",
+        "displayName": "dcarpintero"
+    },
+    "links": {
+        "github": "https://github.com/dcarpintero/st-newsapi-connector",
+        "pypi": "st-newsapi-connector",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/dcarpintero/st-newsapi-connector/raw/main/assets/st-newsapi-connector.png"
+    },
+    "install": {
+        "pip": "pip install st-newsapi-connector"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

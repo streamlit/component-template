@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Bokeh3 Events",
+    "author": {
+        "github": "ChristophNa",
+        "displayName": "ChristophNa"
+    },
+    "links": {
+        "github": "https://github.com/ChristophNa/streamlit-bokeh3-events",
+        "pypi": "streamlit-bokeh3-events",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/ChristophNa/streamlit-bokeh3-events/raw/main/assets/plots.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-bokeh3-events"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

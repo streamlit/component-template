@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Bridge",
+    "author": {
+        "github": "binh-vu",
+        "displayName": "binh-vu"
+    },
+    "links": {
+        "github": "https://github.com/binh-vu/streamlit-bridge",
+        "pypi": "streamlit-bridge",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/binh-vu/streamlit-bridge/raw/master/examples/inline_buttons.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-bridge"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

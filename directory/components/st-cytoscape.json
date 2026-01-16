@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Cytoscape",
+    "author": {
+        "github": "vivien000",
+        "displayName": "vivien000"
+    },
+    "links": {
+        "github": "https://github.com/vivien000/st-cytoscape",
+        "pypi": "st-cytoscape",
+        "demo": "https://share.streamlit.io/vivien0000/causal-simulator/main/app.py",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/vivien000/st-cytoscape/raw/master/screenshot.gif"
+    },
+    "install": {
+        "pip": "pip install st-cytoscape"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

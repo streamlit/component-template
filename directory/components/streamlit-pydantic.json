@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Pydantic",
+    "author": {
+        "github": "lukasmasuch",
+        "displayName": "lukasmasuch"
+    },
+    "links": {
+        "github": "https://github.com/lukasmasuch/streamlit-pydantic",
+        "pypi": "streamlit-pydantic",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/lukasmasuch/streamlit-pydantic/main/docs/images/banner.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-pydantic"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Developer tools"
+    ]
+}

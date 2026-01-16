@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "OpenAI Embeddings Connection",
+    "author": {
+        "github": "gerardrbentley",
+        "displayName": "gerardrbentley"
+    },
+    "links": {
+        "github": "https://github.com/gerardrbentley/st-openai-embeddings-connection",
+        "pypi": "st-openai-embeddings-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-openai-embeddings-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

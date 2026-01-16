@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Cognito Auth",
+    "author": {
+        "github": "pop-srw",
+        "displayName": "pop-srw"
+    },
+    "links": {
+        "github": "https://github.com/pop-srw/streamlit-cognito-auth",
+        "pypi": "streamlit-cognito-auth",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/pop-srw/streamlit-cognito-auth/main/images/login.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-cognito-auth"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Authentication"
+    ]
+}

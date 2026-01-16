@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Text Rating",
+    "author": {
+        "github": "TVS-Motor-Company",
+        "displayName": "TVS-Motor-Company"
+    },
+    "links": {
+        "github": "https://github.com/TVS-Motor-Company/streamlit-text-rating",
+        "pypi": "streamlit-text-rating",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/TVS-Motor-Company/streamlit-text-rating/main/st_text_rater.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-text-rating"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

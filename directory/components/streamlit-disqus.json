@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Disqus",
+    "author": {
+        "github": "okld",
+        "displayName": "okld"
+    },
+    "links": {
+        "github": "https://github.com/okld/streamlit-disqus",
+        "pypi": "streamlit-disqus",
+        "demo": "https://share.streamlit.io/okld/streamlit-gallery/main?p=disqus",
+        "docs": null
+    },
+    "media": {
+        "image": "https://raw.githubusercontent.com/okld/streamlit-disqus/main/preview.png"
+    },
+    "install": {
+        "pip": "pip install streamlit-disqus"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Integrations"
+    ]
+}

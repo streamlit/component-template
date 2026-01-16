@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Vizzu",
+    "author": {
+        "github": "avrabyt",
+        "displayName": "avrabyt"
+    },
+    "links": {
+        "github": "https://github.com/avrabyt/Streamlit-ipyvizzu",
+        "pypi": "st-vizzu",
+        "demo": "https://hellostvizzu.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/avrabyt/Streamlit-ipyvizzu/raw/main/Resources/animation.gif"
+    },
+    "install": {
+        "pip": "pip install st-vizzu"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

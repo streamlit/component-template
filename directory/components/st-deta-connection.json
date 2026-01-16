@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Deta Connection",
+    "author": {
+        "github": "mohitrajsinha",
+        "displayName": "mohitrajsinha"
+    },
+    "links": {
+        "github": "https://github.com/mohitrajsinha/st_deta_connection",
+        "pypi": "st-deta-connection",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/carolinefrasca/misc_component_images/blob/main/deta.png?raw=true"
+    },
+    "install": {
+        "pip": "pip install st-deta-connection"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Connections"
+    ]
+}

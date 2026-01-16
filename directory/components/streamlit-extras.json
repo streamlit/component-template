@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "title": "Extras",
+    "author": {
+        "github": "arnaudmiribel",
+        "displayName": "arnaudmiribel"
+    },
+    "links": {
+        "github": "https://github.com/arnaudmiribel/streamlit-extras",
+        "pypi": "streamlit-extras",
+        "demo": "https://extras.streamlitapp.com",
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-extras"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts",
+        "Text",
+        "Page navigation",
+        "Images & video",
+        "Dataframes",
+        "Developer tools",
+        "Widgets"
+    ]
+}

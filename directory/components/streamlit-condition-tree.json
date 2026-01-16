@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Condition Tree",
+    "author": {
+        "github": "cedricvlt",
+        "displayName": "cedricvlt"
+    },
+    "links": {
+        "github": "https://github.com/cedricvlt/streamlit-condition-tree",
+        "pypi": "streamlit-condition-tree",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/cedricvlt/streamlit-condition-tree/raw/master/preview.jpg"
+    },
+    "install": {
+        "pip": "pip install streamlit-condition-tree"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

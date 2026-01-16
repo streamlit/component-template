@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Image Select",
+    "author": {
+        "github": "jrieke",
+        "displayName": "jrieke"
+    },
+    "links": {
+        "github": "https://github.com/jrieke/streamlit-image-select",
+        "pypi": "streamlit-image-select",
+        "demo": "https://image-select.streamlitapp.com/",
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/jrieke/streamlit-image-select/raw/main/images/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-image-select"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Images & video"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Tree Select",
+    "author": {
+        "github": "Schluca",
+        "displayName": "Schluca"
+    },
+    "links": {
+        "github": "https://github.com/Schluca/streamlit_tree_select",
+        "pypi": "streamlit-tree-select",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Schluca/streamlit_tree_select/raw/main/img/example.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-tree-select"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Widgets"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Vega Lite",
+    "author": {
+        "github": "domoritz",
+        "displayName": "domoritz"
+    },
+    "links": {
+        "github": "https://github.com/domoritz/streamlit-vega-lite",
+        "pypi": "streamlit-vega-lite",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/domoritz/streamlit-vega-lite/raw/master/demo.gif"
+    },
+    "install": {
+        "pip": "pip install streamlit-vega-lite"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Charts"
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "title": "Extra Components",
+    "author": {
+        "github": "Mohamed-512",
+        "displayName": "Mohamed-512"
+    },
+    "links": {
+        "github": "https://github.com/Mohamed-512/Extra-Streamlit-Components",
+        "pypi": "extra-streamlit-components",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/Mohamed-512/Extra-Streamlit-Components/raw/master/Demo_Assets/cookie_manager.gif"
+    },
+    "install": {
+        "pip": "pip install extra-streamlit-components"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Page navigation",
+        "Widgets",
+        "Developer tools"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Mapbox",
+    "author": {
+        "github": "giswqs",
+        "displayName": "giswqs"
+    },
+    "links": {
+        "github": "https://github.com/giswqs/streamlit-mapbox",
+        "pypi": "streamlit-mapbox",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install streamlit-mapbox"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Maps"
+    ]
+}

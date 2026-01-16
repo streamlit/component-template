@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "title": "Marquee",
+  "author": {
+    "github": "inspurer",
+    "displayName": "inspurer"
+  },
+  "links": {
+    "github": "https://github.com/inspurer/streamlit-marquee",
+    "pypi": "streamlit-marquee",
+    "demo": null,
+    "docs": null
+  },
+  "media": {
+    "image": null
+  },
+  "install": {
+    "pip": "pip install streamlit-marquee"
+  },
+  "governance": {
+    "enabled": true,
+    "notes": null
+  },
+  "categories": [
+    "Widgets"
+  ]
+}

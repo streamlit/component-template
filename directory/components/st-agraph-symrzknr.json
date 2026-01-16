@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Agraph Symrzknr",
+    "author": {
+        "github": "symrzknr",
+        "displayName": "symrzknr"
+    },
+    "links": {
+        "github": "https://github.com/symrzknr/st-agraph-symrzknr",
+        "pypi": "st-agraph-symrzknr",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": null
+    },
+    "install": {
+        "pip": "pip install st-agraph-symrzknr"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Graphs"
+    ]
+}

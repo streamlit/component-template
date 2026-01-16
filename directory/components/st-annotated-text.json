@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "title": "Annotated Text",
+    "author": {
+        "github": "tvst",
+        "displayName": "tvst"
+    },
+    "links": {
+        "github": "https://github.com/tvst/st-annotated-text",
+        "pypi": "st-annotated-text",
+        "demo": null,
+        "docs": null
+    },
+    "media": {
+        "image": "https://github.com/tvst/st-annotated-text/raw/master/example.png"
+    },
+    "install": {
+        "pip": "pip install st-annotated-text"
+    },
+    "governance": {
+        "enabled": true,
+        "notes": null
+    },
+    "categories": [
+        "Text"
+    ]
+}
