@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["directory/components/*.json"],
+      "url": "./directory/schemas/component.schema.json"
+    }
+  ]
+}

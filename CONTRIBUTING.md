@@ -2,11 +2,18 @@
 
 Welcome to Streamlit component template! We appreciate your interest in contributing to our project.
 
+## Adding a component to the directory
+
+If your goal is to add a new JSON entry under `directory/components/` (the community component registry), you **do not** need to follow the development setup below.
+
+Start here instead: [`directory/README.md`](directory/README.md)
+
 ## Setting up pyenv and Intellij IDEA
 
 ### 1. Install pyenv
 
 Run command:
+
 ```shell
 $ curl https://pyenv.run | bash
 ```
@@ -16,11 +23,12 @@ $ curl https://pyenv.run | bash
 ```shell
 $ pyenv install <python_version>
 ```
+
 - python_version - version of python. To check all available versions (recommended 3.11.4) use:
+
 ```shell
 $ pyenv install --list
 ```
-
 
 ### 3. Creating virtual environment
 
@@ -66,15 +74,16 @@ $ ./dev.py all-npm-build
 $ ./dev.py all-python-build-package
 ```
 
-### 3. Set _RELEASE flag
+### 3. Set `_RELEASE` flag
 
-For development we need to set _RELEASE flag. Open __init__.py file for any example or template and set _RELEASE flag to true. 
-Remember to set this flag back to false if you want to create PR.
+For development we need to set the `_RELEASE` flag. Open the `__init__.py` file for any example or template and set `_RELEASE = True`.
+Remember to set this flag back to `False` if you want to create PR.
 
 ### 4. Install template as editable package
 
 Go to directory of example or template and run `pip install -e .`.
 Example:
+
 ```shell
 $ cd examples/CustomDataframe
 $ pip install -e .
@@ -85,11 +94,13 @@ $ pip install -e .
 **Example for CustomDataframe**
 
 Run python script:
+
 ```shell
 $ streamlit run examples/CustomDataframe/custom_dataframe/example.py
 ```
 
 Run frontend:
+
 ```shell
 $ cd examples/CustomDataframe/custom_dataframe/frontend
 $ npm run start
@@ -128,7 +139,9 @@ Template and template-reactless share the same component name. We can only have 
 To switch between them, we need to uninstall one and install another. To do that:
 
 ### 1. Check installed template
+
 Run:
+
 ```shell
 $ pip freeze
 ```
@@ -136,6 +149,7 @@ $ pip freeze
 and find installed package. Copy egg name of this component.
 
 ### 2. Uninstall template
+
 ```shell
 $ pip uninstall <egg_name>
 ```
@@ -143,8 +157,11 @@ $ pip uninstall <egg_name>
 - egg_name - name of package name, by default it is: `streamlit_custom_component`
 
 ### 3. Install another template
+
 Run:
+
 ```shell
 $ pip install -e .
 ```
+
 inside template directory.
