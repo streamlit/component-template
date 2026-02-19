@@ -39,8 +39,8 @@
   "devDependencies": {
     "@types/lodash": "^4.14.150",
     "@types/node": "^22.14.1",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.6",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
