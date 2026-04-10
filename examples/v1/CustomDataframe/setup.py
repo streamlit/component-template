@@ -18,6 +18,7 @@ setuptools.setup(
         # If your component has other Python dependencies, list
         # them here.
         "streamlit >= 0.66",
+        "pandas==2.3.3",
     ],
     extras_require={
         "devel": [
@@ -28,5 +29,5 @@ setuptools.setup(
             "pytest-playwright-snapshot==1.0",
             "pytest-rerunfailures==12.0",
         ]
-    }
+    },
 )
