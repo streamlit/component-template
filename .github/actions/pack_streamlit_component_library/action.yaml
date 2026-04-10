@@ -32,7 +32,7 @@ runs:
         path: ${{ inputs.working_directory }}
 
     - name: Install node dependencies for streamlit-component-lib
-      working-directory: ${{ inputs.working_directory }}/component-lib/
+      working-directory: ${{ inputs.working_directory }}/frontend/component-lib/
       shell: bash
       run: |
         corepack enable
@@ -40,13 +40,12 @@ runs:
         yarn install
 
     - name: Pack streamlit-component-lib package
-      working-directory: ${{ inputs.working_directory }}/component-lib/
+      working-directory: ${{ inputs.working_directory }}/frontend/component-lib/
       shell: bash
       run: yarn run build && npm pack
 
-    - name: Link develop version of streamlit-component-lib
-      if: inputs.custom_streamlit_component_lib_file != ''
-      working-directory: ${{ inputs.working_directory }}/component-lib/
+    - name: Set packed streamlit-component-lib output
+      working-directory: ${{ inputs.working_directory }}/frontend/component-lib/
       id: final_step
       shell: bash
       run: |
