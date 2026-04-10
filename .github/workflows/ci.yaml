@@ -11,9 +11,6 @@ on:
 jobs:
   build-examples-templates-and-run-dockerized-e2e-tests:
     runs-on: ubuntu-latest
-    # Keep published npm package coverage visible without blocking on
-    # unreleased Streamlit compatibility changes.
-    continue-on-error: ${{ matrix.component_lib_version == 'current' && matrix.node_version == '24.x' }}
 
     strategy:
       fail-fast: false
