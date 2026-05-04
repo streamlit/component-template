@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
 import process from "node:process";
-import { defineConfig, loadEnv, UserConfig } from "vite";
+import { defineConfig, UserConfig } from "vite";
 
 /**
  * Vite configuration for Streamlit Custom Component v2 development using React.
@@ -20,7 +20,7 @@ export default defineConfig(() => {
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     },
     build: {
-      minify: isDev ? false : "esbuild",
+      minify: isDev ? false : "oxc",
       outDir: "build",
       sourcemap: isDev,
       lib: {
@@ -30,11 +30,15 @@ export default defineConfig(() => {
         fileName: "index-[hash]",
       },
       ...(!isDev && {
-        esbuild: {
-          drop: ["console", "debugger"],
-          minifyIdentifiers: true,
-          minifySyntax: true,
-          minifyWhitespace: true,
+        rolldownOptions: {
+          output: {
+            minify: {
+              compress: {
+                dropConsole: true,
+                dropDebugger: true,
+              },
+            },
+          },
         },
       }),
     },
