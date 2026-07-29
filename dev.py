@@ -318,6 +318,61 @@ def cmd_example_check_deps(args):
     sys.exit(exit_code)
 
 
+def cmd_example_update_deps(args):
+    """Sync the template's shared dependency versions into every example.
+
+    This is the write counterpart of ``examples-check-deps``: for each version
+    the v1 template declares, it rewrites that version in every example's
+    package.json so the check passes. Only the specific version strings are
+    touched, so the rest of each file (formatting, extra deps) is left intact.
+    Run ``all-npm-install`` afterwards to refresh the lockfiles.
+    """
+    template_package_json = json.loads(
+        (
+            THIS_DIRECTORY
+            / "templates"
+            / "v1"
+            / "template"
+            / "my_component"
+            / "frontend"
+            / "package.json"
+        ).read_text()
+    )
+    examples_package_jsons = sorted(
+        next(d.glob("*/frontend/package.json")) for d in EXAMPLE_DIRECTORIES
+    )
+    changed_any = False
+    for examples_package_json in examples_package_jsons:
+        text = examples_package_json.read_text()
+        example_package_json = json.loads(text)
+        rel = examples_package_json.relative_to(THIS_DIRECTORY)
+        for section_name in ("dependencies", "devDependencies"):
+            template_deps = template_package_json.get(section_name, dict())
+            example_deps = example_package_json.get(section_name, dict())
+            for k, v in template_deps.items():
+                current_version = example_deps.get(k)
+                if current_version is None:
+                    print(
+                        f"WARNING: {rel!s} is missing {k!r} in {section_name!r}. "
+                        f"Add it manually as {v!r}."
+                    )
+                    continue
+                if current_version != v:
+                    text = text.replace(
+                        f'"{k}": "{current_version}"', f'"{k}": "{v}"'
+                    )
+                    print(f"{rel!s}: {k} {current_version} -> {v}")
+                    changed_any = True
+        examples_package_json.write_text(text)
+
+    if changed_any:
+        print()
+        print("Dependency versions synced. Refresh the lockfiles with:")
+        print("  ./dev.py all-npm-install")
+    else:
+        print("All examples already match the template. Nothing to do.")
+
+
 def cmd_check_test_utils(args):
     """Check that e2e utils files are identical"""
     file_list = glob.glob("**/e2e_utils.py", recursive=True)
@@ -497,6 +552,7 @@ COMMANDS = {
     "all-npm-build": {"fn": cmd_all_npm_build},
     "all-python-build-package": {"fn": cmd_all_python_build_package},
     "examples-check-deps": {"fn": cmd_example_check_deps},
+    "examples-update-deps": {"fn": cmd_example_update_deps},
     "templates-check-not-modified": {"fn": cmd_check_templates_using_cookiecutter},
     "templates-update": {"fn": cmd_update_templates},
     "e2e-utils-check": {"fn": cmd_check_test_utils},

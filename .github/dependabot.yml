@@ -1,0 +1,56 @@
+# Dependabot configuration.
+#
+# Every frontend package.json in this repo is entangled in a cross-manifest
+# equality check, and Dependabot updates one directory per PR and cannot
+# coordinate across manifests. That shapes what we let it watch:
+#
+#   - examples-check-deps requires each example's shared toolchain versions
+#     (vite, react, typescript, ...) to match the v1 template exactly.
+#   - templates-check-not-modified requires each rendered template to match its
+#     cookiecutter source.
+#
+# So we only point npm at the examples. For deps the template does NOT declare
+# (baseui, lodash, styletron, ...), Dependabot PRs are independent and merge
+# cleanly. For the shared toolchain, a lone example bump will fail
+# examples-check-deps by design: treat that PR as a signal, then land the bump
+# holistically by editing the cookiecutter source and running
+#   ./dev.py templates-update && ./dev.py examples-update-deps && ./dev.py all-npm-install
+#
+# Rendered templates and cookiecutter sources are intentionally NOT watched: a
+# lone bump there would break the checks above.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "/examples/**/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      # Collapse the shared build toolchain into one PR per example so a Vite
+      # bump arrives as a single coordinated change instead of one PR each for
+      # vite, @vitejs/plugin-react-swc, esbuild, and friends.
+      frontend-toolchain:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "esbuild"
+          - "rollup"
+          - "rolldown"
+          - "postcss"
+          - "typescript"
+          - "prettier"
+          - "@types/node"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+
+  # GitHub Actions have no cross-manifest constraint, so these PRs are always
+  # mergeable on their own. Keeps actions/checkout, actions/setup-node, etc. current.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
