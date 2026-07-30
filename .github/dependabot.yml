@@ -26,6 +26,27 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
+    # v1 is legacy (new components should use v2), so keep it on security and
+    # minor/patch updates only. Major bumps (e.g. @mui 5->9, yup 0->1) require
+    # hand-migrating the example source, and shared-toolchain majors need the
+    # holistic cookiecutter+templates+examples pass anyway, so a lone Dependabot
+    # major PR can never merge cleanly. We land those deliberately instead.
+    ignore:
+      # React is pinned to 18.x. We standardize on React 18 across the repo, so
+      # never bump it here. (Dependabot only watches these v1 example manifests;
+      # v2 stays on React 18 at the source level, since nothing auto-bumps it.)
+      # The blanket major rule below already blocks 18 -> 19, but we call React
+      # out explicitly so the lock survives even if that rule is ever relaxed.
+      - dependency-name: "react"
+        versions: [">=19"]
+      - dependency-name: "react-dom"
+        versions: [">=19"]
+      - dependency-name: "@types/react"
+        versions: [">=19"]
+      - dependency-name: "@types/react-dom"
+        versions: [">=19"]
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       # Collapse the shared build toolchain into one PR per example so a Vite
       # bump arrives as a single coordinated change instead of one PR each for
