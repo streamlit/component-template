@@ -37,7 +37,7 @@
     "@types/react-dom": "$@types/react-dom"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.24",
+    "@types/lodash": "^4.17.25",
     "@types/node": "^24.13.3",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
