@@ -8,13 +8,25 @@ Streamlit component that allows you to do X
 uv pip install streamlit-custom-component
 ```
 
-### Development install (editable)
+## Local development
 
-When developing this component locally, install it in editable mode so Streamlit picks up code changes without rebuilding a wheel. Run this from the directory that contains `pyproject.toml`:
+Build the frontend before the first run. Streamlit loads the files in `my_component/frontend/build`, and each `js=` / `css=` glob must match exactly one file there.
+
+From `my_component/frontend`:
+
+```sh
+npm install
+npm run build
+```
+
+From the project root:
 
 ```sh
 uv pip install -e . --force-reinstall
+streamlit run example.py
 ```
+
+While editing the frontend, run `npm run dev` in `my_component/frontend`. That runs Vite in watch mode. If a glob matches more than one file, run `npm run clean` and build again.
 
 ## Usage instructions
 
@@ -32,10 +44,10 @@ st.write(value)
 
 To package this component for distribution:
 
-1. Build the frontend assets (from `my_component/frontend`):
+1. Build the frontend with Vite (from `my_component/frontend`):
 
    ```sh
-   npm i
+   npm install
    npm run build
    ```
 

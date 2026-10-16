@@ -5,7 +5,7 @@ Streamlit component that allows you to do X
 ## Installation instructions
 
 ```sh
-pip install streamlit-custom-component
+uv pip install streamlit-custom-component
 ```
 
 ## Usage instructions
@@ -25,7 +25,7 @@ st.write(value)
 1. Start Streamlit from the project root:
 
    ```sh
-   streamlit run my_component/example.py
+   uv run streamlit run my_component/example.py
    ```
 
 2. In another terminal, run the Vite dev server from `my_component/frontend`:

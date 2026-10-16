@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-A tool to support the maintenance of templates and examples in this repository.
+A tool to support the maintenance of templates in this repository.
 Something like a Makefile but written in Python for easier maintenance.
 
 To list the available commands, run ./dev.py --help.
 """
 import argparse
-import glob
 import json
 import os
 import shlex
@@ -19,13 +18,6 @@ from pathlib import Path
 
 THIS_DIRECTORY = Path(__file__).parent.absolute()
 VERSIONS = ["v1", "v2"]
-EXAMPLE_DIRECTORIES = [
-    d
-    for v in VERSIONS
-    if (THIS_DIRECTORY / "examples" / v).is_dir()
-    for d in (THIS_DIRECTORY / "examples" / v).iterdir()
-    if d.is_dir()
-]
 TEMPLATE_DIRECTORIES = [
     d
     for v in VERSIONS
@@ -138,8 +130,8 @@ def create_sanitized_copies_excluding_gitignored(
 
 # Commands
 def cmd_all_npm_install(args):
-    """Install all node dependencies for all examples"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+    """Install all node dependencies for all templates"""
+    for project_dir in TEMPLATE_DIRECTORIES:
         frontend_dir = next(project_dir.glob("*/frontend/"))
         run_verbose(
             [
@@ -154,245 +146,10 @@ def cmd_all_npm_install(args):
 
 
 def cmd_all_npm_build(args):
-    """Build javascript code for all examples and templates"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
+    """Build javascript code for all templates"""
+    for project_dir in TEMPLATE_DIRECTORIES:
         frontend_dir = next(project_dir.glob("*/frontend/"))
         run_verbose(["npm", "run", "build"], cwd=str(frontend_dir))
-
-
-def cmd_e2e_build_images(args):
-    """Build docker images for each component e2e tests"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir and os.listdir(e2e_dir):
-            # Define the image tag for the docker image
-            streamlit_version = (
-                args.streamlit_version if not args.streamlit_wheel_file else "custom"
-            )
-            image_tag = f"component-template:py-{args.python_version}-st-{streamlit_version}-component-{project_dir.parts[-1]}"
-            # Build the docker image with specified build arguments
-            docker_args = [
-                "docker",
-                "build",
-                ".",
-                f"--build-arg=PYTHON_VERSION={args.python_version}",
-                f"--tag={image_tag}",
-                "--progress=plain",
-            ]
-            if args.streamlit_wheel_file:
-                buildcontext_path = THIS_DIRECTORY / "buildcontext"
-                shutil.rmtree(buildcontext_path, ignore_errors=True)
-                buildcontext_path.mkdir()
-                shutil.copy(args.streamlit_wheel_file, buildcontext_path)
-                docker_args.extend(
-                    [
-                        "--target=e2e_whl",
-                    ]
-                )
-            else:
-                docker_args.extend(
-                    [
-                        f"--build-arg=STREAMLIT_VERSION={args.streamlit_version}",
-                        "--target=e2e_pip",
-                    ]
-                )
-            run_verbose(
-                docker_args,
-                env={**os.environ, "DOCKER_BUILDKIT": "1"},
-            )
-
-
-def cmd_e2e_run(args):
-    """Run e2e tests for all examples and templates in separate docker images"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        container_name = project_dir.parts[-1]
-        image_tag = f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir and os.listdir(e2e_dir):
-            run_verbose(
-                [
-                    "docker",
-                    "run",
-                    "--tty",
-                    "--rm",
-                    "--name",
-                    container_name,
-                    "--volume",
-                    f"{e2e_dir.parent}/:/component/",
-                    image_tag,
-                    "/bin/sh",
-                    "-c",  # Run a shell command inside the container
-                    "find /component/dist/ -name '*.whl' | xargs -I {} echo '{}[devel]' | xargs pip install && "  # Install whl package and dev dependencies
-                    "pytest -s --browser webkit --browser chromium --browser firefox --reruns 5 --capture=no",  # Run pytest
-                ]
-            )
-
-
-def cmd_docker_images_cleanup(args):
-    """Cleanup docker images and containers"""
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        container_name = project_dir.parts[-1]
-        image_name = f"component-template:py-{args.python_version}-st-{args.streamlit_version}-component-{container_name}"
-        e2e_dir = next(project_dir.glob("**/e2e/"), None)
-        if e2e_dir and os.listdir(e2e_dir):
-            # Remove the associated Docker image
-            run_verbose(["docker", "rmi", image_name])
-
-
-def cmd_all_python_build_package(args):
-    """Build wheel packages for all examples and templates"""
-    final_dist_directory = THIS_DIRECTORY / "dist"
-    final_dist_directory.mkdir(exist_ok=True)
-    for project_dir in EXAMPLE_DIRECTORIES + TEMPLATE_DIRECTORIES:
-        pyproject_file = project_dir / "pyproject.toml"
-        if pyproject_file.exists():
-            run_verbose(
-                [sys.executable, "-m", "build", "--wheel", "--sdist"],
-                cwd=str(project_dir),
-            )
-        else:
-            run_verbose(
-                [sys.executable, "setup.py", "bdist_wheel", "--universal", "sdist"],
-                cwd=str(project_dir),
-            )
-
-        wheel_file = next(project_dir.glob("dist/*.whl"))
-        shutil.copy(wheel_file, final_dist_directory)
-
-
-def check_deps(template_package_json, current_package_json):
-    return check_deps_section(
-        template_package_json, current_package_json, "dependencies"
-    ) + check_deps_section(
-        template_package_json, current_package_json, "devDependencies"
-    )
-
-
-def check_deps_section(template_package_json, current_package_json, section_name):
-    current_package_deps = current_package_json.get(section_name, dict())
-    template_package_deps = template_package_json.get(section_name, dict())
-    errors = []
-
-    for k, v in template_package_deps.items():
-        if k not in current_package_deps:
-            errors.append(f"Missing [{k}:{v}] in {section_name!r} section")
-            continue
-        current_version = current_package_deps[k]
-        if current_version != v:
-            errors.append(
-                f"Invalid version of {k!r}. Expected: {v!r}. Current: {current_version!r}"
-            )
-    return errors
-
-
-def cmd_example_check_deps(args):
-    """Checks that dependencies of examples match the template"""
-    template_deps = json.loads(
-        (
-            THIS_DIRECTORY
-            / "templates"
-            / "v1"
-            / "template"
-            / "my_component"
-            / "frontend"
-            / "package.json"
-        ).read_text()
-    )
-    examples_package_jsons = sorted(
-        next(d.glob("*/frontend/package.json")) for d in EXAMPLE_DIRECTORIES
-    )
-    exit_code = 0
-    for examples_package_json in examples_package_jsons:
-        example_deps = json.loads(examples_package_json.read_text())
-        errors = check_deps(template_deps, example_deps)
-        if errors:
-            print(
-                f"Found error in {examples_package_json.relative_to(THIS_DIRECTORY)!s}"
-            )
-            print("\n".join(errors))
-            print()
-            exit_code = 1
-    if exit_code == 0:
-        print("No errors")
-
-    sys.exit(exit_code)
-
-
-def cmd_example_update_deps(args):
-    """Sync the template's shared dependency versions into every example.
-
-    This is the write counterpart of ``examples-check-deps``: for each version
-    the v1 template declares, it rewrites that version in every example's
-    package.json so the check passes. Only the specific version strings are
-    touched, so the rest of each file (formatting, extra deps) is left intact.
-    Run ``all-npm-install`` afterwards to refresh the lockfiles.
-    """
-    template_package_json = json.loads(
-        (
-            THIS_DIRECTORY
-            / "templates"
-            / "v1"
-            / "template"
-            / "my_component"
-            / "frontend"
-            / "package.json"
-        ).read_text()
-    )
-    examples_package_jsons = sorted(
-        next(d.glob("*/frontend/package.json")) for d in EXAMPLE_DIRECTORIES
-    )
-    changed_any = False
-    for examples_package_json in examples_package_jsons:
-        text = examples_package_json.read_text()
-        example_package_json = json.loads(text)
-        rel = examples_package_json.relative_to(THIS_DIRECTORY)
-        for section_name in ("dependencies", "devDependencies"):
-            template_deps = template_package_json.get(section_name, dict())
-            example_deps = example_package_json.get(section_name, dict())
-            for k, v in template_deps.items():
-                current_version = example_deps.get(k)
-                if current_version is None:
-                    print(
-                        f"WARNING: {rel!s} is missing {k!r} in {section_name!r}. "
-                        f"Add it manually as {v!r}."
-                    )
-                    continue
-                if current_version != v:
-                    text = text.replace(
-                        f'"{k}": "{current_version}"', f'"{k}": "{v}"'
-                    )
-                    print(f"{rel!s}: {k} {current_version} -> {v}")
-                    changed_any = True
-        examples_package_json.write_text(text)
-
-    if changed_any:
-        print()
-        print("Dependency versions synced. Refresh the lockfiles with:")
-        print("  ./dev.py all-npm-install")
-    else:
-        print("All examples already match the template. Nothing to do.")
-
-
-def cmd_check_test_utils(args):
-    """Check that e2e utils files are identical"""
-    file_list = glob.glob("**/e2e_utils.py", recursive=True)
-    if file_list:
-        reference_file = file_list[0]
-    else:
-        print("Cannot find e2e_utils.py files")
-        sys.exit(1)
-
-    for file_path in file_list:
-        run_verbose(
-            [
-                "git",
-                "--no-pager",
-                "diff",
-                "--no-index",
-                str(reference_file),
-                str(file_path),
-            ]
-        )
 
 
 class CookiecutterVariant(typing.NamedTuple):
@@ -535,56 +292,11 @@ def cmd_update_templates(args):
             print()
 
 
-ARG_STREAMLIT_VERSION = (
-    "--streamlit-version",
-    "latest",
-    "Streamlit version for which tests will be run.",
-)
-ARG_STREAMLIT_WHEEL_FILE = ("--streamlit-wheel-file", "", "")
-ARG_PYTHON_VERSION = (
-    "--python-version",
-    os.environ.get("PYTHON_VERSION", "3.11.4"),
-    "Python version for which tests will be run.",
-)
-
 COMMANDS = {
     "all-npm-install": {"fn": cmd_all_npm_install},
     "all-npm-build": {"fn": cmd_all_npm_build},
-    "all-python-build-package": {"fn": cmd_all_python_build_package},
-    "examples-check-deps": {"fn": cmd_example_check_deps},
-    "examples-update-deps": {"fn": cmd_example_update_deps},
     "templates-check-not-modified": {"fn": cmd_check_templates_using_cookiecutter},
     "templates-update": {"fn": cmd_update_templates},
-    "e2e-utils-check": {"fn": cmd_check_test_utils},
-    "e2e-build-images": {
-        "fn": cmd_e2e_build_images,
-        "arguments": [
-            ARG_STREAMLIT_VERSION,
-            ARG_STREAMLIT_WHEEL_FILE,
-            ARG_PYTHON_VERSION,
-        ],
-    },
-    "e2e-run-tests": {
-        "fn": cmd_e2e_run,
-        "arguments": [
-            ARG_STREAMLIT_VERSION,
-            ARG_PYTHON_VERSION,
-        ],
-    },
-    "docker-images-cleanup": {
-        "fn": cmd_docker_images_cleanup,
-        "arguments": [
-            (
-                *ARG_STREAMLIT_VERSION[:2],
-                "Streamlit version used to create the Docker resources",
-            ),
-            (*ARG_STREAMLIT_WHEEL_FILE[:2], ""),
-            (
-                *ARG_PYTHON_VERSION[:2],
-                "Python version used to create the Docker resources",
-            ),
-        ],
-    },
 }
 
 

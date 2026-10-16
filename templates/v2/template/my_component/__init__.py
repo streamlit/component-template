@@ -32,18 +32,13 @@ def my_component(name, key=None):
 
     Returns
     -------
-    int
-        The number of times the component's "Click Me" button has been clicked.
-        (This is the value passed to `Streamlit.setComponentValue` on the
-        frontend.)
+    Component state. ``num_clicks`` is the number of button clicks, sent from
+    the frontend with ``setStateValue("num_clicks", ...)``.
 
     """
-    # Call through to our private component function. Arguments we pass here
-    # will be sent to the frontend, where they'll be available in an "args"
-    # dictionary.
-    #
-    # "default" is a special argument that specifies the initial return
-    # value of the component before the user has interacted with it.
+    # `data` is sent to the frontend on every run.
+    # `default` initializes state keys that are not set yet. Each key needs a
+    # matching `on_<key>_change` callback, or Streamlit rejects the mount.
     component_value = out(
         name=name,
         key=key,
