@@ -24,8 +24,9 @@ test-reports
 # Test fixtures
 cffi_bin
 
-# Pyenv Stuff
+# Virtual environments
 .python-version
+.venv/
 
 ########################################################################
 # OSX - https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
@@ -53,11 +54,11 @@ node_modules/
 # Coverage directory used by tools like istanbul
 coverage/
 
-# Lockfiles
-template/**/yarn.lock
-template/**/package-lock.json
-template-reactless/**/yarn.lock
-template-reactless/**/package-lock.json
+# Lockfiles generated inside rendered templates and cookiecutter sources
+templates/**/yarn.lock
+templates/**/package-lock.json
+cookiecutter/**/yarn.lock
+cookiecutter/**/package-lock.json
 
 ########################################################################
 # JetBrains
@@ -68,4 +69,3 @@ template-reactless/**/package-lock.json
 # VSCode
 ########################################################################
 .vscode/
-buildcontext/

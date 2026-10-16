@@ -1,150 +1,82 @@
 # Contributing to Streamlit component template
 
-Welcome to Streamlit component template! We appreciate your interest in contributing to our project.
+## Requirements
 
-## Setting up pyenv and Intellij IDEA
+- Python 3.13 or newer
+- [uv](https://docs.astral.sh/uv/)
+- Node.js 24 (LTS) and npm
 
-### 1. Install pyenv
+Create a virtual environment from the repository root:
 
-Run command:
-```shell
-$ curl https://pyenv.run | bash
+```sh
+uv venv --python 3.13
+source .venv/bin/activate
 ```
 
-### 2. Use pyenv to install python
+## Run a template locally
 
-```shell
-$ pyenv install <python_version>
-```
-- python_version - version of python. To check all available versions (recommended 3.11.4) use:
-```shell
-$ pyenv install --list
-```
+Install and build every template frontend:
 
-
-### 3. Creating virtual environment
-
-```shell
-$ pyenv virtualenv <python_version> <environment_name>
+```sh
+./dev.py all-npm-install
+./dev.py all-npm-build
 ```
 
-- python_version - version of python
-- environment_name - your custom name of pyenv environment
+### v2
 
-### 4. Activate virtual environment
+v2 loads built files from `my_component/frontend/build`. Build that directory before the first run. From `templates/v2/template/my_component/frontend`:
 
-```shell
-$ pyenv activate <environment_name>
+```sh
+npm install
+npm run build
 ```
 
-- environment_name - your previously chosen pyenv environment name
+From `templates/v2/template`:
 
-### 5. Setup pyenv in Intellij IDEA
-
-To configure your Python SDK in your project, follow these steps:
-
-1. Open "File" menu.
-2. Navigate to "Project Structure".
-3. Under "Project," locate "Edit (SDK)".
-4. Click on "Add Python SDK" (using the plus button).
-5. Select "Virtualenv Environment".
-6. Choose "Existing environment".
-7. Specify the path to your Python environment using <your_pyenv_location>.
-
-## Run locally example
-
-### 1. Install and build frontend examples and templates
-
-```shell
-$ ./dev.py all-npm-install
-$ ./dev.py all-npm-build
+```sh
+uv pip install -e . --force-reinstall
+streamlit run example.py
 ```
 
-### 2. Install python packages
+`npm run dev` in the frontend directory runs Vite in watch mode while you edit. If `index-*.js` matches more than one file, run `npm run clean` and build again.
 
-```shell
-$ ./dev.py all-python-build-package
+`template` and `template-reactless` both install as `streamlit-custom-component`. Only one can be installed at a time. Switch with:
+
+```sh
+uv pip uninstall streamlit-custom-component
+cd templates/v2/template-reactless
+uv pip install -e .
 ```
 
-### 3. Set _RELEASE flag
+### v1
 
-For development we need to set _RELEASE flag. Open __init__.py file for any example or template and set _RELEASE flag to true. 
-Remember to set this flag back to false if you want to create PR.
+v1 templates keep `_RELEASE = False` while developing. That tells Streamlit to load the frontend from the Vite dev server at `http://localhost:3001`. Set `_RELEASE = True` only when building a wheel, and set it back to `False` before committing.
 
-### 4. Install template as editable package
+From `templates/v1/template`:
 
-Go to directory of example or template and run `pip install -e .`.
-Example:
-```shell
-$ cd examples/CustomDataframe
-$ pip install -e .
+```sh
+uv pip install -e .
+uv run streamlit run my_component/example.py
 ```
 
-### 5. Run python script and frontend
+In another terminal:
 
-**Example for CustomDataframe**
-
-Run python script:
-```shell
-$ streamlit run examples/CustomDataframe/custom_dataframe/example.py
+```sh
+cd templates/v1/template/my_component/frontend
+npm install
+npm run start
 ```
 
-Run frontend:
-```shell
-$ cd examples/CustomDataframe/custom_dataframe/frontend
-$ npm run start
+The same package-name limit applies to `templates/v1/template` and `templates/v1/template-reactless`.
+
+## Keeping rendered templates in sync
+
+`templates/` is generated from `cookiecutter/`. After editing a cookiecutter source, refresh the rendered copies and check them:
+
+```sh
+uvx --from 'cookiecutter==2.2.2' cookiecutter --version
+./dev.py templates-update
+./dev.py templates-check-not-modified
 ```
 
-# Testing
-
-## Run locally
-
-### 1. Run example locally
-
-Please check "Run Locally example" section.
-
-### 2. Run pytest command
-
-Example for CustomDataframe:
-
-```shell
-$ pytest examples/CustomDataframe/e2e
-```
-
-## Run in docker
-
-Run following commands:
-
-```shell
-$ ./dev.py e2e-build-images
-$ ./dev.py e2e-run-tests
-```
-
-# Troubleshooting
-
-## Setting up template and template-reactless locally
-
-Template and template-reactless share the same component name. We can only have one component installed.
-To switch between them, we need to uninstall one and install another. To do that:
-
-### 1. Check installed template
-Run:
-```shell
-$ pip freeze
-```
-
-and find installed package. Copy egg name of this component.
-
-### 2. Uninstall template
-```shell
-$ pip uninstall <egg_name>
-```
-
-- egg_name - name of package name, by default it is: `streamlit_custom_component`
-
-### 3. Install another template
-Run:
-```shell
-$ pip install -e .
-```
-inside template directory.
+Cookiecutter 2.2.3 breaks the replay files used by that check. `./dev.py --help` lists the other maintenance commands.

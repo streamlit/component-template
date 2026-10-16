@@ -25,7 +25,7 @@ if not _RELEASE:
         # own component :)
         "{{ cookiecutter.import_name }}",
         # Pass `url` here to tell Streamlit that the component will be served
-        # by the local dev server that you run via `npm run start`.
+        # by the local Vite dev server that you run via `npm run start`.
         # (This is useful while your component is in development.)
         url="http://localhost:3001",
     )

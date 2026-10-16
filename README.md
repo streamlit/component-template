@@ -1,115 +1,90 @@
 # Streamlit Component Templates
 
-This repo contains templates and example code for creating [Streamlit](https://streamlit.io) Components.
+Templates for creating [Streamlit](https://streamlit.io) Components. [Components v2](https://docs.streamlit.io/develop/concepts/custom-components/components-v2) is the way to build a new component. This repository is the official package template: generate a project from it, then customize. Components v1 is still supported for components that already use it.
 
-For complete information, please see the [Streamlit Components documentation](https://docs.streamlit.io/en/latest/streamlit_components.html)!
+## Components v2
 
-## Overview
+v2 components are part of the Streamlit page. [Components v2](https://docs.streamlit.io/develop/concepts/custom-components/components-v2) covers registration, mounting, state versus trigger values, and packaged frontends. From the [overview](https://docs.streamlit.io/develop/concepts/custom-components/overview):
 
-A Streamlit Component is made out of a Python API and a frontend (built using any web tech you prefer).
+- Components render in the page. They are not isolated in an iframe.
+- You can pass multiple callbacks. State values persist, and trigger values fire once per event.
+- Data exchange includes JSON, dataframes (Apache Arrow), and bytes.
+- You can prototype with HTML, CSS, and JavaScript from Python, or package a frontend with TypeScript and Vite.
+- Theme values are available as CSS custom properties.
 
-A Component can be used in any Streamlit app, can pass data between Python and frontend code, and can optionally be distributed on [PyPI](https://pypi.org/) for the rest of the world to use.
+A packaged component registers a fully qualified name, points `js=` at a file under `asset_dir`, and declares each state key in `default` with a matching `on_<key>_change` callback:
 
 ```python
 import streamlit as st
 
-# Declare the component
 my_component = st.components.v2.component(
     "your-package.your_component",
     js="index-*.js",
-    html='<div class="react-root"></div>',
+    html="<button>Click</button>",
 )
 
-# Use it directly or via a small wrapper
-value = my_component(data={"name": "World"}, default={"num_clicks": 0})
+value = my_component(
+    data={"name": "World"},
+    default={"num_clicks": 0},
+    on_num_clicks_change=lambda: None,
+)
 ```
 
 ```tsx
-import { Component } from '@streamlit/component-v2-lib';
-import { createRoot } from 'react-dom/client';
+import { FrontendRenderer } from "@streamlit/component-v2-lib";
 
-const MyComponent: Component = (args) => {
-  const root = createRoot(args.parentElement.querySelector('.react-root'));
-  root.render(<div>Hello, {args.data.name}!</div>);
+const MyComponent: FrontendRenderer = ({ parentElement, data, setStateValue }) => {
+  const button = parentElement.querySelector("button");
+  if (!button) return;
+
+  button.textContent = `Hello, ${data.name}!`;
+  button.onclick = () => setStateValue("num_clicks", 1);
 };
 
 export default MyComponent;
 ```
 
-See full examples in `templates/v2/template/` and `templates/v2/template-reactless/`.
+Full templates: `templates/v2/template/` (React) and `templates/v2/template-reactless/` (TypeScript).
 
-<details>
-<summary>Show v1 code samples</summary>
+## Components v1 (legacy)
+
+v1 is the original component API, stable since 2020. New components should use v2. v1 components run in an iframe, and the API is mainly one-way: Python sends arguments, and the component returns a single value.
 
 ```python
 import streamlit.components.v1 as components
 
-# Declare the component (v1)
 my_component = components.declare_component("my_component", path="frontend/build")
-
-# Use it
 value = my_component(name="World", default=0)
 ```
 
-```tsx
-import {
-  withStreamlitConnection,
-  ComponentProps,
-} from 'streamlit-component-lib';
+Full templates: `templates/v1/template/` and `templates/v1/template-reactless/`.
 
-function MyComponent({ args }: ComponentProps) {
-  return <div>Hello, {args.name}!\n</div>;
-}
+## Quickstart
 
-export default withStreamlitConnection(MyComponent);
+Install [uv](https://docs.astral.sh/uv/), [Node.js](https://nodejs.org) 24, and npm. Generate a project with Cookiecutter:
+
+```bash
+uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v2
 ```
 
-</details>
+For a legacy v1 component:
 
-See full examples in `templates/v1/template/` and `templates/v1/template-reactless/`.
+```bash
+uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v1
+```
 
-## Supported template versions
+Follow the prompts, then the `README` in the generated project. Sample apps install with `uv` and build the frontend with Vite.
 
-This repo provides templates for both Streamlit Component APIs:
+## Pre-generated templates
 
-- v2: Uses `st.components.v2.component()` and `@streamlit/component-v2-lib`.
-- v1: Uses `st.components.v1.component()` and `streamlit-component-lib`.
+The `templates/` directory is the cookiecutter output, so you can read a complete project without generating one:
 
-## Quickstart (generate a new component with Cookiecutter)
+- v2: `templates/v2/template/` and `templates/v2/template-reactless/`
+- v1: `templates/v1/template/` and `templates/v1/template-reactless/`
 
-- Ensure you have [uv](https://docs.astral.sh/uv/), [Node.js](https://nodejs.org), and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
-- Generate from this template using Cookiecutter via `uvx`:
+## Community-provided templates
 
-  - v2 (recommended):
-
-    ```bash
-    uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v2
-    ```
-
-  - v1:
-    ```bash
-    uvx --from cookiecutter cookiecutter gh:streamlit/component-template --directory cookiecutter/v1
-    ```
-
-- Follow the interactive prompts to generate your project.
-- Once created, follow the `README` in your new project to get started.
-
-## Just browsing? Pre-generated outputs
-
-If you want to quickly explore without running Cookiecutter, browse the pre-generated templates in this repo:
-
-- v2 outputs: `templates/v2/template/` and `templates/v2/template-reactless/`
-- v1 outputs: `templates/v1/template/` and `templates/v1/template-reactless/`
-
-From within one of these folders, you can inspect the Python package layout and the `my_component/frontend` code. Refer to the template-level `README` for build instructions.
-
-## Examples
-
-See the `examples/v1/` directory for examples working with pandas DataFrames, integrating with third-party libraries, and more.
-
-## Community-provided Templates
-
-These templates are provided by the community. If you run into any issues, please file your issues against their repositories.
+These templates are maintained outside this repo. File issues against their repositories.
 
 - [streamlit-component-svelte-template](https://github.com/93degree/streamlit-component-svelte-template) - [@93degree](https://github.com/93degree)
 - [streamlit-component-vue-vite-template](https://github.com/gabrieltempass/streamlit-component-vue-vite-template) - [@gabrieltempass](https://github.com/gabrieltempass)
@@ -118,10 +93,10 @@ These templates are provided by the community. If you run into any issues, pleas
 
 ## Contributing
 
-If you want to contribute to this project, `./dev.py` script will be helpful for you. For details, run `./dev.py --help`.
+`./dev.py` refreshes the rendered templates and checks that they still match the cookiecutter sources. See `CONTRIBUTING.md`.
 
-## More Information
+## More information
 
-- [Streamlit Components documentation](https://docs.streamlit.io/library/components)
+- [Custom components overview](https://docs.streamlit.io/develop/concepts/custom-components/overview)
 - [Streamlit Forums](https://discuss.streamlit.io/tag/custom-components)
 - [Streamlit Components gallery](https://www.streamlit.io/components)

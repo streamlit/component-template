@@ -5,7 +5,7 @@
 ## Installation instructions
 
 ```sh
-pip install {{ cookiecutter.package_name }}
+uv pip install {{ cookiecutter.package_name }}
 ```
 
 ## Usage instructions
@@ -25,7 +25,7 @@ st.write(value)
 1. Start Streamlit from the project root:
 
    ```sh
-   streamlit run {{ cookiecutter.import_name }}/example.py
+   uv run streamlit run {{ cookiecutter.import_name }}/example.py
    ```
 
 2. In another terminal, run the Vite dev server from `{{ cookiecutter.import_name }}/frontend`:
